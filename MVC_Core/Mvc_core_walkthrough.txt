@@ -1,0 +1,102 @@
+*** General
+Model view controller 
+MVC core is cross platform application
+It has build in dependency Injection
+It has middleware Componentrs and can define custome middleware
+*** Getting started with templates
+Empty - It containts the bare min content to show hello word (starting from scratch)
+MVC template - Model Viewes controler template 
+Web Application - slim version from mvc for razor pages 
+API - Restufll http servise
+*** Project file
+It creates files with extension .csproj
+Program file (click on project) has self explanatory propertyes
+</TargetFramework> - spresifies the target Framework for the application
+</AspNetCoreHostingModel> // spresifies how the application is hosted (inProcces or OutofProcess)
+InProcess hosts the app inside of the IIS worker process (w3wp.exe)
+OutOfProcess hosting model forward web request toa backend ASP.NET core app running the Kestrel server
+ <PackageReference - includes list of dependencies
+SDK - software developer kit
+*** Main method 
+Initialy starts as console application
+The main method configures ASP.Net Core and starts it and at that point it becomes ans ASP.NET Core web application
+We have startup class which is used in the IWebHostBuilder CreateWebHostBuilder method to build the web application
+CreateDefaultBuilder is setting up the web server, loading the host and application from various configuration sources and configuring logging
+*** Inprocess hosting
+*** OutOfProcess hosting
+*** launchSettings.json
+This file it is only required on our local developend machine (we dont need it for publishig)
+For publishin we need use appsettings.json
+Setting the applicationURl
+Setting enviroment (developent, staging...)
+lunch profiles (default iisexpress and project name)
+*** appsettings.json
+We acces this settings from Iconfiguration service
+appsettings.json
+appsettings.enviroments.json (appsettings.Developement.json, appsettings.stagingjson, appsettings.production.json)
+user secrets
+environment variables
+comand line arguments
+It has cascade overriding from that order above
+appsettings.json stores configurations information as key value pair ( we can add key values that we need)
+*** Middleware
+It can handle Http request and responses
+It is pipeline for some functionality 
+May simply pass the Request to the next middleware
+May do some logic and then pass the request
+May reject the request
+Middlewares are executed in the order they are added
+app.run method is terminal middleware (does not call the next middleware)
+To call the next middleware use app.use with 2 parameters (second parameter is func that points to the next middleware)
+*** Static files 
+To use static files we need couple of rules:
+-All static files needs to be in wwwroot foled
+-We need the exat path to that location where the file is
+-We need to register another middleware for use of static files
+*** Use developer exception page
+Declare as early as possible
+Contains stack trace, Query string, cookies and Http headers
+we can customize using developerExceptionPageOptions object
+*** Enviroment variable
+Development enviroment - developer tools, developer exception , full scripts involved
+Staging Enviroment - as close as production, user friendly exceptions, minimazed scripts
+Production Enviroment - max security, minimaze scripts
+Default enviroment is Production
+ASPNETCORE_ENVIRONMENT is where we set the environment.
+On development machine we set it in launchsettings.json
+On staging or production server we set in the operating system
+Also supported custom environment
+*** Setup mvc in asp net core
+We need to add service.AddMvc() or AddMvcCore()
+service.AddMvcCore only uses the core MVC services 
+service.AddMvc uses all of the services. Internaly it calls service.addMvcCore method
+We need to add Middleware app.useMvc
+There is a convention naming the controlers (add Controller after the name of the controler)
+Controler class should inherit from Controller and name space AspNetCore.Mvc
+*** Models
+models = data + manage the data
+raw data that we need in classes
+Mostly properties that we need and some methods that are conected to that class
+We also need to implement repository pattern and dependency injection to provide 
+loose coupling and give more security
+With models goes logic to manage the data. We can separate this clasess in new folder
+*** Dependency injection
+Creating an isntance of an object. Because there is no implementation in interface
+we need to make an instance of the class that is inheriting the interface.
+We also need write the service that we want to use in startup class.
+For that we can use 3 methods to register our dependency injection
+service.AddSingleton - at first requested, single instance is created and used
+service.Scope - once per request within the scope, it creates one instance per each 
+		Http request and uses same instance in that other calls within that same web request
+service.AddTransient - each time it is requested, new instance is created
+*** Controlers
+Request that arrives are handled by controler
+It has Action method that handles and process the http request
+Needs to inherit form class Controller
+
+
+
+
+
+
+
