@@ -93,6 +93,76 @@ service.AddTransient - each time it is requested, new instance is created
 Request that arrives are handled by controler
 It has Action method that handles and process the http request
 Needs to inherit form class Controller
+Builds the model and passes it to the View
+*** Views
+All files are in Views folder, then folder with the name of the controler 
+then file with same name as the action in that controler
+Presenting the model data provided by the controler
+Contains logic to display model data
+We use razorview file so we can use html elements and c# code (razor syntax) 
+we can use overloads in the actions to create custome routing for views
+we can pass data to view form a controler
+-ViewData
+-ViewBag
+-Strongly Typed View
+We can use them in the same view to pass parametars
+*** ViewData 
+Provide loosely typed view (no intelisense, type of data is nown at a runtime, dynamicly resolved at runtime)
+Declared and assign in the action method in controled  ViewData["name_of_property"] = something
+If element is not a string, we need to cast it explicitly to the type that we want
+*** ViewBag
+Its like a wraper 
+Same as ViewData but no need of explicitly cast types
+*** Strongly Typed View
+include at the top the model directive @model namspaceOfTheModel
+Provide intelicense
+Compile time checking erros 
+*** ViewModel
+We create View Model when a model objec does not contain all the data a view needs
+is a class that contains all data that our action needs to pass to the view
+can be anywhere but to keep everything organized we put them into separate folder
+They are called DTO data transfer objecs
+To put a list into a table we need to use foreach or for cycle and use razor syntax
+*** View Layot 
+The basic general common elements that we have in all of the Views (header, menu, footer)
+Provides consisten looking behaviour for all the views of our application 
+Easy to maintain
+Application can have multiple layout views
+it can have section that it is mandotory or optional
+use @RenderSection in layot to specify where you want to put the section
+We can also make a check and go to the view and declare that we are going to use section there
+In layot
+ @if (IsSectionDefined("Scripts"))
+    {
+        @RenderSection("Scripts", required: true)
+    }
+In view
+@section Scripts {
+    <script src="~/js/CustomScript.js"></script>
+}
+
+***ViewStartFile and ViewImportsFile
+Both are hierarchial (cascade overwrite). The one that is deeper in folder is the one to listen 
+We can use ViewStartFile to include code that is common to all views
+We can use ViewImports to include the common namespaces with @usin name_of_namespace
+*** Routing 
+-Conventional Routing 
+-Attribute Routing
+We can mix conventional Routing and atribute Routing
+*Conventional routing 
+With routing we are telling the app what controler should be 
+targeted by the request and which action to invoke
+We need to include in startup the way of routing we want.
+We can chose the app.UseMvcWithdefaultRout() or we can configure app.UseMvc();
+we can set default route with .MapRoute() method
+*Atribute routing
+use atributes above a controler or above an individual action
+[Route("path")]
+We can put any name in the path that we want to write in the browser (override the default routing)
+Atribute above controler is combined with the atribute on the individual action
+atribute can support tokens [controller] and [action] as a name that points to the controller or the action
+
+
 
 
 

@@ -9,11 +9,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using EmployeeManagement.Models;
 
+
 namespace EmployeeManagement
 {
     public class Startup
     {
-        private IConfiguration _config;
+        private readonly IConfiguration _config;
 
         public Startup(IConfiguration config)
         {
@@ -23,7 +24,7 @@ namespace EmployeeManagement
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvcCore();
+            services.AddMvc().AddXmlSerializerFormatters();
             services.AddSingleton<IEmployeeRepository, MockEmployeeRepository>();
         }
 
@@ -36,8 +37,14 @@ namespace EmployeeManagement
             }
 
             app.UseStaticFiles();
-            app.UseMvcWithDefaultRoute();
-         
+
+            //app.UseMvcWithDefaultRoute();
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
+            });
+            //app.UseMvc();
+
         }
     }
 }

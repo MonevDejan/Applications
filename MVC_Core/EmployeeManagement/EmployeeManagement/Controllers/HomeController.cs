@@ -4,9 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EmployeeManagement.Models;
+using EmployeeManagement.ViewModels;
 
 namespace EmployeeManagement.Controllers
 {
+
+    //[Route("[controller]/[action]")]
     public class HomeController : Controller
     {
         private readonly IEmployeeRepository _employeeRepository;
@@ -16,15 +19,23 @@ namespace EmployeeManagement.Controllers
             _employeeRepository = employeeRepository;
 
         }
-        public string Index()
+        //[Route("~/")]
+        //[Route("~/home")]
+        public ViewResult Index()
         {
-           return _employeeRepository.GetEmployee(1).Name;
+            var model = _employeeRepository.GetAllEmployee();
+            return View(model);
         }
 
-        public string Details()
+        //[Route("{id?}")]
+        public ViewResult Details(int? id)
         {
-            Employee model = _employeeRepository.GetEmployee(1);
-            return _employeeRepository.GetEmployee(1).Name;
+            HomeDetailsViewModel homeDetailsViewModel = new HomeDetailsViewModel()
+            {
+                Employee = _employeeRepository.GetEmployee(id??1),
+                PageTitle = "Employee Details"
+            };
+            return View(homeDetailsViewModel);
         }
     }
 }
