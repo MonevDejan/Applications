@@ -161,6 +161,15 @@ use atributes above a controler or above an individual action
 We can put any name in the path that we want to write in the browser (override the default routing)
 Atribute above controler is combined with the atribute on the individual action
 atribute can support tokens [controller] and [action] as a name that points to the controller or the action
+*** libman.json file
+we use this file to add bootstrap, jquery or other scripts
+we can acess directrly from the file or we can install them from the clien-side library
+*** Tag helpers
+We import tag helpers with this sytax: @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+we put the into ViewImports file
+we use them to automaticly generate html tags 
+html helpers are diferent than tag helpers
+***
 
 
 
