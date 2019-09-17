@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using EmployeeManagement.Models;
-
+using Microsoft.EntityFrameworkCore;
 
 namespace EmployeeManagement
 {
@@ -26,6 +26,8 @@ namespace EmployeeManagement
         {
             services.AddMvc().AddXmlSerializerFormatters();
             services.AddSingleton<IEmployeeRepository, MockEmployeeRepository>();
+            services.AddDbContextPool<AppDbContrext>(
+                options => options.UseSqlServer(_config.GetConnectionString("EmployeeDBConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

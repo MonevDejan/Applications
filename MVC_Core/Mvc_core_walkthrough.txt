@@ -169,7 +169,44 @@ We import tag helpers with this sytax: @addTagHelper *, Microsoft.AspNetCore.Mvc
 we put the into ViewImports file
 we use them to automaticly generate html tags 
 html helpers are diferent than tag helpers
-***
+Image tag helper - it adds unique string to img to check the new version on server (in combination with cash)
+Environment tag helper - to include min version for stage or prodoction. If failf to load fall back to local version
+Form tag helper - helps with form and provides modelbinding
+*** Model binding
+cascade binding 
+-Query strings
+-Route values
+-Form Values
+It maps our values form form or from query string to our model object in backend
+we need to use tag helpers in the view to achieve that
+*** Model validation
+We put attributes above the wanted property
+They come form the namespace System.ComponentModel.DataAnnotations
+we need to ModelState to check if the model is valid (we do that in controller)
+we can use atributes properties [AtributeName(propertyName = )]
+use tag helper to add spans to show errors in view
+Validation summary tag helper - to see all validations
+it is done in 3 steps
+1.use atributes 2.Check validation in controller 3.Tag helpers in view
+*** Entity framework core
+Object relation mapper
+It enable developers to work with database using business object
+it supports reading and writing to database 
+we need to create special class that uses DatabaseContext 
+with DBContextClasses EF communicating with the base
+It has codeFirst approach and Databese first approach
+we need Database provider (nugetPackage) for the type of database
+Microsoft.EntityFrameworkCore.SqlServer
+Microsoft.EntityFrameworkCore.Relational
+Microsoft.EntityFrameworkCore
+*** DbContext
+It allows us to interact with the database
+The class that we use for that needs to derive from DbContext
+it needs an instance of dbcontext options class 
+we create corresponding dbset property
+***Entity framework
+
+
 
 
 

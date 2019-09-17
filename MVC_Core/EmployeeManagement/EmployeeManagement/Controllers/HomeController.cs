@@ -21,14 +21,14 @@ namespace EmployeeManagement.Controllers
         }
         //[Route("~/")]
         //[Route("~/home")]
-        public ViewResult Index()
+        public IActionResult Index()
         {
             var model = _employeeRepository.GetAllEmployee();
             return View(model);
         }
 
         //[Route("{id?}")]
-        public ViewResult Details(int? id)
+        public IActionResult Details(int? id)
         {
             HomeDetailsViewModel homeDetailsViewModel = new HomeDetailsViewModel()
             {
@@ -36,6 +36,23 @@ namespace EmployeeManagement.Controllers
                 PageTitle = "Employee Details"
             };
             return View(homeDetailsViewModel);
+        }
+
+        [HttpGet]
+        public IActionResult Create ()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(Employee employee)
+        {
+            if (ModelState.IsValid)
+            {
+                Employee newEmployee = _employeeRepository.Add(employee);
+                return RedirectToAction("details", new { id = newEmployee.Id });
+            }
+            return View(employee);
         }
     }
 }
