@@ -2,7 +2,7 @@
 Model view controller 
 MVC core is cross platform application
 It has build in dependency Injection
-It has middleware Componentrs and can define custome middleware
+It has middleware componentrs and can define custome middleware
 *** Getting started with templates
 Empty - It containts the bare min content to show hello word (starting from scratch)
 MVC template - Model Viewes controler template 
@@ -202,9 +202,46 @@ Microsoft.EntityFrameworkCore
 *** DbContext
 It allows us to interact with the database
 The class that we use for that needs to derive from DbContext
-it needs an instance of dbcontext options class 
+it needs an instance of dbcontext options class (connection strign, appsettings...)
+we are making instance trough the contructor and we call the base contructur
 we create corresponding dbset property
-***Entity framework
+*** Using SQl server
+we need to add servise for our dbcontext. Than we need to use options to select what kind of
+database we are using. Then to configure the connection string using appsettings
+it is done like this  services.AddDbContextPool<NameForDbContextClass>(
+                options => options.UseSqlServer(_injectedConfiguration.GetConnectionString("Property_name")));
+*** Repository pattern
+Is Abstraction of data access layer. It hides the details of how the data is saved or retrieved
+Provides loosely coupled components
+It has all the crud operation
+It is build with 2 components: IRepositoryName and RepositoryName
+Use dependecy injection to provide an instance 
+*** Migration 
+keeps the database schema and application model classes synchronized
+First we need to create migration then we need to execute it
+Add-migration than update-Database
+we can use Package Manager Console in Visual Studio (it is a crossplatform console)
+The migration creates/updates/deletes tables in sql just like our models 
+with update-database we can specify migration name. If not, the latest migration is executede
+With everychange in our code that affects the database, we need to use add migration and then update migration
+*** Seed data
+to seed some data in freshly new table, we need to 
+override method OnModelCreating in our class that inherits from DbContext
+than we need to pass parametars to method modelBuilder._____().HasData
+if the seed data is large, we can create extention method and put the seed data there to cepp the code clean
+*** Sync models and schema
+it is not recomended to make change to the database directly. We need to use migration with every change
+To keep up with migration, VS has file ModelSnapshot in migration
+ModelSnapshot is up to date with our migrations
+We can add or remove migration according to the ModelSnapshot
+When we remove migration, our models are not changed
+Allready updated migration can not be removed. First needs to be reverted
+we can revert the database with comand update-database and specify the name
+of older migration that we want to revert
+we have histoy of migration in our database
+*** 
+
+
 
 
 
