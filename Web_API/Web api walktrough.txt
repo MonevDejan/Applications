@@ -1,0 +1,5 @@
+*** General
+Representation state transfer RESTfull service
+There is couple of rules that RESTfull service needs to satisfy
+Returning result it is JSON or xml (object with information)
+It can be consumed by other customers (mobile, laptop, TV ...)

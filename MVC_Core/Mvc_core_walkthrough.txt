@@ -239,9 +239,27 @@ Allready updated migration can not be removed. First needs to be reverted
 we can revert the database with comand update-database and specify the name
 of older migration that we want to revert
 we have histoy of migration in our database
-*** 
-
-
+*** File upload imput
+Coplex file can not be stored in the database 
+We can store the path or name of the file as string
+We can use IFromFile interface if we want to save complex files
+in the form we need to specify encription type enctype="multipart/form-data"
+If we use tag helpers, visul studio will bind the type of propery (IFromFile) that we habe in the ViewModel
+We need to use ViewModel in the controler so we have the right properties 
+We need to inject IHostingEnvironment in the controler so we can acess the file
+There is a need to specify the folder that we need to save files (using system.io) 
+and we need to have unique file name (to not ovverride an existing files)
+also we need to use IFromFile class to use the properies CopyTo(new Filestream())
+we need to properly dispose of the filestream
+Then transfer the information from ViewMode to the Model
+in the view change the path to the ones that are saved in the Model (database)
+we need to use tag helper sp-append-version="true"
+*** Multiply files
+Include "multiple" in the imput wher we are chosing files
+change the property in modelView to list<IFromFile>
+make change in the controler also
+*** Error handling
+We handle erros with middleware
 
 
 
