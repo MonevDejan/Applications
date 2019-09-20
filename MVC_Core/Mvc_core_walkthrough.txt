@@ -260,8 +260,26 @@ change the property in modelView to list<IFromFile>
 make change in the controler also
 *** Error handling
 We handle erros with middleware
-
-
+app.UseExceptionHandler()
+we need to create controler and view for the error page
+*** Logging into visual studio console
+inject an instance of Ilogger
+Specify the thype of the controller into witch Ilogger is injected as the generic argument
+use the instace methods to log messages
+*** Logging to file
+Download NuGet package Nlog (one of the many loggers) NLog.Web.AspNetCore
+we need to create configuration file for nlog and configure it
+This config file needs to be copied to output directory (right click on file > properties > copy if newer
+there are different levels of errors
+we can configure level of logging in appsettings.json
+*** IdentiyDbContext 
+our dbcontext class that we use for database needs to inherit form IdentiyDbContext 
+IdentiyDbContext  has a lot of predefined properties that we can use 
+In startup we neet to add this service services.AddIdentity<>() and in the brackets we need to specify what we are going to use
+we need to chain to that addEntityFrameworkStores<nameOf_DbContextClass>
+we need to add authetication middleware    app.UseAuthentication();
+Create migration and update database
+*** UserManager and SignInManager
 
 
 
