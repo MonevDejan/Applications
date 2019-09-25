@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Domain;
 using Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -13,6 +14,7 @@ namespace API.Controllers
 {
     [Route("api/{controller}/[action]/{id?}")]
     [ApiController]
+    [Authorize]
     public class ArticlesController : ControllerBase
     {
 

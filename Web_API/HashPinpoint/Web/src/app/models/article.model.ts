@@ -1,5 +1,13 @@
 export interface Article{
-    id: number;
-    title: string;    
-    image: string;    
+    id?: number;
+    link: string;
+    title: string;
+    description: string;
+    // image: string;
 }
+
+export interface UserCredentials {
+  userName: string;
+  password: string;
+}
+
