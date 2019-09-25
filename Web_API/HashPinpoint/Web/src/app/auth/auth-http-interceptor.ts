@@ -17,14 +17,7 @@ export class AuthHttpInterceptor implements HttpInterceptor {
 
     const jwt = localStorage.getItem('jwt');
     const authRequest = req.clone({ setHeaders: { authorization: `Bearer ${jwt}` } });
-    console.log("the request");
-    console.log(authRequest);
 
-    if (this._authService.isTokenExpired()) {
-      this.router.navigate(['login']);
-    }
-    console.log("the request");
-    console.log(next.handle(authRequest).pipe());
      return next.handle(authRequest).pipe();
   }
 }

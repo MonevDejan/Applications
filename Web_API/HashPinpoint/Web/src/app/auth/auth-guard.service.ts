@@ -24,9 +24,10 @@ export class AuthGuardService implements CanActivate {
     const currentToken = localStorage.getItem('jwt');
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
+    console.log("can activate");
 
     if (currentToken === null || currentUser === null) {
-      this.route.navigate(['login']);
+      this.route.navigate(['/auth/login']);
       return false;
     }
 
@@ -35,6 +36,7 @@ export class AuthGuardService implements CanActivate {
 
 
   protected checkLogin(route?: ActivatedRouteSnapshot) {
+    console.log("check login");
     const roleMatch = true;
     if (route) {
       const expectedRole = route.data.expectedRole;

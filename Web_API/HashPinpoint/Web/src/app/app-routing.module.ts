@@ -8,12 +8,13 @@ import { ManageNewsComponent } from './manage-news/manage-news.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SingleArticleComponent } from './single-article/single-article.component';
 import { MainPageComponent } from './main-page/main-page.component';
+import {AuthGuardService} from './auth/auth-guard.service';
 
 const routes: Routes = [
   { path: '', redirectTo: '/auth/login', pathMatch: 'full' },
-  { path: 'articles', component: ArticlesComponent },
-  { path: 'articles/:id', component: SingleArticleComponent },
-  { path: 'auth/login', component: SignInComponent },
+  { path: 'articles', component: ArticlesComponent, canActivate: [AuthGuardService] },
+  { path: 'articles/:id', component: SingleArticleComponent, canActivate: [AuthGuardService] },
+  { path: 'auth/login', component: SignInComponent},
   { path: 'mainPage', component: MainPageComponent}
   // { path: 'manage-news', component: ManageNewsComponent },
   // { path: 'feed-configuration', component: FeedConfigurationComponent }
