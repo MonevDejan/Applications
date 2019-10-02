@@ -248,14 +248,14 @@ If we use tag helpers, visul studio will bind the type of propery (IFromFile) th
 We need to use ViewModel in the controler so we have the right properties 
 We need to inject IHostingEnvironment in the controler so we can acess the file
 There is a need to specify the folder that we need to save files (using system.io) 
-and we need to have unique file name (to not ovverride an existing files)
+and we need to have unique file name (to not override an existing files)
 also we need to use IFromFile class to use the properies CopyTo(new Filestream())
 we need to properly dispose of the filestream
 Then transfer the information from ViewMode to the Model
 in the view change the path to the ones that are saved in the Model (database)
 we need to use tag helper sp-append-version="true"
 *** Multiply files
-Include "multiple" in the imput wher we are chosing files
+Include "multiple" in the input where we are chosing files
 change the property in modelView to list<IFromFile>
 make change in the controler also
 *** Error handling
@@ -268,7 +268,7 @@ Specify the thype of the controller into witch Ilogger is injected as the generi
 use the instace methods to log messages
 *** Logging to file
 Download NuGet package Nlog (one of the many loggers) NLog.Web.AspNetCore
-we need to create configuration file for nlog and configure it
+we need to create configuration file for nlog and configure it in program.cs
 This config file needs to be copied to output directory (right click on file > properties > copy if newer
 there are different levels of errors
 we can configure level of logging in appsettings.json
@@ -280,6 +280,8 @@ we need to chain to that addEntityFrameworkStores<nameOf_DbContextClass>
 we need to add authetication middleware    app.UseAuthentication();
 Create migration and update database
 *** UserManager and SignInManager
+
+stopped at 64
 
 
 

@@ -1,0 +1,15 @@
+*** Generav Overview
+- Basic layers (onion)
+- Installed NugetPackages
+- Made references
+- AppJson connection string and secret
+- Connected to database
+- Installed angular material 
+- Created SignInComponent
+- Created user-service
+- Created UserComponent
+- Created Models in angular
+- Created proxy.config.jason into angular
+- Modified package.jason in angular ("start": "ng serve --proxy-config proxy.config.json")
+- Connected with controller
+- Created Generic interface 

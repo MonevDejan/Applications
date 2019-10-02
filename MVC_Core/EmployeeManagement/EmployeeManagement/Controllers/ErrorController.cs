@@ -30,7 +30,6 @@ namespace EmployeeManagement.Controllers
                 case 404:
                     ViewBag.ErrorMessage = "Sorry, the resource you requested could not be found";
                     _logger.LogWarning($"404 error occured. Path = {statusCodeResult.OriginalPath} and QueryString = {statusCodeResult.OriginalQueryString}");
-                
                     break;
             }
 
