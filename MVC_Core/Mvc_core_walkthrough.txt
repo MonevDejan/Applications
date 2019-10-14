@@ -281,8 +281,6 @@ we need to add authetication middleware    app.UseAuthentication();
 Create migration and update database
 *** UserManager and SignInManager
 
-stopped at 64
-
 
 
 
