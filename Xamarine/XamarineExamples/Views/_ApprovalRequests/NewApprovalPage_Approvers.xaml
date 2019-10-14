@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjectInsightMobile.Views.NewApprovalPage_Approvers"
+             xmlns:comboBox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+             xmlns:navigation="clr-namespace:ProjectInsightMobile.Views"
+             BackgroundColor="{StaticResource LightBackgroundColor}"
+             Title="Add Approval">
+    <ContentPage.Content>
+
+
+        <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  >
+            <StackLayout Orientation="Vertical"  
+                         Padding="0" Margin="0" Spacing="0" 
+                         VerticalOptions="FillAndExpand"
+                         AbsoluteLayout.LayoutFlags="All" 
+                         AbsoluteLayout.LayoutBounds="0,0,1,1">
+                <StackLayout Spacing="0" Padding="0"  VerticalOptions="FillAndExpand" >
+                    <Grid  IsVisible="{Binding VisibleContent}"
+                        x:Name="gvTE"
+                        Padding="20" HorizontalOptions="FillAndExpand" >
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="60" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="2*" />
+                            <RowDefinition Height="70" />
+                            <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions >
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+
+
+
+
+                                <StackLayout   Grid.Row="0">
+                                    <Label FontSize="22" HorizontalTextAlignment="Center" VerticalTextAlignment="Center">Who needs to approve this?</Label>
+                                </StackLayout>
+                                <StackLayout   Grid.Row="1">
+                            <Frame BorderColor="{StaticResource DarkGrayTextColor}" CornerRadius="5"
+                                 Margin="0"  HeightRequest="50" Padding="10,0,0,0" 
+                                 HasShadow="False" BackgroundColor="{StaticResource LightBackgroundColor}"  >
+                            <comboBox:SfComboBox Grid.Row="0"  
+                                                 x:Name="comboBox"  MultiSelectMode="Token" 
+                                                 SuggestionMode="Contains"
+                                                 AllowFiltering="False"
+                                                 IsEditableMode="True" 
+                                                 DisplayMemberPath="Name"
+                                                 TokensWrapMode="None"
+                                                    BorderColor="{StaticResource LightBackgroundColor}"
+                                                 DropDownItemHeight="60"
+                                                 DataSource="{Binding Approvers}"
+                                                 TextSize="20"
+                                                 ImageMemberPath="UrlIcon"
+                                                 IsSelectedItemsVisibleInDropDown="False"
+                                                 Watermark="Select Approvers"
+                                                 SelectionChanged="Handle_SelectionChanged"
+                                                 
+                                                 >
+
+                            </comboBox:SfComboBox>
+                            </Frame>
+                        </StackLayout>
+
+                                <StackLayout Grid.Row="2" Padding="0,20,0,0" IsVisible="True" >
+
+                            <ListView x:Name="listView" RowHeight="50"  ItemsSource="{Binding SelectedApprovers,Mode=TwoWay}" SeparatorVisibility="None"  BackgroundColor="{StaticResource LightBackgroundColor}">
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <ViewCell IsEnabled="false">
+                                                    <Grid Padding="0,5,0,5">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition>
+                                                                <ColumnDefinition.Width>
+                                                                    <OnPlatform x:TypeArguments="GridLength" iOS="60" Android="60"  />
+                                                                </ColumnDefinition.Width>
+                                                            </ColumnDefinition >
+                                                            <ColumnDefinition Width="2*"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <!--<Image Margin="0,5,0,5" Grid.Column="0" Source="{Binding PhotoURL}" />-->
+                                                    <StackLayout HeightRequest="35" Grid.Column="0" WidthRequest="35" IsVisible="{Binding ShowAvatar}"
+                                                             VerticalOptions="StartAndExpand" HorizontalOptions="StartAndExpand" 
+                                                             Margin="0,0,0,0"
+                                                             BackgroundColor="{Binding AvatarColor}"
+                                                             >
+                                                        <Label HeightRequest="35" 
+                                                           HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
+                                                           HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                                                           TextColor="White" Text="{Binding AvatarInitials}" FontSize="18"
+                                                           ></Label>
+                                                    </StackLayout>
+                                                    <Image Source="{Binding PhotoURL}" Grid.Column="0" HeightRequest="35" WidthRequest="35" IsVisible="{Binding ShowImage}"
+                                                       HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" ></Image>
+
+                                                    <Label Grid.Column="1" Text="{Binding Name}" FontAttributes="Bold" LineBreakMode="NoWrap" TextColor="Black" FontSize="16" VerticalOptions="Center"/>
+                                                        
+                                                    </Grid>
+                                                </ViewCell>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+
+                                </StackLayout>
+
+                        <StackLayout Grid.Row="3"  Padding="0,5"  Orientation="Vertical" IsVisible="{Binding IsOptionsVisible}" Spacing="5"  >
+
+                            <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal" Spacing="10">
+                                <Switch IsToggled="{Binding AreAllApproversRequired}"></Switch>
+                                <Label TextColor="{StaticResource BlackTextColor}" FontSize="16"  VerticalTextAlignment="Center">All Approvers must approve?</Label>
+                            </StackLayout>
+                            <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal" Spacing="10">
+                                <Switch IsToggled="{Binding IsSequentialApproval}"></Switch>
+                                <Label TextColor="{StaticResource BlackTextColor}" FontSize="16" VerticalTextAlignment="Center">Approval is routed sequentially?</Label>
+                            </StackLayout>
+                        </StackLayout>
+
+                        <Button Grid.Row="4" Clicked="OnSave_Tapped" Text="Save" StyleClass="PrimaryButton" Margin="0"></Button>
+                      
+                        </Grid>
+
+         
+                </StackLayout>
+                <navigation:BottomNavigationBar />
+            </StackLayout>
+            <ActivityIndicator 
+                    AbsoluteLayout.LayoutFlags="PositionProportional" IsVisible="{Binding VisibleLoad}"
+                    AbsoluteLayout.LayoutBounds=".5, .1"
+                    IsRunning="{Binding VisibleLoad}" 
+                    Color="{StaticResource Primary}"
+                    />
+        </AbsoluteLayout>
+       
+    </ContentPage.Content>
+</ContentPage>

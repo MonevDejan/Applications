@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjectInsightMobile.Views.ApprovalRequests.AproveDenyPage"
+             Title="{Binding Title}">
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical">
+
+            <ScrollView VerticalOptions="FillAndExpand">
+
+                <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+                    <StackLayout
+                        AbsoluteLayout.LayoutFlags="All" 
+                        AbsoluteLayout.LayoutBounds="0,0,1,1"
+                        Orientation="Vertical"
+                        >
+
+                        <StackLayout
+                            Orientation="Vertical"
+                            Spacing="20" 
+                            Padding="10"  
+                            >
+
+                            <Entry Placeholder="Insert description here.." FontSize="20" HeightRequest="120" BackgroundColor="{StaticResource WhiteTextColor}"  TextColor="{StaticResource LightTextColor}" x:Name="txtCommentBody"></Entry>
+
+                            <StackLayout HorizontalOptions="FillAndExpand"  >
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnApprovedApprovalRequest"/>
+                                </StackLayout.GestureRecognizers>
+
+                                <Frame HasShadow="False"
+                                Padding="5"
+                                CornerRadius="5"
+                                BackgroundColor="{StaticResource LightBackgroundColor}"
+                                >
+                                    <Label 
+                                    FontSize="25" 
+                                    HorizontalTextAlignment="Center" 
+                                    HorizontalOptions="CenterAndExpand" 
+                                    VerticalTextAlignment="Center"  
+                                     
+                                     
+                                    Text="Approved"
+                                />
+                                </Frame>
+
+                            </StackLayout>
+
+                            <StackLayout HorizontalOptions="FillAndExpand"  >
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnApprovedChangesApprovalRequest"/>
+                                </StackLayout.GestureRecognizers>
+
+                                <Frame HasShadow="False"
+                                Padding="5"
+                                CornerRadius="5"
+                                BackgroundColor="{StaticResource LightBackgroundColor}"
+                                >
+                                    <Label 
+                                    FontSize="25" 
+                                    HorizontalTextAlignment="Center" 
+                                    HorizontalOptions="CenterAndExpand" 
+                                    VerticalTextAlignment="Center"  
+                                     
+                                     
+                                    Text="Approved with Changes"
+                                />
+                                </Frame>
+
+                            </StackLayout>
+
+                            <StackLayout HorizontalOptions="FillAndExpand"  >
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnSkipApprovalRequest"/>
+                                </StackLayout.GestureRecognizers>
+
+                                <Frame HasShadow="False"
+                                Padding="5"
+                                CornerRadius="5"
+                                BackgroundColor="{StaticResource LightBackgroundColor}"
+                                >
+                                    <Label 
+                                    FontSize="25" 
+                                    HorizontalTextAlignment="Center" 
+                                    HorizontalOptions="CenterAndExpand" 
+                                    VerticalTextAlignment="Center"  
+                                     
+                                     
+                                    Text="Skip"
+                                />
+                                </Frame>
+
+                            </StackLayout>
+
+                            <StackLayout HorizontalOptions="FillAndExpand"  >
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnDeniedApprovalRequest"/>
+                                </StackLayout.GestureRecognizers>
+
+                                <Frame HasShadow="False"
+                                Padding="5"
+                                CornerRadius="5"
+                                BackgroundColor="{StaticResource LightBackgroundColor}"
+                                >
+                                    <Label 
+                                    FontSize="25" 
+                                    HorizontalTextAlignment="Center" 
+                                    HorizontalOptions="CenterAndExpand" 
+                                    VerticalTextAlignment="Center"  
+                                     
+                                     
+                                    Text="Denied"
+                                />
+                                </Frame>
+
+                            </StackLayout>
+
+
+                        </StackLayout>
+
+
+
+                    </StackLayout>
+
+                    <StackLayout 
+                        VerticalOptions="FillAndExpand" IsVisible="{Binding VisibleLoad}"
+                        Padding="32"  
+                        AbsoluteLayout.LayoutFlags="All"
+                        AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                        BackgroundColor="#90000000"
+                    >
+                        <ActivityIndicator IsRunning="{Binding VisibleLoad}" Color="#3CB9A8"/>
+                        <Label Text="{Binding LoadingMessage}" HorizontalOptions="Center" TextColor = "White" />
+                    </StackLayout>
+                </AbsoluteLayout>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

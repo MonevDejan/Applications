@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjectInsightMobile.Views.TimeEntries.Company_Project_Task"
+             xmlns:navigation="clr-namespace:ProjectInsightMobile.Views"
+             xmlns:comboBox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+             BackgroundColor="{StaticResource LightBackgroundColor}"
+             Title="Add Receipt">
+
+    
+    <ContentPage.Content>
+      
+        <StackLayout Orientation="Vertical"    
+                         Padding="0" Margin="0" Spacing="0" 
+                         VerticalOptions="FillAndExpand"
+                         HorizontalOptions="FillAndExpand">
+            <!--<StackLayout HorizontalOptions="EndAndExpand" Padding="20,20,20,0" Orientation="Horizontal">
+                <Label Text="All Items" HorizontalOptions="EndAndExpand" FontSize="18" VerticalOptions="CenterAndExpand"></Label>
+                <Switch HorizontalOptions="EndAndExpand" OnColor="{StaticResource Primary}"
+                        VerticalOptions="FillAndExpand"
+                        x:Name="showAll"
+                        Toggled="ShowAll_Toggled">
+                </Switch>
+            </StackLayout>-->
+            <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="20,20,20,0" Margin="0" Spacing="0">
+                <ScrollView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="0" Margin="0" VerticalScrollBarVisibility="Never"  >
+                    <StackLayout HorizontalOptions="FillAndExpand" Padding="0" Spacing="0" Margin="0" >
+                        <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Padding="0" Margin="0" Spacing="0" >
+                            <Label FontSize="22" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" Margin="0,0,0,10" VerticalOptions="CenterAndExpand">Company</Label>
+
+                            <Frame BorderColor="{StaticResource DarkGrayTextColor}" CornerRadius="5" 
+                                   Padding="10,0,0,0" Margin="0"  HeightRequest="50"
+                                   HasShadow="False" BackgroundColor="{StaticResource LightBackgroundColor}"  >
+                                <comboBox:SfComboBox x:Name="cmbCompanies"
+                                            SelectionChanged="CmbCompanies_SelectionChanged"
+                                            SuggestionMode="Contains"
+                                            AllowFiltering="False"
+                                            IsEditableMode="True"
+                                                     SuggestionBoxPlacement="Bottom"
+                                            DisplayMemberPath="Name"
+                                            SelectedItem="{Binding SelectedCompany}" 
+                                            DataSource="{Binding Companies}"
+                                            Watermark="Select Company"
+                                            
+                                            DropDownItemHeight="40"
+                                            BorderColor="{StaticResource LightBackgroundColor}"
+                                            TextSize="20"
+                                                         
+                                                         >
+                                </comboBox:SfComboBox>
+                            </Frame>
+                            <Label FontSize="22" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" Margin="0,20,0,10" VerticalOptions="CenterAndExpand">Project</Label>
+
+
+
+                            <Frame BorderColor="{StaticResource DarkGrayTextColor}" CornerRadius="5" 
+                                   Padding="10,0,0,0" Margin="0"  HeightRequest="50"
+                                   HasShadow="False" BackgroundColor="{StaticResource LightBackgroundColor}"  >
+                                <comboBox:SfComboBox x:Name="cmbProjects"  
+                                            SelectionChanged="CmbProjects_SelectionChanged"
+                                            SuggestionMode="Contains"
+                                            AllowFiltering="False"
+                                            IsEditableMode="True"
+                                                     SuggestionBoxPlacement="Bottom"
+                                            DisplayMemberPath="Name"
+                                            SelectedItem="{Binding SelectedProject}" 
+                                            DataSource="{Binding Projects}"
+                                            Watermark="Select Project"
+                                            
+                                            DropDownItemHeight="40"
+                                            ShowBorder="False"  
+                                            TextSize="20"
+                                             >
+                                </comboBox:SfComboBox>
+                            </Frame>
+  
+                            <Label IsVisible="{Binding IsProjectSelected}" FontSize="22" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" Margin="0,20,0,10" VerticalOptions="CenterAndExpand">Work Item</Label>
+                         <Frame BorderColor="{StaticResource DarkGrayTextColor}" CornerRadius="5" 
+                                   Padding="10,0,0,0" Margin="0,0,0,0"  HeightRequest="50"
+                                   HasShadow="False" BackgroundColor="{StaticResource LightBackgroundColor}"  IsVisible="{Binding IsProjectSelected}" >
+                                <comboBox:SfComboBox x:Name="cmbTasks"  
+                                        IsVisible="{Binding IsProjectSelected}"
+                                        SuggestionMode="Contains"
+                                        AllowFiltering="False"
+                                        IsEditableMode="True"
+                                        SuggestionBoxPlacement="Top"
+                                        ShowSuggestionsOnFocus="True"
+                                        DisplayMemberPath="TaskName"
+                                        SelectedItem="{Binding SelectedTask}" 
+                                        DataSource="{Binding Tasks}"
+                                        ImageMemberPath="UrlIcon"
+                                        Watermark="Select Work Item"
+                                        
+                                        DropDownItemHeight="40"
+                                        BorderColor="{StaticResource LightBackgroundColor}"
+                                        TextSize="20"
+                                        >
+                                </comboBox:SfComboBox>
+                            </Frame>
+
+                            <Button  Clicked="Continue_Tapped" Text="Continue" StyleClass="PrimaryButton"  x:Name="lblSkip" Margin="0,20,0,0" IsVisible="{Binding ShowContinueOnCompanyProjectTaskPage}"></Button>
+
+
+
+
+
+                        </StackLayout>
+                        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0,10,0,0" Spacing="0" Margin="0"  >
+                            <Image 
+                            x:Name="showHideIcon"
+                            Source="{Binding PhotoSource}"  
+                            Margin="0,0,0,0"
+                                  HorizontalOptions="FillAndExpand"
+                         VerticalOptions="FillAndExpand"
+                          
+                           
+                             />
+
+                        </StackLayout>
+
+                    </StackLayout>
+                </ScrollView>
+            </StackLayout>
+            <navigation:BottomNavigationBar />
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>

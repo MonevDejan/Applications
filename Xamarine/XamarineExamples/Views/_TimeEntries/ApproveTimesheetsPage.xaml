@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:navigation="clr-namespace:ProjectInsightMobile.Views"
+             x:Class="ProjectInsightMobile.Views.ApproveTimesheetsPage"
+             Title="Review Timesheets"
+            
+             BackgroundColor="{StaticResource LightBackgroundColor}"
+             >
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Clicked="ApproveAll_Clicked" Icon="approve_all_icon.png" Text="All" x:Name="btnApproveAll" />
+        <!--<ToolbarItem Name="MenuItem2" Order="Secondary" Icon="Xamarin.png" Text="Item 2" Priority="1" />-->
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical">
+            <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+                <StackLayout Orientation="Vertical" Padding="0" Margin="0" Spacing="0" VerticalOptions="FillAndExpand"    
+                    AbsoluteLayout.LayoutFlags="All" 
+                    AbsoluteLayout.LayoutBounds="0,0,1,1">
+                    <StackLayout Spacing="0" Padding="0" VerticalOptions="StartAndExpand">
+                        <ScrollView Orientation="Vertical" Margin="0" Padding="0" VerticalOptions="StartAndExpand" >
+                            <StackLayout Orientation="Vertical" Margin="0" Padding="0" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource WhiteTextColor}"  VerticalOptions="StartAndExpand" Spacing="0" x:Name="lstAllPeriod">
+                            </StackLayout>
+
+                        </ScrollView>
+                    </StackLayout>
+                    <StackLayout VerticalOptions="FillAndExpand" IsVisible="False" Padding="32" BackgroundColor="#90000000">
+                        <ActivityIndicator IsRunning="{Binding VisibleLoad}" Color="#3CB9A8"/>
+                        <Label Text="Loading..." HorizontalOptions="Center" TextColor = "White" />
+                    </StackLayout>
+
+                    <navigation:BottomNavigationBar></navigation:BottomNavigationBar>
+                </StackLayout>
+                <StackLayout x:Name="lblNoNotif" IsVisible="False" VerticalOptions="CenterAndExpand" HorizontalOptions="Center"     AbsoluteLayout.LayoutFlags="All"  Padding="40,0,40,60"
+                    AbsoluteLayout.LayoutBounds="0,0,1,1">
+                    <Label Text="You currently have no timsheets waiting for approval at this time" XAlign="Center" LineBreakMode="WordWrap"  VerticalOptions="CenterAndExpand" FontAttributes="Bold"  FontSize="24"></Label>
+                </StackLayout>
+                <StackLayout    
+                        VerticalOptions="FillAndExpand" IsVisible="{Binding VisibleLoad}"
+                        Padding="32"  
+                        AbsoluteLayout.LayoutFlags="All"
+                        AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                        BackgroundColor="{StaticResource LightBackgroundColor}"
+                    >
+                    <ActivityIndicator IsRunning="{Binding VisibleLoad}" Color="{StaticResource Primary}"/>
+                    <Label Text="" HorizontalOptions="Center" TextColor = "White" />
+                </StackLayout>
+            </AbsoluteLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:navigation="clr-namespace:ProjectInsightMobile.Views"
+             x:Class="ProjectInsightMobile.Views.UnderConstructionPage"
+             Title="Under Construction">
+    
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical">
+            <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+                <StackLayout
+                    AbsoluteLayout.LayoutFlags="All" 
+                    AbsoluteLayout.LayoutBounds="0,0,1,1"
+                    Spacing="0" Padding="0">
+                    <AbsoluteLayout Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  >
+                        <Image 
+                            Aspect="AspectFill" 
+                            RelativeLayout.WidthConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Width}"
+                            RelativeLayout.HeightConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Height}"
+                            AbsoluteLayout.LayoutFlags="All" 
+                            AbsoluteLayout.LayoutBounds="0,0,1,1" 
+                            Source="mytime_gradient_bg.png"   />
+
+
+                        <StackLayout 
+                            
+                            AbsoluteLayout.LayoutFlags="All" 
+                            AbsoluteLayout.LayoutBounds="0,0,1,1" 
+                            Spacing="0"
+                            Orientation="Vertical"
+                            HorizontalOptions="CenterAndExpand" 
+                            VerticalOptions="CenterAndExpand" 
+                            Padding="0" >
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="ShowToken"/>
+                            </StackLayout.GestureRecognizers>
+                            <Label 
+                                Text="COMING SOON"  
+                                LineBreakMode="NoWrap" 
+                                HorizontalOptions="CenterAndExpand"
+                                TextColor="{StaticResource WhiteTextColor}" 
+                                 
+                                FontSize="42" />
+
+                        </StackLayout>
+                        <Editor HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand" HeightRequest="150" x:Name="token"></Editor>
+                    </AbsoluteLayout>
+
+                    <navigation:BottomNavigationBar></navigation:BottomNavigationBar>
+                </StackLayout>
+                <StackLayout    
+                        VerticalOptions="FillAndExpand" IsVisible="False"
+                        Padding="32"  
+                        AbsoluteLayout.LayoutFlags="All"
+                        AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                        BackgroundColor="#90000000"
+                    >
+                    <ActivityIndicator IsRunning="{Binding VisibleLoad}" Color="#3CB9A8"/>
+                    <Label Text="Loading..." HorizontalOptions="Center" TextColor = "White" />
+                </StackLayout>
+            </AbsoluteLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

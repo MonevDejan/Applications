@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjectInsightMobile.Views.ToDoDetailsPage"
+             xmlns:customControls="clr-namespace:ProjectInsightMobile.Views"
+             xmlns:customComponent="clr-namespace:ProjectInsightMobile.CustomControls"
+             Title="{Binding ProjectName}"
+>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Clicked="EditItem_Clicked"  Text="Edit"  />
+    </ContentPage.ToolbarItems>
+    <StackLayout Orientation="Vertical">
+
+        <BoxView HeightRequest="3" Color="{StaticResource BorderLineTop}" />
+        <ScrollView VerticalOptions="FillAndExpand" >
+            
+            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+                <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" IsVisible="{Binding VisibleContent}">
+
+                    <StackLayout Margin="0,0" Padding="20,5" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource LightBackgroundColor}" >
+                        <Label 
+                                HorizontalOptions="FillAndExpand" 
+                               HorizontalTextAlignment="Start"
+                                FontSize="20"
+                                TextColor="{StaticResource BlackTextColor}"
+                                Text="{Binding Title}"  
+                                LineBreakMode="WordWrap"
+                                 />
+
+                    </StackLayout>
+                    <Grid Padding="15" HorizontalOptions="FillAndExpand" ColumnSpacing="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                      
+
+
+                        <Label 
+                            IsVisible="{Binding isProjectNameVisible}"
+                            VerticalOptions="FillAndExpand"
+                            Grid.ColumnSpan="2"
+                            FontSize="16" 
+                            HorizontalTextAlignment="Center" 
+                            
+                            Text="{Binding ProjectName}" />
+
+
+                        <Label 
+                            IsVisible="{Binding isStartEndDateVisible}"
+                            Grid.Row="1"
+                            Grid.ColumnSpan="2"
+                            VerticalOptions="FillAndExpand"
+                            x:Name="txtStartEndDate"
+                            FontSize="15" 
+                            HorizontalTextAlignment="Center" 
+                            
+                            Text="{Binding StartEndDate}"
+                            />
+                       
+
+                        <Label  
+                            Grid.Row="2"
+                            Grid.ColumnSpan="2"
+                            VerticalOptions="FillAndExpand"
+                            HorizontalTextAlignment="Center"
+                            FontSize="15"  
+                            
+                            Text="{Binding UserAssignedTo}"
+                            />
+
+
+                      
+                        <Label  
+                            Grid.Row="3"
+                            Grid.ColumnSpan="2"
+                            VerticalOptions="FillAndExpand"
+                            HorizontalTextAlignment="Center"
+                            FontSize="15"  
+                            
+                            Text="{Binding UserAssignedBy}"
+                            />
+
+                        <customComponent:HtmlLabel 
+                            IsVisible="{Binding isDescriptionVisible}"
+                            customComponent:HtmlLabel.MaxLines="3"
+                            Grid.Row="4"
+                            Grid.ColumnSpan="2"
+                            VerticalOptions="FillAndExpand"
+                            HorizontalOptions="FillAndExpand"
+                            FontSize="15"  
+                            HorizontalTextAlignment="Center" 
+                            TextColor="{StaticResource BlackTextColor}"
+                            
+                            Text="{Binding Description}">
+                            <customComponent:HtmlLabel.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnShowDescriptionAllContent"/>
+                            </customComponent:HtmlLabel.GestureRecognizers>
+                        </customComponent:HtmlLabel>
+                        
+                    </Grid>
+                         
+                        
+                    <StackLayout
+                            VerticalOptions="FillAndExpand"
+                            HorizontalOptions="FillAndExpand"
+                            Orientation="Vertical"
+                            Spacing="10"
+                            Padding="0"
+                        >
+
+                        
+                        <!--<Button  Clicked="OnMarkComplete" Text="Done" StyleClass="PrimaryButton" x:Name="btnMarkAsComplete" IsVisible="{Binding isDone}" Margin="20,0"></Button>-->
+                        <Button  Margin="20,0" Clicked="OnUpdateStatus" Text="{Binding WorkStatus}" StyleClass="PrimaryButton"></Button>
+                        <Button  Clicked="OnAddTimeEntry" Text="Add Time" StyleClass="SecondaryButton" Margin="20,0"></Button>
+
+                        <customControls:RelatedItemsCustomView  ItemId="{Binding Id}"  ItemType="ToDo" />
+                        <customControls:CommentsCustomView ItemId="{Binding Id}" Margin="20,0,20,0" ItemName="{Binding Title}" />
+                        
+                    </StackLayout>
+
+
+
+                </StackLayout>
+                    
+                    <StackLayout    VerticalOptions="FillAndExpand" IsVisible="{Binding VisibleLoad}"
+                                    Padding="32"  
+                                    AbsoluteLayout.LayoutFlags="All"
+                                    AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                                    BackgroundColor="#90000000"
+                    >
+                        <ActivityIndicator IsRunning="{Binding VisibleLoad}" Color="#3CB9A8"/>
+                        <Label Text="{Binding LoadingMessage}" HorizontalOptions="Center" TextColor = "White" />
+                    </StackLayout>
+            </StackLayout>
+            </ScrollView>
+            
+            <customControls:BottomNavigationBar></customControls:BottomNavigationBar>
+        </StackLayout>
+
+</ContentPage>

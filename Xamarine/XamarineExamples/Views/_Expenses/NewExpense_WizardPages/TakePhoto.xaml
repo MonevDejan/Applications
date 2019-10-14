@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjectInsightMobile.Views.TakePhoto"
+             xmlns:navigation="clr-namespace:ProjectInsightMobile.Views"
+             BackgroundColor="{StaticResource LightBackgroundColor}"
+             >
+    <ContentPage.Content>
+
+
+        <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  >
+            <ActivityIndicator 
+                    AbsoluteLayout.LayoutFlags="PositionProportional" IsVisible="{Binding VisibleLoad}"
+                    AbsoluteLayout.LayoutBounds=".5, .1"
+                    IsRunning="{Binding VisibleLoad}" 
+                    Color="{StaticResource Primary}"
+                    />
+            <StackLayout Orientation="Vertical"  
+                         Padding="0" Margin="0" Spacing="0" 
+                         VerticalOptions="FillAndExpand"
+                         AbsoluteLayout.LayoutFlags="All" 
+                         AbsoluteLayout.LayoutBounds="0,0,1,1">
+
+                <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                    <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="0" Spacing="0" Margin="0" IsVisible="{Binding VisibleContent}">
+                        <StackLayout Orientation="Vertical" VerticalOptions="Start" Spacing="10" HorizontalOptions="FillAndExpand" Padding="20,20,20,10">
+                            <Button  Clicked="SkipButton_Tapped" Text="Skip" StyleClass="PrimaryButton"  x:Name="lblSkip" ></Button>
+                            <Button  Clicked="slAnotherImage_Tapped" Text="Replace Photo" StyleClass="SecondaryButton"  x:Name="btnAntoher" IsVisible="False" ></Button>
+                        </StackLayout>
+                        <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="20,0,20,0" x:Name="slImage" >
+                            <!-- middle controls -->
+                            <Image x:Name="PhotoImage" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" IsVisible="False" Margin="0"></Image>
+
+                            <StackLayout  VerticalOptions="FillAndExpand" x:Name="btnTakePhoto" Margin="0" Spacing="0" Orientation="Vertical">
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="CameraButton_Clicked"  x:Name="CameraButton" />
+                                </StackLayout.GestureRecognizers>
+                                <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <Image Source="camera_circle_p.png"  AbsoluteLayout.LayoutFlags="All"
+                         AbsoluteLayout.LayoutBounds=".5,.1,.8,.8"
+                                       ></Image>
+                                    <Label Margin="0"
+                                     FontSize="24" 
+                                 
+                                 
+                                 AbsoluteLayout.LayoutBounds=".5,0.9"
+                                  AbsoluteLayout.LayoutFlags="PositionProportional"
+                                    TextColor="{StaticResource Primary}" 
+                                    Text="Take Photo"
+                                   
+                                />
+                                </AbsoluteLayout>
+
+                            </StackLayout>
+
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical" VerticalOptions="End" HorizontalOptions="FillAndExpand" Padding="20"  x:Name="btnFindPhoto" >
+                            <Button  Clicked="SlChooseFromLibrary_Tapped" Text="Existing Photos" StyleClass="SecondaryButton"  x:Name="lblChooseFromLibrary" ></Button>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+                <navigation:BottomNavigationBar />
+            </StackLayout>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SafeSportChat.Views.Login.CreateAccountByPhoneNumberPage"
+             xmlns:local="clr-namespace:SafeSportChat"
+             NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Resources>
+        <local:isValidBtnBackgroundColor x:Key="isValidBtnBackgroundColor" />
+    </ContentPage.Resources>
+    
+    
+    <ContentPage.Content>
+        <StackLayout  BackgroundColor="#BAD4E3"  VerticalOptions="FillAndExpand" Margin="0" Padding="0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <StackLayout  Margin="40,120,40,20" Grid.Row="0" >
+                    <Label Text="Let's start with your &#x0a; phone number." Style="{StaticResource Key=PageTitleLabelDark}" HorizontalOptions="Fill" LineBreakMode="WordWrap"/>
+                </StackLayout>
+                <StackLayout Grid.Row="1" Padding="40,0,40,0">
+                    <Frame BackgroundColor="#FFFFFF" CornerRadius="10" Margin="0" Padding="10,0,10,0" VerticalOptions="Center" HeightRequest="50" HasShadow="False"	>
+                        <Grid ColumnSpacing="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.2*"/>
+                                <ColumnDefinition Width="0.7*"/>
+                                <ColumnDefinition Width="0.1*"/>
+                            </Grid.ColumnDefinitions>
+                            <!--Todo: Find way to use ResourceDictionary-->
+                            <Label Grid.Column="0" Text="US +1  |" FontFamily="{StaticResource Key=NormalFontRoboto}" TextColor="#363531" FontSize="17" LineHeight="20" Margin="0,12"/>
+                            <local:CustomEntry x:Name="txtPhone" TextChanged="TxtPhone_TextChanged" Grid.Column="1" FontFamily="{StaticResource Key=NormalFontRoboto}" Placeholder="Phone Number"  FontSize="17" PlaceholderColor="#3C6780" Opacity="0.5" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" Keyboard="Telephone"/>
+                            <ImageButton Grid.Column="2" Source="green_check_mark_icon.png" Padding="5" BackgroundColor="Transparent" IsVisible="{Binding isValid}"/>
+                        </Grid>
+                    </Frame>
+                    <Button IsEnabled="{Binding isValid}" BackgroundColor="{Binding isValid, Converter={StaticResource isValidBtnBackgroundColor}}" 
+                            Text="Next" Margin="0,20,0,20" CornerRadius="8" Clicked="NextButton_Clicked"  FontSize="20"/>
+                </StackLayout>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

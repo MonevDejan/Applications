@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjectInsightMobile.Views.SignInWorkSpace"
+             xmlns:local="clr-namespace:ProjectInsightMobile.CustomControls" 
+             >
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <Grid VerticalOptions="FillAndExpand" RowSpacing="0" ColumnSpacing="0"
+                  AbsoluteLayout.LayoutFlags="All" 
+                  AbsoluteLayout.LayoutBounds="0,0,1,1">
+            <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+                <StackLayout x:Name="slNoConnection" Grid.Row="0" Margin="0" Padding="0" Spacing="0" />
+                <AbsoluteLayout  Grid.Row="1"  BackgroundColor="{StaticResource Blue1}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Image Source="header_text.png" AbsoluteLayout.LayoutBounds=".5,0,.9,1" Margin="0,0,0,40" AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional,HeightProportional" />
+                </AbsoluteLayout>
+                <ScrollView Grid.Row="2">
+                <StackLayout  BackgroundColor="{StaticResource PrimaryDark}" Orientation="Vertical" Padding="16,20,16,20" Spacing="5">
+                  
+                    <StackLayout Margin="5,0,5,0"  Orientation="Vertical" Spacing="10">
+                        <!--<local:PaddedEntry FontSize="20" HeightRequest="40" Text="dev30.sandbox"  BackgroundColor="{StaticResource WhiteTextColor}" TextColor="{StaticResource LightTextColor}" x:Name="txtWorkspacePadded" Placeholder="input URL"></local:PaddedEntry>-->
+                        <StackLayout Orientation="Vertical" BackgroundColor="{StaticResource WhiteTextColor}">
+                            <Entry FontSize="24" Margin="15,0,10,0" HeightRequest="50" BackgroundColor="{StaticResource WhiteTextColor}"  x:Name="txtWorkspace" Placeholder="Workspace Name"></Entry>
+                        </StackLayout>
+                        <Label FontSize="20" Margin="0,10,0,10" TextColor="{StaticResource WhiteTextColor}" FontAttributes="Bold" Text=".projectinsight.net"></Label>
+                    </StackLayout>
+                        <Button  Text="Continue" Clicked="OnContinue" StyleClass="PrimaryButton" Margin="5,0,5,0"/>
+
+                    <StackLayout IsVisible="{Binding SSOEnabled}" Margin="0,30,0,0"   x:Name="btnLoginWithUrl" HorizontalOptions="FillAndExpand" >
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="loginWithUrl"/>
+                        </StackLayout.GestureRecognizers>
+                        <Label  
+                                            FontSize="16" 
+                                            HorizontalTextAlignment="Center" 
+                                            HorizontalOptions="CenterAndExpand" 
+                                            VerticalTextAlignment="Center"  
+                                             
+                                            TextColor="{StaticResource WhiteTextColor}" 
+                                            Text="Or login with full workspace URL"
+                                        />
+                    </StackLayout>
+                    
+                    <!--<local:CustomLabel IsUnderlined="True" Text="UnderlinedText" TextColor="{StaticResource WhiteTextColor}" FontSize="18" HorizontalOptions="CenterAndExpand" />-->
+                </StackLayout>
+            </ScrollView>
+        </Grid>
+        <StackLayout    VerticalOptions="FillAndExpand" IsVisible="{Binding VisibleLoad}"
+                                Padding="32"  
+                                AbsoluteLayout.LayoutFlags="All"
+                                AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                                BackgroundColor="#90000000"
+                >
+            <ActivityIndicator IsRunning="{Binding VisibleLoad}" Color="#3CB9A8"/>
+            <Label Text="{Binding LoadingMessage}" HorizontalOptions="Center" TextColor = "White" />
+        </StackLayout>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:navigation="clr-namespace:ProjectInsightMobile.Views"
+             x:Class="ProjectInsightMobile.Views.ProjectSelect"
+             xmlns:data="clr-namespace:Syncfusion.DataSource;assembly=Syncfusion.DataSource.Portable"    
+             Title="Select Project"
+              xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             BackgroundColor="{StaticResource LightBackgroundColor}"
+            >
+    <ContentPage.Content>
+        <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  >
+            <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" Padding="0" Margin="0" Spacing="0"
+                         AbsoluteLayout.LayoutFlags="All" 
+                    AbsoluteLayout.LayoutBounds="0,0,1,1">
+                <StackLayout Spacing="0" Padding="0"  VerticalOptions="FillAndExpand" >
+                    <StackLayout Orientation="Vertical" Padding="0" Margin="0" Spacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" IsVisible="{Binding VisibleContent}">
+
+
+                        <Grid VerticalOptions="FillAndExpand">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <SearchBar x:Name="filterText" HeightRequest="60"
+           Placeholder="Search here to filter" 
+           TextChanged="OnFilterTextChanged" Grid.Row="0"/>
+                            <syncfusion:SfListView x:Name="listView" Grid.Row="1" ItemSize="60"  ItemsSource="{Binding Projects}" VerticalOptions="FillAndExpand"
+                                                   SelectionGesture="Tap"  ItemTapped="ListView_ItemTapped"
+                                                   >
+                                <syncfusion:SfListView.ItemTemplate>
+                                    <DataTemplate>
+                                    
+
+                                        <Grid x:Name="grid"  Padding="0" Margin="0" VerticalOptions="FillAndExpand" >
+                                            <Grid.RowDefinitions>
+                                               
+                                                <RowDefinition Height="*" />
+                                                <RowDefinition Height="1" />
+                                            </Grid.RowDefinitions>
+                                            
+                                            <Grid  Grid.Row="0" Padding="0" Margin="0" HorizontalOptions="FillAndExpand">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="*" />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Label Margin="10,0,10,0" Grid.Row="0" HorizontalTextAlignment="Start" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" Text="{Binding Name}" TextColor="Black" FontSize="22"  LineBreakMode="NoWrap"/>
+
+                                            </Grid>
+                                            <BoxView  Grid.Row="1" Color="{StaticResource DarkGrayTextColor}" HeightRequest="1" Margin="0" VerticalOptions="Center" HorizontalOptions="FillAndExpand"></BoxView>
+
+                                        </Grid>
+
+
+                                    </DataTemplate>
+                                </syncfusion:SfListView.ItemTemplate>
+
+                            </syncfusion:SfListView>
+                        </Grid>
+
+
+                    </StackLayout>
+                </StackLayout>
+                <navigation:BottomNavigationBar/>
+            </StackLayout>
+            <ActivityIndicator 
+                    AbsoluteLayout.LayoutFlags="PositionProportional" IsVisible="{Binding VisibleLoad}"
+                    AbsoluteLayout.LayoutBounds=".5, .1"
+                    IsRunning="{Binding VisibleLoad}" 
+                    Color="{StaticResource Primary}"
+                    />
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

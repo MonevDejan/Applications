@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "ProjectInsightMobile": {
+      "commandName": "Project"
+    },
+    "SafeSportChat": {
+      "commandName": "Project"
+    }
+  }
+}

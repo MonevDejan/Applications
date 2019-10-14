@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjectInsightMobile.Views.TaskDetailsPage"
+             xmlns:customControls="clr-namespace:ProjectInsightMobile.Views"
+             xmlns:customComponent="clr-namespace:ProjectInsightMobile.CustomControls"
+             Title="{Binding ProjectName}"
+             BackgroundColor="{StaticResource WhiteTextColor}">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Clicked="EditItem_Clicked"  Text="Edit"  />
+    </ContentPage.ToolbarItems>
+
+    <StackLayout Orientation="Vertical"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+
+        <BoxView HeightRequest="3" Color="{StaticResource BorderLineTop}" />
+        <ScrollView VerticalOptions="FillAndExpand"  HorizontalOptions="FillAndExpand">
+
+            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Orientation="Vertical" IsVisible="{Binding VisibleContent}">
+
+                    <StackLayout Orientation="Vertical" Spacing="0" >
+                        <StackLayout Margin="0,0" Padding="20,5" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource LightBackgroundColor}" >
+                            <Label 
+                                HorizontalOptions="FillAndExpand" 
+                               HorizontalTextAlignment="Start"
+                                FontSize="20"
+                                TextColor="{StaticResource BlackTextColor}"
+                                Text="{Binding Title}"  
+                                LineBreakMode="WordWrap"
+                                 />
+
+                        </StackLayout>
+
+                        <StackLayout Margin="13" Orientation="Vertical" HorizontalOptions="FillAndExpand" Spacing="10">
+                            <customComponent:ExtendedWebView  
+                                IsVisible="{Binding ISWebViewVisible}"
+                                x:Name="webViewDesc"     
+                                VerticalOptions="FillAndExpand"
+                                HorizontalOptions="FillAndExpand"
+                                HeightRequest="1"
+                                Style="{StaticResource DarkGrayTextColor}"
+                                Margin="0">
+                                <WebView.Source>
+                                    <HtmlWebViewSource Html="{Binding Description}"/>
+                                </WebView.Source>
+                            </customComponent:ExtendedWebView>
+                            <StackLayout Margin="7,0" HorizontalOptions="CenterAndExpand" Orientation="Vertical">
+
+                                <Label 
+                                        HorizontalOptions="CenterAndExpand"
+                                        x:Name="txtStartEndDate"
+                                        FontSize="15" HorizontalTextAlignment="Center" 
+                                        
+                                        Text="{Binding StartEndDate}"
+                                        />
+                                <Label 
+                                        HorizontalOptions="CenterAndExpand"
+                                        x:Name="txtWorkHoursRemaining"
+                                        FontAttributes="Bold"
+                                        FontSize="15" HorizontalTextAlignment="Center" 
+                                        Text="{Binding Duration}"
+                                        />
+
+                            </StackLayout>
+                        </StackLayout>
+
+                    </StackLayout>
+                  
+                    <StackLayout
+                            VerticalOptions="FillAndExpand"
+                            HorizontalOptions="FillAndExpand"
+                            Orientation="Vertical"
+                            Padding="0,0,0,20" 
+                        Spacing="10"
+                        >
+
+
+                        <!--<Button  Margin="20,0" Clicked="OnMarkAsComplete" Text="Done" StyleClass="PrimaryButton" x:Name="btnMarkAsComplete" IsVisible="{Binding isDone}"></Button>
+                        <Button Margin="20,0" Clicked="OnUpdateStatus" Text="Update Status" StyleClass="SecondaryButton"></Button>-->
+                        <Button  Margin="20,0" Clicked="OnUpdateStatus" Text="{Binding WorkStatus}" StyleClass="PrimaryButton"></Button>
+                        <Button Margin="20,0" Clicked="OnAddTimeEntry" Text="Add Time" StyleClass="SecondaryButton"></Button>
+                        <Button Margin="20,0" Clicked="OnAddExpense" Text="Add Expense" StyleClass="SecondaryButton"></Button>
+
+
+                        <customControls:RelatedItemsCustomView  ItemId="{Binding Id}"  ItemType="Task" ItemsCount="{Binding RelatedItemsCount}"  />
+
+                        <customControls:CommentsCustomView ItemId="{Binding Id}" ItemName="{Binding Title}" Margin="20,0,20,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+
+                    </StackLayout>
+
+
+
+                </StackLayout>
+                <ActivityIndicator Margin="0,20,0,0"
+                    AbsoluteLayout.LayoutFlags="PositionProportional" IsVisible="{Binding VisibleLoad}"
+                    AbsoluteLayout.LayoutBounds=".5, .1"
+                    IsRunning="{Binding VisibleLoad}" 
+                    Color="{StaticResource Primary}"
+                    />
+            </StackLayout>
+        </ScrollView>
+
+        <customControls:BottomNavigationBar></customControls:BottomNavigationBar>
+    </StackLayout>
+
+</ContentPage>

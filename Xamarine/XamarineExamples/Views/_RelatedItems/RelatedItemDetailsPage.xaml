@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjectInsightMobile.Views.RelatedItems.RelatedItemDetailsPage" 
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
+             xmlns:ffimageloadingSvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             
+             Title="{Binding RelatedItem.Name}"
+             >
+    <ContentPage.Content>
+
+        <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+
+            <Grid
+                    VerticalOptions="FillAndExpand"
+                    AbsoluteLayout.LayoutFlags="All" 
+                    AbsoluteLayout.LayoutBounds="0,0,1,1"
+                    Padding="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions >
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <StackLayout 
+                        Grid.Column="0" 
+                        Orientation="Vertical"
+                        VerticalOptions="StartAndExpand"
+                    >
+
+                    <StackLayout  
+                            Spacing="20"
+                            Orientation="Horizontal" 
+                            HorizontalOptions="StartAndExpand">
+
+                        <ffimageloadingSvg:SvgCachedImage   
+                                VerticalOptions="StartAndExpand"  
+			                    WidthRequest="35" 
+                                HeightRequest="35"
+			                    DownsampleToViewSize="true"
+                                RetryCount="3"
+                                RetryDelay="200"  
+                                ErrorPlaceholder = "error.png"
+                                LoadingPlaceholder = "load.gif"
+			                    Source = "{Binding RelatedItem.UrlIconFull}"
+                            />
+                        <Label 
+                                FontSize="18" 
+                                HorizontalOptions="StartAndExpand" 
+                                VerticalOptions="FillAndExpand" 
+                                Text="{Binding RelatedItem.Name}" 
+                                FontAttributes="Bold"  
+                                TextColor="{StaticResource LightGrayTextColor}"
+                            />
+
+                    </StackLayout>
+                    <StackLayout  HorizontalOptions="FillAndExpand"  Padding="0" >
+                        
+
+                        <ffimageloadingSvg:SvgCachedImage   
+                                x:Name="svgImg" 
+                                IsVisible="False"
+                                VerticalOptions="StartAndExpand"  
+                                HorizontalOptions="CenterAndExpand"
+			                    WidthRequest="100" 
+                                HeightRequest="100"
+			                    DownsampleToViewSize="true"
+                                RetryCount="3"
+                                RetryDelay="200"  
+                                ErrorPlaceholder = "error.png"
+                                LoadingPlaceholder = "load.gif" 
+                            />
+
+                        <ffimageloading:CachedImage   
+                            x:Name="Img" 
+                            IsVisible="False"
+                            VerticalOptions="StartAndExpand"  
+                            HorizontalOptions="CenterAndExpand"
+			                WidthRequest="100" 
+                            HeightRequest="100"
+			                DownsampleToViewSize="true"
+                            RetryCount="3"
+                            RetryDelay="200"  
+                            ErrorPlaceholder = "error.png"
+                            LoadingPlaceholder = "load.gif" 
+                    
+                        />
+                    </StackLayout>
+
+                </StackLayout>
+
+                <StackLayout Grid.Column="1" Orientation="Vertical" HorizontalOptions="EndAndExpand" Spacing="20">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
+                        <Label   
+                            VerticalOptions="FillAndExpand" 
+                            FontSize="11"  
+                            Text="File Type:"
+                            />
+                        <Label   
+                            VerticalOptions="FillAndExpand"
+                            HorizontalTextAlignment="Start" 
+                            FontSize="11"
+                            TextColor="{StaticResource BorderLineGray}"
+                            Text="{Binding RelatedItem.TypeDescription}"
+                            />
+
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
+                        <Label   
+                            VerticalOptions="FillAndExpand" 
+                            FontSize="11" 
+                            Text="Created Date:"
+                            />
+                        <Label   
+                            VerticalOptions="FillAndExpand"  
+                            FontSize="11"
+                            TextColor="{StaticResource BorderLineGray}"
+                            Text="{Binding RelatedItem.CreatedDateTimeUTC , StringFormat='{0:M/d/yy hh:mm tt}'}"
+                            />
+
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
+                        <Label   
+                            VerticalOptions="FillAndExpand" 
+                            FontSize="11"
+                            
+                            Text="Updated Date:"
+                            />
+                        <Label   
+                            VerticalOptions="FillAndExpand" 
+                            FontSize="11"
+                            TextColor="{StaticResource BorderLineGray}"
+                            Text="{Binding RelatedItem.UpdatedDateTimeUTC , StringFormat='{0:M/d/yy hh:mm tt}'}"
+                            />
+
+                    </StackLayout>
+
+                    <StackLayout
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand"
+                        Orientation="Horizontal"
+                        >
+
+                        <StackLayout HorizontalOptions="CenterAndExpand" Padding="5" VerticalOptions="StartAndExpand" Orientation="Horizontal">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnDownload"/>
+                            </StackLayout.GestureRecognizers>
+                            <ffimageloadingSvg:SvgCachedImage     
+			                    WidthRequest="35" 
+                                HeightRequest="35"
+			                    DownsampleToViewSize="true" 
+                                ErrorPlaceholder = "error.png"
+                                LoadingPlaceholder = "load.gif"
+			                    Source = "filedownload.svg"
+                            />
+                        </StackLayout>
+                        <StackLayout x:Name="deleteContent" IsVisible="False" HorizontalOptions="CenterAndExpand" Padding="5" >
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnDeleteRelatedItem"/>
+                            </StackLayout.GestureRecognizers>
+                            <Frame HasShadow="False"
+                                    Padding="10,5,10,5"
+                                    CornerRadius="5"
+                                    BackgroundColor="{StaticResource AccentDark}"
+                                    >
+                                <Label 
+                                        FontSize="16" 
+                                        HorizontalTextAlignment="Center" 
+                                        HorizontalOptions="CenterAndExpand" 
+                                        VerticalTextAlignment="Center"  
+                                         
+                                        TextColor="{StaticResource WhiteTextColor}" 
+                                        Text="Delete"
+                                    />
+                            </Frame>
+                        </StackLayout>
+                    </StackLayout>
+
+
+                </StackLayout>
+
+            </Grid>
+
+            <StackLayout x:Name="loadingContent" VerticalOptions="FillAndExpand" IsVisible="{Binding VisibleLoad}"
+                                    Padding="32"  
+                                    AbsoluteLayout.LayoutFlags="All"
+                                    AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                                    BackgroundColor="#90000000"
+                    >
+                <ActivityIndicator x:Name="loadingProgresBar" IsRunning="{Binding VisibleLoad}" Color="#3CB9A8"/>
+                <Label Text="File is starting downloading.." HorizontalOptions="Center" TextColor = "White" />
+            </StackLayout>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

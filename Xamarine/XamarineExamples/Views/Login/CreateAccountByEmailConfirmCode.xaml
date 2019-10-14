@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SafeSportChat.Views.Login.CreateAccountByEmailConfirmCode"
+             xmlns:local="clr-namespace:SafeSportChat"
+             NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Resources>
+        <local:isValidBtnBackgroundColor x:Key="isValidBtnBackgroundColor" />
+    </ContentPage.Resources>
+    
+    <ContentPage.Content>
+        <StackLayout  BackgroundColor="#BAD4E3"  VerticalOptions="FillAndExpand" Margin="0" Padding="0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <StackLayout  Margin="40,120,40,20" Grid.Row="0" HorizontalOptions="Center">
+                    <Label Margin="0,0,0,0" HorizontalTextAlignment="Center" Text="Now confirm your &#x0a; email address" HorizontalOptions="Fill"
+                   FontSize="28" LineHeight="1.33" TextColor="#363531" FontFamily="{StaticResource Key=NormalFontRoboto}" LineBreakMode="WordWrap" />
+                </StackLayout>
+                <StackLayout Grid.Row="1" Padding="40,0,40,0">
+                    <Frame BackgroundColor="#FFFFFF" CornerRadius="10" Margin="0" Padding="10,0,10,0" VerticalOptions="Center" HeightRequest="50" HasShadow="False">
+                        <Grid ColumnSpacing="0">
+                            <Grid.ColumnDefinitions>
+
+                                <ColumnDefinition Width="0.9*"/>
+                                <ColumnDefinition Width="0.1*"/>
+                            </Grid.ColumnDefinitions>
+                            <local:CustomEntry x:Name="txtCode" TextChanged="TxtCode_TextChanged"  Grid.Column="0" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" FontFamily="{StaticResource Key=NormalFontRoboto}" Placeholder="Confirmation Code"  FontSize="17" PlaceholderColor="#3C6780" Opacity="0.5" VerticalOptions="CenterAndExpand" />
+                            <ImageButton Grid.Column="1" Source="green_check_mark_icon.png" Padding="5" BackgroundColor="Transparent" IsVisible="{Binding isValid}"/>
+                        </Grid>
+                    </Frame>
+                </StackLayout>
+                <Label Grid.Row="2" Margin="20,15,20,0" HorizontalTextAlignment="Center" >
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Enter the confirmation code we just sent you in a email message. Didn't receive a code? " FontFamily="{StaticResource Key=NormalFontRoboto}" FontSize="15"  TextColor="#3C6780" BackgroundColor="Transparent"/>
+                            <Span Text="Resend" FontFamily="{StaticResource Key=BoldFontRoboto}"  FontSize="15"  TextColor="#3C6780" BackgroundColor="Transparent">
+                                <Span.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="ResendButton_Clicked" NumberOfTapsRequired="1" />
+                                </Span.GestureRecognizers>
+                            </Span>
+                        </FormattedString>
+
+                    </Label.FormattedText>
+                </Label>
+                <StackLayout Grid.Row="3" Padding="40,0,40,0">
+                    <Button IsEnabled="{Binding isValid}" BackgroundColor="{Binding isValid, Converter={StaticResource isValidBtnBackgroundColor}}" 
+                            Text="Verify" TextColor="#363531" FontSize="20" FontFamily="{StaticResource Key=NormalFontRoboto}" CornerRadius="10" HeightRequest="50" Margin="0,20,0,20" Clicked="VerifyButton_Clicked" />
+                </StackLayout>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

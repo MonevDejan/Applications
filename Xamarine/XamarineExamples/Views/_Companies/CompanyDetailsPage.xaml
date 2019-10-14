@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjectInsightMobile.Views.CompanyDetailsPage"
+             xmlns:customControls="clr-namespace:ProjectInsightMobile.Views"
+              xmlns:customLabel="clr-namespace:ProjectInsightMobile.CustomControls"
+             Title="{Binding Title}"
+>
+
+    <ContentPage.Content>
+        <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  >
+
+            <StackLayout Orientation="Vertical" Padding="0" Margin="0" Spacing="0" VerticalOptions="FillAndExpand"
+                          AbsoluteLayout.LayoutFlags="All" 
+                    AbsoluteLayout.LayoutBounds="0,0,1,1">
+                <StackLayout Spacing="0" Padding="0" VerticalOptions="FillAndExpand">
+                    <StackLayout Orientation="Vertical" Padding="0" Margin="0" Spacing="0" VerticalOptions="FillAndExpand"  IsVisible="{Binding VisibleContent}">
+                        <BoxView HeightRequest="3" Color="{StaticResource BorderLineTop}" />
+
+                        <StackLayout HorizontalOptions="FillAndExpand" Orientation="Vertical" VerticalOptions="FillAndExpand" >
+
+                            <StackLayout  Padding="0,20,0,0" Spacing="0" Margin="0">
+                                <Label  Margin="0" 
+                            IsVisible="True"    
+                           VerticalOptions="Start"
+                                HorizontalOptions="FillAndExpand"
+                            FontSize="22" 
+                            HorizontalTextAlignment="Center" 
+                            TextColor="{StaticResource Primary}"
+                            Text="{Binding Name}" 
+                               FontFamily="{StaticResource BoldFont}"
+                               />
+                                <Label   Margin="0" 
+                            IsVisible="True" 
+                            FontSize="16" 
+                            HorizontalTextAlignment="Center" 
+                            VerticalOptions="Start"
+                            Text="{Binding AllDetails}" />
+
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand"  Spacing="0"  Margin="0" >
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnActionEmail"/>
+                                    </StackLayout.GestureRecognizers>
+                                    <customLabel:CustomLabel 
+                                        IsUnderlined="True" 
+                                        x:Name="txtUserEmail"
+                                        FontSize="16" 
+                                        HorizontalTextAlignment="Center" 
+                                        HorizontalOptions="Center" 
+                                        VerticalTextAlignment="Center"   
+                                        FontFamily="{StaticResource NormalFont}"
+                                        Text="{Binding EmailAddress}" 
+                                    />
+                                </StackLayout>
+                            </StackLayout>
+                            <StackLayout
+                            VerticalOptions="StartAndExpand"
+                            HorizontalOptions="FillAndExpand"
+                            Orientation="Vertical"
+                           
+                            Padding="0" Spacing="0" Margin="0,20,0,0"
+                        >
+
+
+
+                                <BoxView HeightRequest="1" Color="{StaticResource LightGrayTextColor}" HorizontalOptions="FillAndExpand"></BoxView>
+
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Spacing="0" BackgroundColor="{StaticResource LightBackgroundColor}">
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                                    </StackLayout.GestureRecognizers>
+                                    <Frame HasShadow="False" BackgroundColor="{StaticResource LightBackgroundColor}"
+                       Padding="0,1,0,0"
+                     HeightRequest="60"
+                       HorizontalOptions="FillAndExpand" 
+                       VerticalOptions="FillAndExpand"
+                       CornerRadius="0"
+                     >
+                                        <AbsoluteLayout  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+
+                                            <Label   AbsoluteLayout.LayoutBounds=".5,.5" AbsoluteLayout.LayoutFlags="PositionProportional"
+                                    FontSize="25" 
+                                    HorizontalTextAlignment="Center" 
+                                    HorizontalOptions="CenterAndExpand" 
+                                    VerticalTextAlignment="Center"  
+                                   
+                                    
+                                    Text="Projects"
+                                    />
+                                            <Image AbsoluteLayout.LayoutBounds="1,.5" AbsoluteLayout.LayoutFlags="PositionProportional"
+                            x:Name="showHideIcon"
+                            Source="Arrow_right.png"  
+                            Margin="0,10,20,10"
+                            VerticalOptions="Center" 
+                            HorizontalOptions="End"
+                            HeightRequest="25" />
+                                        </AbsoluteLayout>
+                                    </Frame>
+
+                                </StackLayout>
+                                <BoxView HeightRequest="1" Color="{StaticResource LightGrayTextColor}" HorizontalOptions="FillAndExpand"></BoxView>
+
+                            </StackLayout>
+
+
+
+                        </StackLayout>
+
+                    </StackLayout>
+                </StackLayout>
+
+                <customControls:BottomNavigationBar></customControls:BottomNavigationBar>
+            </StackLayout>
+
+
+            <ActivityIndicator 
+                    AbsoluteLayout.LayoutFlags="PositionProportional" IsVisible="{Binding VisibleLoad}"
+                    AbsoluteLayout.LayoutBounds=".5, .1"
+                    IsRunning="True" 
+                    Color="{StaticResource Primary}"
+                    />
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

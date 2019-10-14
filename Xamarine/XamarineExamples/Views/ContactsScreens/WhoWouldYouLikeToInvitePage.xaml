@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SafeSportChat.Views.WhoWouldYouLikeToInvitePage"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        
+        <StackLayout HorizontalOptions="CenterAndExpand"  BackgroundColor="#BAD4E3"  VerticalOptions="FillAndExpand" Margin="0" Padding="0">
+            
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <StackLayout Grid.Row="0" HorizontalOptions="Center">
+                        <Label Margin="80,120,80,20" HorizontalTextAlignment="Center" Text="Who would you like to add? "
+                   FontSize="28"  TextColor="#363531" FontAttributes="Bold" LineBreakMode="WordWrap" />
+                    </StackLayout>
+                    <StackLayout Grid.Row="1" Padding="40,0,40,0">
+                    <Button   Text="Invite someone new" TextColor="#363531" FontSize="17" FontAttributes="Bold" BackgroundColor="#FFFFFF" CornerRadius="10" HeightRequest="50" Margin="0,0,0,20" Clicked="Invite_Clicked"/>
+                        <Button   Text="Add someone from my team " TextColor="#363531" FontSize="17" FontAttributes="Bold" BackgroundColor="#FFB30F" CornerRadius="10" HeightRequest="50" Margin="0,0,0,20" Clicked="AddFromTeam_Clicked"/>
+                        <Button   Text="Cancel" TextColor="#FFB30F" FontSize="17" FontAttributes="Bold" BackgroundColor="Transparent" Margin="0,0,0,20" Clicked="Cancel_Clicked"/>
+                    </StackLayout>
+                    
+                </Grid>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

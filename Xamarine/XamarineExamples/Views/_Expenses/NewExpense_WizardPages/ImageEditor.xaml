@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjectInsightMobile.Views.ImageEditor"
+             xmlns:imageeditor="clr-namespace:Syncfusion.SfImageEditor.XForms;assembly=Syncfusion.SfImageEditor.XForms">
+    <ContentPage.Content>
+        <Grid BackgroundColor="White" Padding="20,20,20,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70" />
+                <RowDefinition Height="1" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+             
+                <Grid  HorizontalOptions="CenterAndExpand" BackgroundColor="Transparent">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1.5*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Image x:Name="TakePhoto"  AutomationId="TakePhoto" Grid.Row="0" Source="{Binding TakePic}" >
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TakeAPhotoTapped" NumberOfTapsRequired="1" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Label FontSize="18" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Row="1" TextColor="#333333" Text="Take a photo" />
+                </Grid>
+            </Grid>
+            <StackLayout Grid.Row="1" Padding="0,5,0,0" >
+                <StackLayout  HeightRequest="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="#808080" />
+            </StackLayout>
+            <StackLayout Grid.Row="2" x:Name="mainGrid" Padding="0,5,0,20" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Image x:Name="PhotoImage" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" IsVisible="False" ></Image>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
+

@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:syncfusion="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:local="clr-namespace:SafeSportChat"
+             x:Class="SafeSportChat.Views.ContactsScreens.CreateNewGroupPage"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <Grid RowSpacing="0" BackgroundColor="White">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="1"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="70"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0"  BackgroundColor="White" VerticalOptions="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.2*"/>
+                    <ColumnDefinition Width="0.6*"/>
+                    <ColumnDefinition Width="0.2*"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Text="Cancel" FontSize="17" TextColor="#FFB30F" BackgroundColor="Transparent" />
+                <Label Grid.Column="1" Text="Create New Group" TextColor="#000000" FontSize="17"   HorizontalOptions="CenterAndExpand"  VerticalOptions="CenterAndExpand"/>
+                <Button Grid.Column="2" Text="Next"  TextColor="#FFB30F" HorizontalOptions="Start" BackgroundColor="Transparent" FontSize="17" Padding="0" Margin="0" Clicked="NextButton_Clicked"/>
+            </Grid>
+            <StackLayout Grid.Row="1" BackgroundColor="Transparent" HorizontalOptions="Center" Padding="20,0,20,0">
+                
+
+                
+                <Frame BackgroundColor="#EEF0F2" HasShadow="False"  CornerRadius="8" Margin="0,10,0,0" Padding="30,0,0,0" VerticalOptions="Center" >
+                    <Grid ColumnSpacing="0">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.1*"/>
+                            <ColumnDefinition Width="0.9*"/>
+                        </Grid.ColumnDefinitions>
+                        <ImageButton  Grid.Column="0" Source="search_icon.png"  Padding="0,11" BackgroundColor="Transparent"/>
+                        <local:CustomEntry  Grid.Column="1" Placeholder="Search" Margin="0" FontSize="17" PlaceholderColor="#3C6780" Opacity="0.5"  VerticalOptions="CenterAndExpand" HorizontalOptions="Start" />
+                    </Grid>
+                </Frame>
+                <StackLayout Orientation="Horizontal" Spacing="20" Padding="20,10,20,10">
+                    <Frame Padding="15" WidthRequest="20" HeightRequest="20" CornerRadius="30" BackgroundColor="#E3E5E8"/>
+                    <Frame Padding="15" WidthRequest="20" HeightRequest="20" CornerRadius="30" BackgroundColor="#E3E5E8"/>
+                    <Frame Padding="15" WidthRequest="20" HeightRequest="20" CornerRadius="30" BackgroundColor="#E3E5E8"/>
+                </StackLayout>
+            </StackLayout>
+            <BoxView Grid.Row="2" BackgroundColor="#000000" Opacity="0.25"/>
+            <StackLayout Grid.Row="3" Orientation="Vertical">
+                <ListView ItemsSource="{Binding PersonsGrouped}"
+                    HasUnevenRows="true"
+                    GroupShortNameBinding = "{Binding Key}"
+                    IsGroupingEnabled = "true"
+                    GroupDisplayBinding = "{Binding Key}" >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell Height="40">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="0.9*"/>
+                                        <ColumnDefinition Width="0.1*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <StackLayout Grid.Column="0" Orientation="Horizontal">
+                                        <Label Margin="15,0,0,0" FontSize="17" TextColor="#000000"  Text="{Binding FirstName}" VerticalOptions="End"/>
+                                        <Label Margin="15,0,0,0" FontSize="17" TextColor="#000000" Text="{Binding LastName}" FontAttributes="Bold" VerticalOptions="End"/>
+                                    </StackLayout>
+                                    <StackLayout Grid.Column="1" Orientation="Horizontal">
+                                        <syncfusion:SfCheckBox x:Name="checkBox" CheckedColor="#FFB30F" TickColor="#FFFFFF" CornerRadius="10" StateChanged="CheckBox_StateChanged"/>
+                                    </StackLayout>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+
+            <ContentView  Grid.Row="4" ControlTemplate="{StaticResource FooterTabs}"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

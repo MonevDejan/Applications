@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SafeSportChat.Views.ContactsScreens.GroupsPage"
+            NavigationPage.HasNavigationBar="False"
+             >
+    
+    <ContentPage.Content>
+        <Grid VerticalOptions="Start">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="1"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" BackgroundColor="White" VerticalOptions="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.1*"/>
+                    <ColumnDefinition Width="0.8*"/>
+                    <ColumnDefinition Width="0.1*"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" ImageSource="backarrow.png" BackgroundColor="Transparent" />
+                <Label Grid.Column="1" Text="Groups" TextColor="#000000" FontSize="17"   HorizontalOptions="CenterAndExpand"  VerticalOptions="CenterAndExpand"/>
+                <Button Grid.Column="2" Text="Edit"  TextColor="#FFB30F" HorizontalOptions="Start" BackgroundColor="Transparent" FontSize="17" Padding="0" Margin="-15,0,0,0" Clicked="EditGroupButton_Clicked"/>
+            </Grid>
+            <BoxView Grid.Row="1" HorizontalOptions="FillAndExpand" HeightRequest="1" Opacity="0.25" Color="Black"/>
+            <StackLayout Grid.Row="2" Padding="15,0,15,0" VerticalOptions="Start" >
+                <ListView  ItemsSource="{Binding GroupNames}"
+                           SeparatorVisibility="Default"
+                           SeparatorColor="#DCDEDE"
+                           HasUnevenRows="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell Height="35">
+                                <Label Margin="15,0,0,0" FontSize="17" TextColor="#000000"  Text="{Binding Name}" VerticalOptions="Center" FontFamily="{StaticResource Key=NormalFontRoboto}"/>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                
+            </StackLayout>
+            <StackLayout Grid.Row="3"  HorizontalOptions="End" VerticalOptions="Start" >
+                <Button ImageSource="plus_icon.png" BackgroundColor="Transparent" VerticalOptions="Start" Clicked="CreateGroupButton_Clicked"/>
+            </StackLayout>
+        </Grid>
+        
+        
+    </ContentPage.Content>
+</ContentPage>

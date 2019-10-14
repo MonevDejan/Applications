@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjectInsightMobile.Views.NewDocumentPage"
+             xmlns:customComponent="clr-namespace:ProjectInsightMobile.CustomControls"
+              xmlns:navigation="clr-namespace:ProjectInsightMobile.Views"
+             Title="Add Folder/File">
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical">
+
+            <ScrollView VerticalOptions="FillAndExpand">
+                <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource LightBackgroundColor}" >
+                    <StackLayout Padding="0,0,0,0" x:Name="slButtons" Orientation="Vertical" HorizontalOptions="FillAndExpand" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+                        <StackLayout Padding="20,10,0,10" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="AddFolder_Tapped"></TapGestureRecognizer>
+                            </StackLayout.GestureRecognizers>
+                            <Image Source="plus_gray.png" HeightRequest="70"></Image>
+                            <Label Text="Add New Folder" Margin="40,0,0,0" FontSize="24" FontAttributes="Bold"  HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"></Label>
+                        </StackLayout>
+                        <BoxView HeightRequest="1" Color="{StaticResource LightGrayTextColor}" HorizontalOptions="FillAndExpand"></BoxView>
+                        <StackLayout Padding="20,10,0,10" HorizontalOptions="FillAndExpand" Orientation="Horizontal" >
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="AddDocument_Tapped"></TapGestureRecognizer>
+                            </StackLayout.GestureRecognizers>
+                            <Image Source="plus_gray.png"  HeightRequest="70"></Image>
+                            <Label Text="Add New File" Margin="40,0,0,0" FontSize="24" FontAttributes="Bold"   HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"></Label>
+                        </StackLayout>
+                        <BoxView HeightRequest="1" Color="{StaticResource LightGrayTextColor}" HorizontalOptions="FillAndExpand"></BoxView>
+                    </StackLayout>
+
+                    <StackLayout    
+                        VerticalOptions="FillAndExpand" IsVisible="{Binding VisibleLoad}"
+                        Padding="32"  
+                        AbsoluteLayout.LayoutFlags="All"
+                        AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                        BackgroundColor="#90000000"
+                    >
+                        <ActivityIndicator IsRunning="{Binding VisibleLoad}" Color="#3CB9A8"/>
+                        <Label Text="{Binding LoadingMessage}" HorizontalOptions="Center" TextColor = "White" />
+                    </StackLayout>
+                </AbsoluteLayout>
+            </ScrollView>
+            <navigation:BottomNavigationBar></navigation:BottomNavigationBar>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

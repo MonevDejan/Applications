@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjectInsightMobile.Views.NewApprovalPage_Details"
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+             xmlns:navigation="clr-namespace:ProjectInsightMobile.Views"
+             BackgroundColor="{StaticResource LightBackgroundColor}"
+              xmlns:customComponent="clr-namespace:ProjectInsightMobile.CustomControls"
+             Title="Add Approval">
+    <ContentPage.Content>
+
+
+        <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  >
+            <StackLayout Orientation="Vertical"  
+                         Padding="0" Margin="0" Spacing="0" 
+                         VerticalOptions="FillAndExpand"
+                         AbsoluteLayout.LayoutFlags="All" 
+                         AbsoluteLayout.LayoutBounds="0,0,1,1">
+                <StackLayout HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand" Padding="20">
+                    <StackLayout HorizontalOptions="FillAndExpand" Spacing="20" >
+
+                        <inputLayout:SfTextInputLayout   ContainerType="Outlined"
+                                                                     ContainerBackgroundColor="#E6EEF9"
+                                                                     FocusedColor="{StaticResource Primary}"
+                                                                     UnfocusedColor="{StaticResource DarkGrayTextColor}"
+                                                                     BackgroundColor="{StaticResource LightBackgroundColor}"
+                                                                     Hint="Name"  ReserveSpaceForAssistiveLabels="False"
+                                                                     HasError="{Binding NameError}"
+                                                          ErrorColor="{StaticResource RedTextColor}" >
+
+                            <customComponent:CustomEntry  Text="{Binding Name}"  TextChanged="Entry_TextChanged"/>
+                        </inputLayout:SfTextInputLayout>
+
+
+
+                        <inputLayout:SfTextInputLayout   ContainerType="Outlined"
+                                                                     Hint="Description  "  
+                                                                     ContainerBackgroundColor="#E6EEF9" 
+                                                                     FocusedColor="{StaticResource Primary}"
+                                                                     UnfocusedColor="{StaticResource DarkGrayTextColor}"
+                                                                     BackgroundColor="{StaticResource LightBackgroundColor}"
+                                                          ReserveSpaceForAssistiveLabels="False"
+                                                                     >
+
+                            <customComponent:CustomEditor Text="{Binding Description}" HeightRequest="120"/>
+                        </inputLayout:SfTextInputLayout>
+                        <Button Clicked="OnContinue_Tapped" Text="Continue" StyleClass="PrimaryButton"></Button>
+
+                    </StackLayout>
+                </StackLayout>
+                <navigation:BottomNavigationBar />
+            </StackLayout>
+            <ActivityIndicator 
+                    AbsoluteLayout.LayoutFlags="PositionProportional" IsVisible="{Binding VisibleLoad}"
+                    AbsoluteLayout.LayoutBounds=".5, .1"
+                    IsRunning="True" 
+                    Color="{StaticResource Primary}"
+                    />
+        </AbsoluteLayout>
+       
+    </ContentPage.Content>
+</ContentPage>

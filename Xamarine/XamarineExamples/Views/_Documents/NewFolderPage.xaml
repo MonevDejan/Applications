@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjectInsightMobile.Views.NewFolderPage"
+             xmlns:customComponent="clr-namespace:ProjectInsightMobile.CustomControls"
+              xmlns:navigation="clr-namespace:ProjectInsightMobile.Views"
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+             Title="Add Folder">
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical">
+
+            
+                <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource LightBackgroundColor}" >
+
+                <Grid 
+                        x:Name="gvTE"
+                        Padding="20" HorizontalOptions="FillAndExpand" ColumnSpacing="10"
+                        AbsoluteLayout.LayoutFlags="All" 
+                        AbsoluteLayout.LayoutBounds="0,0,1,1"
+                        >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions >
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <inputLayout:SfTextInputLayout  Grid.Row="0" ContainerType="Outlined"
+                            ContainerBackgroundColor="#E6EEF9"
+                            FocusedColor="{StaticResource Primary}"
+                            UnfocusedColor="{StaticResource DarkGrayTextColor}"
+                            BackgroundColor="{StaticResource LightBackgroundColor}"
+                            ReserveSpaceForAssistiveLabels="False"
+                            Hint="Folder Name ">
+                        <customComponent:CustomEntry  Text="{Binding Name}"  FontSize="22"  IsSpellCheckEnabled="False" x:Name="txtName"  />
+
+                    </inputLayout:SfTextInputLayout>
+
+
+
+
+                    <StackLayout Grid.Row="1"
+                            Orientation="Vertical"
+                            VerticalOptions="CenterAndExpand"
+                            HorizontalOptions="FillAndExpand"  
+                           
+                            >
+
+
+                      <Button Clicked="SaveFolder_Tapped" Text="Save" StyleClass="PrimaryButton" Margin="0,20,0,4"></Button>
+                      <Button Clicked="CancelFolder_Tapped" Text="Cancel" StyleClass="SecondaryButton"  Margin="0,10,0,4" ></Button>
+                    </StackLayout>
+                </Grid>
+
+
+
+
+
+                <StackLayout    
+                        VerticalOptions="FillAndExpand" IsVisible="{Binding VisibleLoad}"
+                        Padding="32"  
+                        AbsoluteLayout.LayoutFlags="All"
+                        AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                        BackgroundColor="#90000000"
+                    >
+                        <ActivityIndicator IsRunning="{Binding VisibleLoad}" Color="#3CB9A8"/>
+                        <Label Text="{Binding LoadingMessage}" HorizontalOptions="Center" TextColor = "White" />
+                    </StackLayout>
+                </AbsoluteLayout>
+            
+            <navigation:BottomNavigationBar></navigation:BottomNavigationBar>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

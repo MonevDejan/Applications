@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjectInsightMobile.Views.TimeEntries.ActualHours"
+             xmlns:navigation="clr-namespace:ProjectInsightMobile.Views"
+             xmlns:syncfusion="clr-namespace:Syncfusion.SfNumericTextBox.XForms;assembly=Syncfusion.SfNumericTextBox.XForms"
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+             xmlns:syncfusionButtons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             BackgroundColor="{StaticResource LightBackgroundColor}"
+             Title="Add Receipt">
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical"    
+                         Padding="0" Margin="0" Spacing="0" 
+                         VerticalOptions="FillAndExpand"
+                         HorizontalOptions="FillAndExpand">
+            <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="20,20,20,0" Margin="0" Spacing="0">
+                <ScrollView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="0" Margin="0" VerticalScrollBarVisibility="Never"  >
+                    <StackLayout HorizontalOptions="FillAndExpand" Padding="0" Spacing="0" Margin="0" >
+                        <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Padding="0" Margin="0" Spacing="20" >
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <inputLayout:SfTextInputLayout Grid.Column="0"   ContainerType="Outlined" IsVisible="{Binding ShowTimeInHours}"
+                            ContainerBackgroundColor="#E6EEF9" x:Name="sfActualHours"
+                            FocusedColor="{StaticResource Primary}"
+                            UnfocusedColor="{StaticResource DarkGrayTextColor}"
+                            BackgroundColor="{StaticResource LightBackgroundColor}"
+                            ReserveSpaceForAssistiveLabels="False"
+                            Hint="Hours (HH:mm)  "   HasError="{Binding ActualTimeError}"
+                                ErrorColor="{StaticResource RedTextColor}" >
+                                    <Entry Text="{Binding ActualHours}" Unfocused="ActualTimey_Unfocussed" TextChanged="ActualHours_OnTextChanged" FontSize="18"   />
+                                </inputLayout:SfTextInputLayout>
+
+                                <inputLayout:SfTextInputLayout Grid.Column="0" x:Name="sfActualHoursDec" Margin="0" IsVisible="{Binding ShowTimeInDecimals}"
+                            ContainerType="Outlined"
+                            ContainerBackgroundColor="#E6EEF9"
+                            FocusedColor="{StaticResource Primary}"
+                            UnfocusedColor="{StaticResource DarkGrayTextColor}"
+                            BackgroundColor="{StaticResource LightBackgroundColor}"
+                            Hint="Hours"
+                            ReserveSpaceForAssistiveLabels="False" HasError="{Binding ActualTimeDecError}"
+                                ErrorColor="{StaticResource RedTextColor}"
+                                                               
+                            >
+                                    <syncfusion:SfNumericTextBox x:Name="numericTextBox" 
+                                                             AllowNull="True"  
+                                                             TextAlignment="Start" 
+                                                             FontSize="18" 
+                                                             ParserMode="Decimal" 
+                                                             MaximumNumberDecimalDigits="2"
+                                                             TextColor="{StaticResource BlackTextColor}"
+                                                             BorderColor="{StaticResource WhiteTextColor}"
+                                                             Value="{Binding ActualHoursDec}"
+                                                             ValueChangeMode="OnKeyFocus"
+                                                                     ValueChanged="NumericTextBox_ValueChanged"
+                                                                 Unfocused="NumericTextBox_Unfocused"
+                                                           
+                                                             />
+                                </inputLayout:SfTextInputLayout>
+
+
+                                <syncfusionButtons:SfCheckBox Grid.Column="1" StateChanged="IsBillable_StateChanged" x:Name="isBillable" HorizontalOptions="CenterAndExpand" CheckedColor="{StaticResource Primary}" IsVisible="{Binding ShowBillableCheckboxInput}" VerticalOptions="CenterAndExpand" Text="Billable" IsChecked="{Binding IsBillable}" CornerRadius="5.0"/>       
+                            </Grid>
+
+
+
+                            <Button  Clicked="Continue_Tapped" Text="Continue" StyleClass="PrimaryButton" ></Button>
+                        </StackLayout>
+                    </StackLayout>
+                </ScrollView>
+            </StackLayout>
+            <navigation:BottomNavigationBar />
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>

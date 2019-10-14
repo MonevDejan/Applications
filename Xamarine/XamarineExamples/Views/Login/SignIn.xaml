@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjectInsightMobile.Views.SignIn"
+             xmlns:customLabel="clr-namespace:ProjectInsightMobile.CustomControls"
+              xmlns:local="clr-namespace:SafeSportChat"
+             xmlns:syncfusion="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             NavigationPage.HasNavigationBar="False">
+    
+    <ContentPage.Resources>
+        <local:isValidBtnBackgroundColor x:Key="isValidBtnBackgroundColor" />
+    </ContentPage.Resources>
+
+    <ContentPage.Content BackgroundColor="#BAD4E3">
+
+        <AbsoluteLayout >
+            <Grid VerticalOptions="FillAndExpand" RowSpacing="0" ColumnSpacing="0"
+                  AbsoluteLayout.LayoutFlags="All" 
+                  AbsoluteLayout.LayoutBounds="0,0,1,1"
+                  BackgroundColor="#BAD4E3">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <StackLayout x:Name="slNoConnection" Grid.Row="0" Margin="0" Padding="0" Spacing="0" />
+                <!--<AbsoluteLayout  Grid.Row="1"  BackgroundColor="{StaticResource Blue1}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    
+                    <Image Source="header_text.png" AbsoluteLayout.LayoutBounds=".5,0,.9,1" Margin="0,0,0,40" AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional,HeightProportional" />
+                </AbsoluteLayout>-->
+                <StackLayout Grid.Row="1" Orientation="Vertical" Padding="40,120,0,10" Spacing="15">
+                    <Label Text="Hello," FontFamily="{StaticResource Key=NormalFontRoboto}" FontSize="28" LineHeight="33" TextColor="#363531"/>
+                    <Label Text="Sign in to continue" FontFamily="{StaticResource Key=NormalFontRoboto}" FontSize="17" LineHeight="20" TextColor="#363531"/>
+                </StackLayout>
+                <ScrollView Grid.Row="2" x:Name="LoginSettings">
+                    <StackLayout  BackgroundColor="#BAD4E3" Orientation="Vertical" Padding="40,20,40,10" Spacing="25">
+                        <Frame BackgroundColor="#F2F2F2" CornerRadius="10" Margin="0" Padding="10,0,10,0" VerticalOptions="Center" HeightRequest="50" HasShadow="False">
+                            <local:CustomEntry FontSize="17" Margin="15,0,15,0"   BackgroundColor="#F2F2F2"   x:Name="txtEmail" TextChanged="entry_TextChanged" Placeholder="Email" FontFamily="{StaticResource Key=NormalFontRoboto}" VerticalOptions="CenterAndExpand"></local:CustomEntry>
+                        </Frame>
+                        <Frame BackgroundColor="#F2F2F2" CornerRadius="10" Margin="0" Padding="10,0,10,0" VerticalOptions="Center" HeightRequest="50" HasShadow="False">
+                            <Grid ColumnSpacing="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.8*"/>
+                                    <ColumnDefinition Width="0.2*"/>
+                                </Grid.ColumnDefinitions>
+                                <local:CustomEntry Grid.Column="0" FontSize="17" Margin="15,0,15,0"   BackgroundColor="#F2F2F2"  x:Name="txtPassword" TextChanged="entry_TextChanged" Placeholder="Password" IsPassword="True" FontFamily="{StaticResource Key=NormalFontRoboto}" VerticalOptions="CenterAndExpand"></local:CustomEntry>
+                                <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="End" Margin="0" Padding="0">
+                                    <Image  Source="eye_icon.png" BackgroundColor="Transparent" x:Name="btnShowPassword"  IsVisible="True" >
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="ShowPass" NumberOfTapsRequired="1" />
+                                        </Image.GestureRecognizers>
+                                    </Image>
+                                    
+                                </StackLayout>
+                            </Grid>
+                        </Frame>
+                        <StackLayout  Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+                            <syncfusion:SfCheckBox x:Name="checkBox" CheckedColor="#FFB30F" UncheckedColor="#EEF0F2"  Text="Remember Me" FontFamily="{StaticResource Key=NormalFontRoboto}" TextColor="#3C6780" FontSize="15" TickColor="#FFFFFF"  />
+                        </StackLayout>
+                        <!--<StackLayout BackgroundColor="White" Padding="0" Margin="0" HorizontalOptions="FillAndExpand">-->
+                        <Button Text="Sign in" IsEnabled="{Binding isValid}" BackgroundColor="{Binding isValid, Converter={StaticResource isValidBtnBackgroundColor}}"  Clicked="OnSignIn" Margin="0"  TextColor="#363531" FontSize="17"  CornerRadius="8" FontFamily="{StaticResource Key=NormalFontRoboto}"  />
+                        <!--</StackLayout>-->
+                        <StackLayout Margin="0" Padding="0">
+                            <Button Text="Forgot username or password?" BackgroundColor="Transparent" TextColor="#3C6780" FontSize="15" FontFamily="{StaticResource Key=NormalFontRoboto}"/>
+                            <Button Text="Not a member? Sign up now!" Clicked="SignUp_Clicked" BackgroundColor="Transparent"  TextColor="#3C6780" FontSize="15" FontFamily="{StaticResource Key=NormalFontRoboto}"/>
+                        </StackLayout>
+                        <!--<StackLayout Orientation="Horizontal" Margin="0,20,0,0" >
+                            <StackLayout IsVisible="{Binding SSOEnabled}" x:Name="btnSSOLogin" HorizontalOptions="StartAndExpand" >
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="loginWithSSO"/>
+                                </StackLayout.GestureRecognizers>
+                                <Label  
+                                            FontSize="18" 
+                                            HorizontalTextAlignment="Center" 
+                                            HorizontalOptions="CenterAndExpand" 
+                                            VerticalTextAlignment="Center"  
+                                             
+                                            TextColor="{StaticResource WhiteTextColor}" 
+                                            Text="Sign in with SSO"
+                                        />
+                            </StackLayout>
+
+                            <StackLayout x:Name="btnHavingTrouble" HorizontalOptions="EndAndExpand" >
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="havingTrouble"/>
+                                </StackLayout.GestureRecognizers>
+                                <Label 
+                                 FontSize="18" 
+                                 HorizontalTextAlignment="Center" 
+                                 HorizontalOptions="CenterAndExpand" 
+                                 VerticalTextAlignment="Center"  
+                                  
+                                 TextColor="{StaticResource WhiteTextColor}" 
+                                 Text="Having Trouble?"
+                                 />
+                            </StackLayout>
+                            
+                        </StackLayout>-->
+                        <!--<StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand"  VerticalOptions="EndAndExpand" Margin="0,0,0,30">
+                            <Label  
+                                            FontSize="16" 
+                                            HorizontalTextAlignment="Center" 
+                                            HorizontalOptions="CenterAndExpand" 
+                                            VerticalTextAlignment="Center"  
+                                             
+                                            TextColor="{StaticResource WhiteTextColor}" 
+                                            Text="Current workspace"
+                                        />
+                            <Label  x:Name="lblWorkspaceName"
+                                            FontSize="18" 
+                                            HorizontalTextAlignment="Center" 
+                                            HorizontalOptions="CenterAndExpand" 
+                                            VerticalTextAlignment="Center"  
+                                             
+                                            TextColor="{StaticResource WhiteTextColor}" 
+                                            Text="{Binding WorkspaceName}"
+                                        />
+                            <StackLayout HorizontalOptions="CenterAndExpand" >
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="changeWorkspace"/>
+                                </StackLayout.GestureRecognizers>
+                               
+                                <customLabel:CustomLabel 
+                                        IsUnderlined="True" 
+                                        FontSize="18" 
+                                        HorizontalTextAlignment="Center" 
+                                        HorizontalOptions="FillAndExpand" 
+                                        VerticalTextAlignment="Center"   
+                                         
+                                        TextColor="{StaticResource WhiteTextColor}" 
+                                        Text="Change workspace" 
+                                    />
+                            </StackLayout>
+                        </StackLayout>-->
+                    </StackLayout>
+                </ScrollView>
+            </Grid>
+            <StackLayout    VerticalOptions="FillAndExpand" IsVisible="{Binding VisibleLoad}"
+                                Padding="32"  
+                                AbsoluteLayout.LayoutFlags="All"
+                                AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                                BackgroundColor="#90000000">
+                <ActivityIndicator IsRunning="{Binding VisibleLoad}" Color="#3CB9A8"/>
+                <Label Text="{Binding LoadingMessage}" HorizontalOptions="Center" TextColor = "White" />
+            </StackLayout>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

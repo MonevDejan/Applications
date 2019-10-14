@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:customComponent="clr-namespace:ProjectInsightMobile.CustomControls"
+             x:Class="ProjectInsightMobile.Views.SecurityCustomView"
+             > 
+    <ContentView.Content>
+            
+            <StackLayout Orientation="Vertical" Margin="0" Spacing="0" Padding="0">
+
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Spacing="0" BackgroundColor="{StaticResource LightBackgroundColor}">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnTappedSecurityItems"/>
+                    </StackLayout.GestureRecognizers>
+                    <Image 
+                            x:Name="showHideIcon"
+                            Source="{Binding ShowHideIcon}"  
+                            Margin="10,10,0,10"
+                            VerticalOptions="Center" 
+                            HorizontalOptions="Start"
+                            HeightRequest="30" />
+                    <Label 
+                            FontSize="25" 
+                            HorizontalTextAlignment="Center" 
+                            HorizontalOptions="CenterAndExpand" 
+                            VerticalTextAlignment="Center" 
+                            
+                            
+                            Text="Security"
+                        /> 
+                </StackLayout> 
+                <customComponent:CustomFrame IsVisible="{Binding IsExpandedList}" Padding="0" >
+                    <StackLayout Padding="0"  >
+
+                    <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+
+                        <StackLayout 
+                            VerticalOptions="FillAndExpand"
+                            HorizontalOptions="FillAndExpand"
+                            AbsoluteLayout.LayoutFlags="All" 
+                            AbsoluteLayout.LayoutBounds="0,0,1,1"
+                            Padding="5"
+                            Orientation="Vertical">
+                             
+                            <Grid 
+                                Padding="15" 
+                                HorizontalOptions="FillAndExpand" ColumnSpacing="10"
+                              >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions >
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+
+                            <Label  
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                VerticalOptions="FillAndExpand"
+                                HorizontalTextAlignment="End"
+                                FontSize="15" 
+                                
+                                Text="User Agent:"
+                                />
+
+                            <Label  
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                VerticalOptions="FillAndExpand"
+                                HorizontalTextAlignment="Start"
+                                FontSize="15"  
+                                TextColor="{StaticResource BorderLineGray}"
+                                Text="Chrome"
+                                />
+
+
+                            <Label  
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                VerticalOptions="FillAndExpand"
+                                HorizontalTextAlignment="End"
+                                FontSize="15"  
+                                Text="Platform:"
+                                />
+                            <Label  
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                VerticalOptions="FillAndExpand"
+                                HorizontalTextAlignment="Start"
+                                FontSize="15"  
+                                TextColor="{StaticResource BorderLineGray}"
+                                Text="Moc OSX"
+                                />
+
+                            <Label  
+                                Grid.Row="2"
+                                Grid.Column="0"
+                                VerticalOptions="FillAndExpand"
+                                FontSize="15" HorizontalTextAlignment="End" 
+                                
+                                Text="Device:"
+                                />
+
+                            <Label  
+                                Grid.Row="2"
+                                Grid.Column="1"
+                                VerticalOptions="FillAndExpand"
+                                FontSize="15" HorizontalTextAlignment="Start" 
+                                
+                                Text="Other"
+                                />
+
+                            <Label  
+                                Grid.Row="3"
+                                Grid.Column="0"
+                                VerticalOptions="FillAndExpand"
+                                FontSize="15" HorizontalTextAlignment="End" 
+                                
+                                Text="Last IP Address:"
+                                />
+
+                            <Label  
+                                Grid.Row="3"
+                                Grid.Column="1"
+                                VerticalOptions="FillAndExpand"
+                                FontSize="15" HorizontalTextAlignment="Start" 
+                                
+                                Text="64.58.174.128"
+                                />
+
+                             <Label  
+                                Grid.Row="4"
+                                Grid.Column="0"
+                                VerticalOptions="FillAndExpand"
+                                FontSize="15" HorizontalTextAlignment="End" 
+                                
+                                Text="Last Login:"
+                                />
+
+                            <Label  
+                                Grid.Row="4"
+                                Grid.Column="1"
+                                VerticalOptions="FillAndExpand"
+                                FontSize="15" HorizontalTextAlignment="Start" 
+                                
+                                Text="1/29/2018 8:50 AM"
+                                />
+                            </Grid>
+
+                        </StackLayout>
+                        <StackLayout    
+                                VerticalOptions="FillAndExpand" IsVisible="{Binding VisibleLoad}"
+                                Padding="32"  
+                                AbsoluteLayout.LayoutFlags="All"
+                                AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                                BackgroundColor="#90000000"
+                                >
+                                <ActivityIndicator IsRunning="{Binding VisibleLoad}" Color="#3CB9A8"/>
+                                <Label Text="{Binding LoadingMessage}" HorizontalOptions="Center" TextColor = "White" />
+                            </StackLayout>
+                        </AbsoluteLayout>
+                    </StackLayout>
+
+                </customComponent:CustomFrame>
+        </StackLayout>
+
+    </ContentView.Content>
+</ContentView>

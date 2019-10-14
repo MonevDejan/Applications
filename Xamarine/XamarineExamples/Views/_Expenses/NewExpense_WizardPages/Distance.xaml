@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjectInsightMobile.Views.Distance"
+             xmlns:navigation="clr-namespace:ProjectInsightMobile.Views"
+             xmlns:syncfusion="clr-namespace:Syncfusion.SfNumericTextBox.XForms;assembly=Syncfusion.SfNumericTextBox.XForms"
+             BackgroundColor="{StaticResource LightBackgroundColor}"
+                xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+             Title="Add Receipt">
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical"    
+                         Padding="0" Margin="0" Spacing="0" 
+                         VerticalOptions="FillAndExpand"
+                         HorizontalOptions="FillAndExpand">
+            <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="20,20,20,0" Margin="0" Spacing="0">
+                <ScrollView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="0" Margin="0" VerticalScrollBarVisibility="Never"  >
+                    <StackLayout HorizontalOptions="FillAndExpand" Padding="0" Spacing="0" Margin="0" >
+                        <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Padding="0" Margin="0" Spacing="0" >
+
+
+
+                            <inputLayout:SfTextInputLayout
+                            ContainerType="Outlined" x:Name="sfDistance"
+                            ContainerBackgroundColor="#E6EEF9"
+                            FocusedColor="{StaticResource Primary}"
+                            UnfocusedColor="{StaticResource DarkGrayTextColor}"
+                            BackgroundColor="{StaticResource LightBackgroundColor}"
+                            ReserveSpaceForAssistiveLabels="False" ErrorColor="{StaticResource RedTextColor}"
+                            Hint="Distance"
+                            >
+                        <syncfusion:SfNumericTextBox x:Name="numericTextBox" Margin="0,0,0,20"
+                                                     AllowNull="True" 
+                                                     TextAlignment="Center" 
+                                                     FontSize="22"  
+                                                     ParserMode="Decimal" 
+                                                     MaximumNumberDecimalDigits="2"
+                                                      TextColor="{StaticResource BlackTextColor}"
+                                                     BorderColor="{StaticResource WhiteTextColor}"
+                                                     Value="{Binding Amount}" ValueChangeMode="OnKeyFocus"
+                                                     ValueChanged="NumericTextBox_ValueChanged"
+                                                     />
+                        </inputLayout:SfTextInputLayout>
+
+                            <Button    Margin="0,20,0,0" Clicked="Continue_Tapped" Text="Continue" StyleClass="PrimaryButton"></Button>
+                        </StackLayout>
+                        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0,10,0,0" Spacing="0" Margin="0"  >
+                            <Image 
+                            x:Name="showHideIcon"
+                            Source="{Binding PhotoSource}"  
+                            Margin="0,0,0,0"
+                                  HorizontalOptions="FillAndExpand"
+                         VerticalOptions="FillAndExpand"
+                          
+                           
+                             />
+
+                        </StackLayout>
+
+                    </StackLayout>
+                </ScrollView>
+            </StackLayout>
+            <navigation:BottomNavigationBar />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

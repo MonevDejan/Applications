@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SafeSportChat.Views.Login.EmailMagicLinkSuccessPage"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <StackLayout  BackgroundColor="#3C6780"  VerticalOptions="FillAndExpand" Margin="0" Padding="0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+
+                </Grid.RowDefinitions>
+                <StackLayout  Margin="40,120,40,20" Spacing="20" Grid.Row="0" HorizontalOptions="Center">
+                    <Label Margin="0,0,0,0" HorizontalTextAlignment="Center" Text="Check your email! " HorizontalOptions="Fill"
+                   FontSize="28" LineHeight="1.33" TextColor="#FFFFFF" FontFamily="{StaticResource Key=NormalFontRoboto}" LineBreakMode="WordWrap" />
+                    <Label Margin="0,0,0,0"  Text="To confirm your email address, tap the &#x0a; button in the email we sent to &#x0a; user@useremail.com " FontFamily="{StaticResource Key=NormalFontRoboto}" TextColor="#ffffff" FontSize="15" LineHeight="1.18" HorizontalOptions="Fill" HorizontalTextAlignment="Center" />
+                </StackLayout>
+                <StackLayout Grid.Row="1" Padding="40,0,40,0">
+
+                    <Button BackgroundColor="#FFB30F"  Text="Open Email App" TextColor="#363531" FontSize="20" FontFamily="{StaticResource Key=NormalFontRoboto}" CornerRadius="10" HeightRequest="50" Margin="0,20,0,20"  Clicked="OpenEmailAppButton_Clicked"/>
+                    
+                </StackLayout>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

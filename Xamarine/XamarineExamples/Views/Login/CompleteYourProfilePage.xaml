@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SafeSportChat.Views.Login.CompleteYourProfilePage"
+             xmlns:local="clr-namespace:SafeSportChat"
+             NavigationPage.HasNavigationBar="False"
+             xmlns:comboBox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+             >
+
+
+    <ContentPage.Resources>
+        <local:isValidBtnBackgroundColor x:Key="isValidBtnBackgroundColor" />
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="CenterAndExpand"  BackgroundColor="#DCDEDE"  VerticalOptions="FillAndExpand" Margin="0" Padding="0">
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+
+                </Grid.RowDefinitions>
+                <StackLayout Grid.Row="0" HorizontalOptions="Center">
+                    <Label Margin="55,40,55,20" HorizontalTextAlignment="Center" Text="Complete your profile" HorizontalOptions="Fill"
+                   FontSize="28"  TextColor="#363531" FontFamily="{StaticResource Key=NormalFontRoboto}" LineBreakMode="WordWrap" />
+                </StackLayout>
+                <StackLayout Grid.Row="1" Padding="40,0,40,0" Spacing="20">
+                    <Frame BackgroundColor="#FFFFFF" CornerRadius="10" Margin="0" Padding="10,0,10,0" VerticalOptions="CenterAndExpand" HeightRequest="50" HasShadow="False">
+                        <local:CustomEntry x:Name="txtFirstName" x:Uid="txtFirstName" TextChanged="entry_TextChanged" FontSize="17" Margin="15,0,15,0"   BackgroundColor="#ffffff" PlaceholderColor="#3C6780" Opacity="0.5"  Placeholder="First Name" FontFamily="{StaticResource Key=NormalFontRoboto}" VerticalOptions="CenterAndExpand"/>
+                    </Frame>
+                    <Frame BackgroundColor="#FFFFFF" CornerRadius="10" Margin="0" Padding="10,0,10,0" VerticalOptions="CenterAndExpand" HeightRequest="50" HasShadow="False">
+                        <local:CustomEntry x:Name="txtLastName" x:Uid="txtLastName" TextChanged="entry_TextChanged" FontSize="17" Margin="15,0,15,0"   BackgroundColor="#ffffff" PlaceholderColor="#3C6780" Opacity="0.5"   Placeholder="Last Name" FontFamily="{StaticResource Key=NormalFontRoboto}" VerticalOptions="CenterAndExpand"/>
+                    </Frame>
+                    <Frame BackgroundColor="#FFFFFF" CornerRadius="10" Margin="0" Padding="10,0,10,0" VerticalOptions="CenterAndExpand" HeightRequest="50" HasShadow="False">
+                        <local:CustomEntry x:Name="txtEmail" x:Uid="txtEMail" TextChanged="entry_TextChanged" FontSize="17" Margin="15,0,15,0"   BackgroundColor="#ffffff" PlaceholderColor="#3C6780" Opacity="0.5"   Placeholder="Email" FontFamily="{StaticResource Key=NormalFontRoboto}" VerticalOptions="CenterAndExpand"/>
+                    </Frame>
+                    <Frame BackgroundColor="#FFFFFF" CornerRadius="10" Margin="0" Padding="10,0,10,0" VerticalOptions="CenterAndExpand" HeightRequest="50" HasShadow="False">
+                        <local:CustomEntry x:Name="txtPhone" x:Uid="txtPhone" TextChanged="entry_TextChanged" FontSize="17" Margin="15,0,15,0"   BackgroundColor="#ffffff" PlaceholderColor="#3C6780" Opacity="0.5"   Placeholder="Phone Number" FontFamily="{StaticResource Key=NormalFontRoboto}" VerticalOptions="CenterAndExpand" Keyboard="Telephone"/>
+                    </Frame>
+                    <Frame BackgroundColor="#FFFFFF" CornerRadius="10" Margin="0" Padding="0,0,0,0" VerticalOptions="CenterAndExpand" HeightRequest="50" HasShadow="False">
+                        <StackLayout  BackgroundColor="Transparent" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <Frame BorderColor="#ffffff" CornerRadius="10" BackgroundColor="#ffffff" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" HeightRequest="50" HasShadow="False"  Padding="0" Margin="0">
+                                <StackLayout   Padding="10,0,10,0" 
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="CenterAndExpand" 
+                            BackgroundColor="Transparent">
+                                    <Frame BorderColor="#ffffff" CornerRadius="10"
+                                 Padding="0,0,0,0" x:Name="frmCoyntry"
+                                 HasShadow="False" BackgroundColor="#ffffff" HeightRequest="50" Margin="15,0,15,0"  >
+
+                                        <comboBox:SfComboBox x:Name="cmbSport" 
+                                        SuggestionMode="Contains"
+                                        AllowFiltering="False"
+                                        IsEditableMode="True"
+                                        DisplayMemberPath="Name"
+                                        SelectedItem="{Binding SelectedSport}" 
+                                        DataSource="{Binding Sports}"
+                                        ShowClearButton="True"  
+                                        ShowBorder="False"
+                                        DropDownItemHeight="40"
+                                        BorderColor="{StaticResource LightBackgroundColor}"
+                                        TextSize="17"
+                                        FontFamily="{StaticResource Key=NormalFontRoboto}"
+                                        TextColor="#3C6780"
+                                        Opacity="0.5"
+                                        SelectionChanged='CmbSport_SelectionChanged'
+                                        Watermark="Sport"
+                                                             WatermarkColor="#3C6780">
+                                            <comboBox:SfComboBox.DropDownButtonSettings>
+                                                <comboBox:DropDownButtonSettings Width="15" Height="15" >
+                                                    <comboBox:DropDownButtonSettings.View>
+                                                        <Image WidthRequest="15" HeightRequest="15" Source="orange_arrow_down.png" />
+                                                    </comboBox:DropDownButtonSettings.View>
+                                                </comboBox:DropDownButtonSettings>
+                                            </comboBox:SfComboBox.DropDownButtonSettings>
+
+                                        </comboBox:SfComboBox>
+                                    </Frame>
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+                    </Frame>
+                    <Button IsEnabled="{Binding isValid}" BackgroundColor="{Binding isValid, Converter={StaticResource isValidBtnBackgroundColor}}" 
+                        Text="Next" TextColor="#363531" FontSize="20"  FontFamily="{StaticResource Key=NormalFontRoboto}" CornerRadius="10" HeightRequest="50" Clicked="NextButton_Clicked"/>
+
+                </StackLayout>
+            </Grid>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

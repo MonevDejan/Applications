@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjectInsightMobile.Views.NewApprovalPage_SelectType"
+             xmlns:navigation="clr-namespace:ProjectInsightMobile.Views"
+             Title="Add Approval">
+    <ContentPage.Content>
+
+
+        <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  >
+            <StackLayout Orientation="Vertical"  
+                         Padding="0" Margin="0" Spacing="0" 
+                         VerticalOptions="FillAndExpand"
+                         AbsoluteLayout.LayoutFlags="All" 
+                         AbsoluteLayout.LayoutBounds="0,0,1,1">
+                <StackLayout Spacing="0" Padding="0"  VerticalOptions="FillAndExpand" >
+                    <StackLayout VerticalOptions="FillAndExpand" IsVisible="{Binding VisibleContent}" Orientation="Vertical" Spacing="20" Padding="0,20">
+                        <Label FontSize="22" HorizontalTextAlignment="Center" Margin="60,0">What existing item type do you want to approve?</Label>
+
+                        <StackLayout Padding="0,0,0,0" x:Name="slButtons" Orientation="Vertical" HorizontalOptions="FillAndExpand" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+                            <BoxView HeightRequest="1" Color="{StaticResource BorderLineLiteGray}" HorizontalOptions="FillAndExpand"></BoxView>
+
+                            <StackLayout x:Name="slProject" IsVisible="True">
+                                <StackLayout Padding="13,10,0,10" HorizontalOptions="FillAndExpand" Orientation="Horizontal" >
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="ApprovalOnProject_Tapped"></TapGestureRecognizer>
+                                    </StackLayout.GestureRecognizers>
+                                    <Image Source="item_project.png"  HeightRequest="45"></Image>
+                                    <Label Text="Project Request" Margin="15,0,0,0" FontSize="22" FontAttributes="Bold"   HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"></Label>
+
+                                  <Button HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" x:Name="ApprovalOnProject" Clicked="ApprovalOnProject_Tapped" Text="Select"  Margin="0,0,10,0" StyleClass="PrimaryButton" ></Button>
+                                 
+                                </StackLayout>
+                                <BoxView HeightRequest="1" Color="{StaticResource BorderLineLiteGray}" HorizontalOptions="FillAndExpand"></BoxView>
+                            </StackLayout>
+                           
+                            <StackLayout Padding="10,10,0,10" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="ApprovalOnProposal_Tapped"></TapGestureRecognizer>
+                                </StackLayout.GestureRecognizers>
+                                <Image Source="item_task.png" HeightRequest="45" Margin="5,0,0,0"></Image>
+                                <Label Text="Proposal" Margin="10,0,0,0" FontSize="22" FontAttributes="Bold"  HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"></Label>
+
+                              <Button HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" x:Name="ApprovalOnTask" Clicked="ApprovalOnProposal_Tapped" Text="Select"  Margin="0,0,10,0" StyleClass="PrimaryButton" ></Button>
+                              
+                            </StackLayout>
+                            <BoxView HeightRequest="1" Color="{StaticResource BorderLineLiteGray}" HorizontalOptions="FillAndExpand"></BoxView>
+
+                            <!--<StackLayout Padding="13,10,0,10" HorizontalOptions="FillAndExpand" Orientation="Horizontal" >
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="ApprovalOnToDo_Tapped"></TapGestureRecognizer>
+                                </StackLayout.GestureRecognizers>
+                                <Image Source="item_todo.png"  HeightRequest="45" Margin="10,0,0,0"></Image>
+                                <Label Text="To-Do" Margin="30,0,0,0" FontSize="24" FontAttributes="Bold"   HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"></Label>
+                                <StackLayout HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"  Padding="0,0,10,0" >
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="ApprovalOnToDo_Tapped"  x:Name="ApprovalOnToDo"/>
+                                    </StackLayout.GestureRecognizers>
+                                    <Frame HasShadow="False"
+                                Padding="30,7,30,7"
+                                CornerRadius="5"
+                                BackgroundColor="{StaticResource Primary}"
+                                >
+                                        <Label 
+                                       FontSize="24" HeightRequest="30"
+                                        HorizontalTextAlignment="Center" 
+                                        HorizontalOptions="CenterAndExpand" 
+                                        VerticalTextAlignment="Center"  
+                                        TextColor="{StaticResource WhiteTextColor}"
+                                        Text="Select"
+                                    />
+                                    </Frame>
+
+                                </StackLayout>
+                            </StackLayout>
+                            <BoxView HeightRequest="1" Color="{StaticResource BorderLineLiteGray}" HorizontalOptions="FillAndExpand"></BoxView>-->
+
+                            
+
+                            <StackLayout Padding="10,10,0,10" HorizontalOptions="FillAndExpand" Orientation="Horizontal" >
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="ApprovalOnFile_Tapped"></TapGestureRecognizer>
+                                </StackLayout.GestureRecognizers>
+                                <Image Source="item_file.png"  HeightRequest="45" Margin="0,0,0,0"></Image>
+                                <Label Text="File" Margin="10,0,0,0" FontSize="22" FontAttributes="Bold"   HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"></Label>
+
+                              <Button HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" x:Name="ApprovalOnFile" Clicked="ApprovalOnFile_Tapped" Text="Select"  Margin="0,0,10,0" StyleClass="PrimaryButton" ></Button>
+                             
+                            </StackLayout>
+                            <BoxView HeightRequest="1" Color="{StaticResource BorderLineLiteGray}" HorizontalOptions="FillAndExpand"></BoxView>
+
+                        </StackLayout>
+
+
+
+                    </StackLayout>
+                </StackLayout>
+                <navigation:BottomNavigationBar />
+            </StackLayout>
+            <ActivityIndicator 
+                    AbsoluteLayout.LayoutFlags="PositionProportional" IsVisible="{Binding VisibleLoad}"
+                    AbsoluteLayout.LayoutBounds=".5, .1"
+                    IsRunning="True" 
+                    Color="{StaticResource Primary}"
+                    />
+        </AbsoluteLayout>
+       
+    </ContentPage.Content>
+</ContentPage>

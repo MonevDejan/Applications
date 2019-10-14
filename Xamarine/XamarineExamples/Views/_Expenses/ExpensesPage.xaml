@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:navigation="clr-namespace:ProjectInsightMobile.Views"
+             x:Class="ProjectInsightMobile.Views.ExpensesPage"
+             Title="Expenses"
+             BackgroundColor="{StaticResource LightBackgroundColor}"
+             xmlns:customControls="clr-namespace:ProjectInsightMobile.Views"
+            >
+    <ContentPage.Content>
+        <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  >
+            
+            <!--<StackLayout  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  IsVisible="{Binding IsBusy}" >-->
+
+
+            <StackLayout Orientation="Vertical"
+                         Padding="0" Margin="0" Spacing="0" 
+                         VerticalOptions="FillAndExpand"
+                           AbsoluteLayout.LayoutFlags="All" 
+                    AbsoluteLayout.LayoutBounds="0,0,1,1">
+
+                <StackLayout Spacing="0" Padding="0"  VerticalOptions="FillAndExpand" >
+                    <ScrollView  Orientation="Vertical" HorizontalOptions="FillAndExpand" Margin="0" Padding="0" Scrolled="ScrollView_Scrolled" IsVisible="False" x:Name="mainScreen" >
+                        <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Padding="0" Margin="0" Spacing="0"  IsVisible="{Binding VisibleContent}">
+                            <StackLayout x:Name="slExpenseReportForApproval"></StackLayout>
+
+                            <StackLayout 
+                        
+                            Spacing="0"
+                            Orientation="Vertical"
+                            HorizontalOptions="CenterAndExpand" 
+                            VerticalOptions="FillAndExpand" Padding="0">
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="NotOnExpenseReport_Tapped" x:Name="NotOnExpenseReport"/>
+                                </StackLayout.GestureRecognizers>
+                                
+                                <Label 
+                                Text="{Binding Path=UnsubmittedExpenseTotal, StringFormat={StaticResource formatcurrencyusa}}"  
+                                HorizontalOptions="CenterAndExpand"
+                                TextColor="{StaticResource DarkGrayTextColor}" 
+                                    LineBreakMode="NoWrap" 
+                                FontSize="70" 
+                                VerticalOptions="FillAndExpand" 
+                                Margin="0"/>
+                                <Label 
+                                Text="Unsubmitted"  
+                                LineBreakMode="NoWrap" 
+                                HorizontalOptions="CenterAndExpand"
+                                TextColor="{StaticResource DarkGrayTextColor}" 
+                                FontSize="20"  Margin="0" />
+                                <Label 
+                                Text="{Binding Path=UnsubmittedPeriodFormated}"  
+                                LineBreakMode="NoWrap" 
+                                HorizontalOptions="CenterAndExpand"
+                                TextColor="{StaticResource DarkGrayTextColor}" 
+                                FontSize="20" Margin="0"
+                                />
+
+                            </StackLayout>
+                            <StackLayout Spacing="15" Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" Padding="20,20,20,30" >
+
+                                <Button  Clicked="OnCreateTimeEntry" Text="Add Expense Entry" StyleClass="PrimaryButton" ></Button>
+                                <Button  Clicked="OnSubmitExpenseReport" Text="Submit Expense Report" StyleClass="SecondaryButton"  IsVisible="{Binding IsVisibleSubmitButton}"></Button>
+                            </StackLayout>
+
+                            <StackLayout Orientation="Vertical" Margin="20,0,0,10" Padding="0">
+                                <Label 
+                                            FontSize="20"
+                                            TextColor="{StaticResource DarkGrayTextColor}" 
+                                            Text="Past Expense Reports:"
+                                        />
+                                <Label x:Name="lblNoPreviousRecords" IsVisible="False"
+                                            FontSize="18"
+                                            TextColor="{StaticResource DarkGrayTextColor}" 
+                                            Text="You don't have previous expense reports"
+                                        />
+                            </StackLayout>
+
+                            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Margin="0" Padding="0,0,0,0" BackgroundColor="{StaticResource WhiteTextColor}" VerticalOptions="FillAndExpand" Spacing="0" x:Name="lstAllPeriod">
+                            </StackLayout>
+                        </StackLayout>
+                    </ScrollView>
+
+                </StackLayout>
+
+              
+                <navigation:BottomNavigationBar />
+
+              
+            </StackLayout>
+            
+            <StackLayout x:Name="lblNoTime1" IsVisible="False" Orientation="Vertical" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" AbsoluteLayout.LayoutFlags="All"  Padding="20,0,20,80"
+                    AbsoluteLayout.LayoutBounds="0,0,1,1">
+                <Image Source="clock_icon.png" HeightRequest="100"></Image>
+                <Label Text="Currently, you don't have the expense add-on installed." XAlign="Center" LineBreakMode="WordWrap"  VerticalOptions="CenterAndExpand" FontAttributes="Bold"  FontSize="24" Margin="20,0,20,0"></Label>
+                <Label Text="Tap below to install." XAlign="Center" LineBreakMode="WordWrap"  VerticalOptions="CenterAndExpand" FontAttributes="Bold"  FontSize="24" Margin="20,0,20,0"></Label>
+
+
+                <Button x:Name="btnGetAddOn" IsVisible="False" Clicked="GetTimeAddOn_Tapped" Text="Get Expense Add-On" StyleClass="PrimaryButton"></Button>
+           
+            </StackLayout>
+            <!--<StackLayout x:Name="lblNoTime2" IsVisible="False" Orientation="Vertical" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" AbsoluteLayout.LayoutFlags="All"  Padding="20,0,20,80"
+                    AbsoluteLayout.LayoutBounds="0,0,1,1">
+                <Image Source="clock_icon.png" HeightRequest="100"></Image>
+                <Label Text="Currently, your expense add-on is installed but not turned on." XAlign="Center" LineBreakMode="WordWrap"  VerticalOptions="CenterAndExpand" FontAttributes="Bold"  FontSize="24" Margin="20,0,20,0"></Label>
+                <Label Text="Tap below to turn on." XAlign="Center" LineBreakMode="WordWrap"  VerticalOptions="CenterAndExpand" FontAttributes="Bold"  FontSize="24" Margin="20,0,20,0"></Label>
+
+                <Button Clicked="TurnOnTimeAddOn_Tapped" Text="Turn on Expense Add-On" StyleClass="PrimaryButton"></Button>
+         
+            </StackLayout>-->
+
+            <StackLayout x:Name="lblNoTime3" IsVisible="False" Orientation="Vertical" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" AbsoluteLayout.LayoutFlags="All"  Padding="20,0,20,80"
+                    AbsoluteLayout.LayoutBounds="0,0,1,1">
+                <Image Source="clock_icon.png" HeightRequest="100"></Image>
+                <Label Text="Expense tracking is currently unavailable." XAlign="Center" LineBreakMode="WordWrap"  VerticalOptions="CenterAndExpand" FontAttributes="Bold"  FontSize="24"  Margin="20,0,20,0"></Label>
+                <Label Text="Please contact your system administrator for more information." XAlign="Center" LineBreakMode="WordWrap"  VerticalOptions="CenterAndExpand" FontAttributes="Bold"  FontSize="24" Margin="20,0,20,0"></Label>
+            </StackLayout>
+            <!--</StackLayout>-->
+            <ActivityIndicator 
+                    AbsoluteLayout.LayoutFlags="PositionProportional" IsVisible="{Binding VisibleLoad}"
+                    AbsoluteLayout.LayoutBounds=".5, .1"
+                    IsRunning="True" 
+                    Color="{StaticResource Primary}"
+                    />
+
+        </AbsoluteLayout>
+
+    </ContentPage.Content>
+</ContentPage>

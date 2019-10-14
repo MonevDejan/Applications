@@ -1,0 +1,373 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjectInsightMobile.Views.CreateTimeEntryPage"
+             xmlns:customComponent="clr-namespace:ProjectInsightMobile.CustomControls"
+              xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+             xmlns:syncfusion="clr-namespace:Syncfusion.SfNumericTextBox.XForms;assembly=Syncfusion.SfNumericTextBox.XForms"
+             xmlns:syncfusionButtons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             Title="Add Time Entry"
+             BackgroundColor="{StaticResource LightBackgroundColor}"
+             >
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical">
+
+            <ScrollView VerticalOptions="FillAndExpand">
+                <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource LightBackgroundColor}" >
+                    <Grid 
+                        x:Name="gvTE"
+                        Padding="10" HorizontalOptions="FillAndExpand" ColumnSpacing="10"
+                              AbsoluteLayout.LayoutFlags="All" 
+                            AbsoluteLayout.LayoutBounds="0,0,1,1"
+                              >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions >
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                     
+                        <StackLayout   Grid.Row="0"
+                            Grid.Column="0"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="CenterAndExpand" 
+                            
+                                >
+                            <inputLayout:SfTextInputLayout
+                            ContainerType="Outlined" x:Name="sfCompanies"
+                            ContainerBackgroundColor="#E6EEF9"
+                            FocusedColor="{StaticResource Primary}"
+                            UnfocusedColor="{StaticResource DarkGrayTextColor}"
+                            ReserveSpaceForAssistiveLabels="False"
+                            Hint="Company" HasError="{Binding CompanyError}"
+                                ErrorColor="{StaticResource RedTextColor}"
+                                EnableHintAnimation="False" ShowHint="False"
+                            >
+                                <Picker 
+                            x:Name="cmbCompanies"  Margin="0"
+                            
+                            ItemsSource="{Binding Companies}"
+                            ItemDisplayBinding="{Binding Name}"
+                                     SelectedItem="{Binding SelectedCompany}"
+                          
+                           
+                            >
+
+                                </Picker>
+                            </inputLayout:SfTextInputLayout>
+                        </StackLayout>
+
+                       
+
+                        <StackLayout   Grid.Row="1"
+                            Grid.Column="0"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="CenterAndExpand" 
+                               
+                                >
+                            <inputLayout:SfTextInputLayout
+                            ContainerType="Outlined"
+                            ContainerBackgroundColor="#E6EEF9"
+                            FocusedColor="{StaticResource Primary}"
+                            UnfocusedColor="{StaticResource DarkGrayTextColor}"
+                            ReserveSpaceForAssistiveLabels="False"
+                            Hint="Project" HasError="{Binding ProjectError}"
+                                ErrorColor="{StaticResource RedTextColor}"
+                                x:Name="sfProjects"
+                            >
+                                <Picker  Margin="0"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="CenterAndExpand" 
+                            x:Name="cmbProjects"
+                            
+                            
+                            ItemsSource="{Binding Projects}"
+                            ItemDisplayBinding="{Binding Name}"
+                            SelectedItem="{Binding SelectedProject}"
+                           
+                           
+                           
+                            
+                            >
+                                </Picker>
+                            </inputLayout:SfTextInputLayout>
+                        </StackLayout>
+                      
+
+                        <StackLayout   Grid.Row="2" 
+                            Grid.Column="0" x:Name="rowTask"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="CenterAndExpand" 
+                                >
+                            <inputLayout:SfTextInputLayout 
+                            ContainerType="Outlined"
+                            ContainerBackgroundColor="#E6EEF9"
+                            FocusedColor="{StaticResource Primary}"
+                            UnfocusedColor="{StaticResource DarkGrayTextColor}"
+                            ReserveSpaceForAssistiveLabels="False"
+                            Hint="Task" HasError="{Binding TaskError}"
+                                ErrorColor="{StaticResource RedTextColor}"
+                                                            x:Name="sfTasks"
+                            >
+                                <Picker 
+                            x:Name="cmbTasks"
+                          
+                            ItemsSource="{Binding Tasks}"
+                            ItemDisplayBinding="{Binding Name}"
+                            SelectedItem="{Binding SelectedTask}"
+                            
+                            >
+                                </Picker>
+                            </inputLayout:SfTextInputLayout>
+                        </StackLayout>
+                     
+                        <StackLayout  Grid.Row="3"
+                                Grid.Column="0"
+                                VerticalOptions="CenterAndExpand"
+                                HorizontalOptions="FillAndExpand"
+                               
+                                >
+
+                            <inputLayout:SfTextInputLayout
+                            ContainerType="Outlined"
+                            ContainerBackgroundColor="#E6EEF9"
+                            FocusedColor="{StaticResource Primary}"
+                            UnfocusedColor="{StaticResource DarkGrayTextColor}"
+                            ReserveSpaceForAssistiveLabels="False"
+                            Hint="Date" 
+                            >
+                                <DatePicker 
+                                DateSelected="DatePicker_DateSelected"
+                                Date="{Binding Date}"
+                                x:Name="cmbDate"
+                                    FontSize="18"
+                                />
+                            </inputLayout:SfTextInputLayout>
+                            
+                        </StackLayout>
+                       
+
+                        <StackLayout  Grid.Row="4"
+                                Grid.Column="0"
+                                VerticalOptions="CenterAndExpand"
+                                HorizontalOptions="FillAndExpand"
+                                
+                                >
+                            <inputLayout:SfTextInputLayout
+                            ContainerType="Outlined"
+                            ContainerBackgroundColor="#E6EEF9"
+                            FocusedColor="{StaticResource Primary}"
+                            UnfocusedColor="{StaticResource DarkGrayTextColor}"
+                            ReserveSpaceForAssistiveLabels="False"
+                            Hint="Time Code" x:Name="sfTimeCode"
+                            >
+                            <Picker 
+                            x:Name="cmbTimeCode" 
+                            ItemsSource="{Binding ExpenseCodes}"
+                            ItemDisplayBinding="{Binding Name}"
+                                SelectedItem="{Binding SelectedExpenseCode}"
+                           >
+                                </Picker>
+                            </inputLayout:SfTextInputLayout>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="5" Grid.Column="0" HorizontalOptions="FillAndExpand">
+                            <StackLayout Orientation="Vertical" IsVisible="{Binding ShowTimeInHours}" HorizontalOptions="FillAndExpand">
+
+                                <StackLayout  
+                                VerticalOptions="CenterAndExpand"
+                                HorizontalOptions="FillAndExpand"
+                                >
+                                    <inputLayout:SfTextInputLayout   ContainerType="Outlined"
+                            ContainerBackgroundColor="#E6EEF9" x:Name="sfActualHours"
+                            FocusedColor="{StaticResource Primary}"
+                            UnfocusedColor="{StaticResource DarkGrayTextColor}"
+                            BackgroundColor="{StaticResource LightBackgroundColor}"
+                            ReserveSpaceForAssistiveLabels="False"
+                            Hint="Hours (HH:mm)  "   HasError="{Binding ActualTimeError}"
+                                ErrorColor="{StaticResource RedTextColor}" >
+
+
+                                        <Entry Text="{Binding ActualHours}" Unfocused="ActualTimey_Unfocussed" TextChanged="ActualHours_OnTextChanged" FontSize="18"   />
+                                    </inputLayout:SfTextInputLayout>
+
+
+                                    <!--<Entry  Margin="10,0,10,0" 
+                                BackgroundColor="{StaticResource WhiteTextColor}"
+                                Placeholder="HH:mm"
+                                Unfocused="ActualTimey_Unfocussed"
+                                Text="{Binding ActualHours}"
+                                TextChanged="ActualHours_OnTextChanged"
+                                
+                              
+                                HeightRequest="40"
+                                FontSize="18" 
+                                 Keyboard="Default"/>-->
+
+                                </StackLayout>
+
+                            </StackLayout>
+                            <StackLayout Orientation="Vertical" IsVisible="{Binding ShowTimeInDecimals}" HorizontalOptions="FillAndExpand">
+                           
+                            <StackLayout  
+                                        VerticalOptions="CenterAndExpand"
+                                        HorizontalOptions="FillAndExpand"
+                                        BackgroundColor="{StaticResource WhiteTextColor}"
+                                              >
+
+                                    <inputLayout:SfTextInputLayout x:Name="sfActualHoursDec" Margin="0"
+                            ContainerType="Outlined"
+                            ContainerBackgroundColor="#E6EEF9"
+                            FocusedColor="{StaticResource Primary}"
+                            UnfocusedColor="{StaticResource DarkGrayTextColor}"
+                            BackgroundColor="{StaticResource LightBackgroundColor}"
+                            Hint="Hours"
+                            ReserveSpaceForAssistiveLabels="False" HasError="{Binding ActualTimeDecError}"
+                                ErrorColor="{StaticResource RedTextColor}"
+                            >
+                                        <syncfusion:SfNumericTextBox x:Name="numericTextBox" 
+                                                             AllowNull="True"  
+                                                             TextAlignment="Start" 
+                                                             FontSize="18" 
+                                                             ParserMode="Decimal" 
+                                                             MaximumNumberDecimalDigits="2"
+                                                             TextColor="{StaticResource BlackTextColor}"
+                                                             BorderColor="{StaticResource WhiteTextColor}"
+                                                             Value="{Binding ActualHoursDec}"
+                                                                     ValueChanged="NumericTextBox_ValueChanged"
+                                                           
+                                                             />
+                                    </inputLayout:SfTextInputLayout>
+                                    <!--<Entry Margin="10,0,10,0"  
+                                        BackgroundColor="{StaticResource WhiteTextColor}"
+                                        Placeholder=""
+                                        Text="{Binding ActualHoursDec}"
+                                        
+                                   
+                                        HeightRequest="40"
+                                        FontSize="18" 
+                                        Keyboard="Numeric"/>-->
+                            </StackLayout>
+                        </StackLayout>
+                            <StackLayout Orientation="Vertical"  IsVisible="{Binding ShowBillableCheckboxInput}" HorizontalOptions="CenterAndExpand">
+                               
+                                    <syncfusionButtons:SfCheckBox x:Name="isBillable" CheckedColor="{StaticResource Primary}" VerticalOptions="CenterAndExpand" Text="Billable" IsChecked="{Binding IsBillable}" CornerRadius="5.0"/>
+                                    <!--<Switch
+                                HorizontalOptions="StartAndExpand"
+                                IsToggled="{Binding IsBillable}" VerticalOptions="FillAndExpand" 
+                               
+                                x:Name="isBillable"
+                                >
+                                    </Switch>-->
+                            </StackLayout>
+                        </StackLayout>
+                        <StackLayout Grid.Row="6"
+                            Grid.ColumnSpan="1"
+                            Orientation="Vertical">
+                            <!--<Label  
+                                VerticalOptions="CenterAndExpand"
+                                HorizontalOptions="FillAndExpand"
+                                HorizontalTextAlignment="Start"
+                                 FontSize="20"
+                                Text="Description"
+                                TextColor="{StaticResource DarkGrayTextColor}"
+                                
+                                />
+                            <customComponent:CustomEditor HasBorder="True"  
+                                                          FontSize="20" 
+                                                          HeightRequest="150"  
+                                                          BackgroundColor="{StaticResource WhiteTextColor}"  
+                                                           
+                                                          x:Name="displayDescriptionWebView"
+                                                          Text="{Binding Description}"
+                                                          ></customComponent:CustomEditor>-->
+
+                            <inputLayout:SfTextInputLayout   ContainerType="Outlined"
+                            ContainerBackgroundColor="#E6EEF9"
+                            FocusedColor="{StaticResource Primary}"
+                            UnfocusedColor="{StaticResource DarkGrayTextColor}"
+                            ReserveSpaceForAssistiveLabels="False"
+                            Hint="Your comment" >
+
+                              <customComponent:CustomEditor x:Name="txtCommentBody"   Text="{Binding Description}" HeightRequest="150"  FontSize="20"   />
+                            </inputLayout:SfTextInputLayout>
+
+
+                        </StackLayout>
+                        <StackLayout Grid.Row="7"
+                            Grid.ColumnSpan="1"
+                            Orientation="Vertical"
+                            VerticalOptions="CenterAndExpand"
+                            HorizontalOptions="FillAndExpand"  
+                           
+                            >
+
+                            <StackLayout HorizontalOptions="FillAndExpand"  Padding="4,15,4,4" >
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnSaveAddTimeEntry"/>
+                                </StackLayout.GestureRecognizers>
+
+                                <Frame HasShadow="False"
+                                Padding="5"
+                                CornerRadius="5" 
+                                BackgroundColor="{StaticResource Primary}"
+                                >
+                                    <Label
+                                     FontSize="24" HeightRequest="40"
+                                    HorizontalTextAlignment="Center" 
+                                    HorizontalOptions="CenterAndExpand" 
+                                    VerticalTextAlignment="Center"  
+                                     
+                                    TextColor="{StaticResource WhiteTextColor}" 
+                                    Text="SAVE"
+                                />
+                                </Frame>
+
+                            </StackLayout>
+                            <StackLayout  HorizontalOptions="FillAndExpand"  Padding="4,0,4,4" >
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnCancelAddTimeEntry"/>
+                                </StackLayout.GestureRecognizers>
+
+                                <Frame HasShadow="False"
+                                Padding="5"
+                                CornerRadius="5"
+                                BackgroundColor="{StaticResource Primary}"
+                                >
+                                    <Label 
+                                     FontSize="24" HeightRequest="40"
+                                    HorizontalTextAlignment="Center" 
+                                    HorizontalOptions="CenterAndExpand" 
+                                    VerticalTextAlignment="Center"  
+                                     
+                                    TextColor="{StaticResource WhiteTextColor}" 
+                                    Text="CANCEL"
+                                />
+                                </Frame>
+
+                            </StackLayout>
+                        </StackLayout>
+                    </Grid>
+
+                    <StackLayout    
+                        VerticalOptions="FillAndExpand" IsVisible="{Binding VisibleLoad}"
+                        Padding="32"  
+                        AbsoluteLayout.LayoutFlags="All"
+                        AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                        BackgroundColor="#90000000"
+                    >
+                        <ActivityIndicator IsRunning="{Binding VisibleLoad}" Color="#3CB9A8"/>
+                        <Label Text="{Binding LoadingMessage}" HorizontalOptions="Center" TextColor = "White" />
+                    </StackLayout>
+                </AbsoluteLayout>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

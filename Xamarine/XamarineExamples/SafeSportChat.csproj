@@ -1,0 +1,783 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup Label="Globals">
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>SafeSportChat</AssemblyName>
+    <RootNamespace>SafeSportChat</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Services\FirebaseCloudMessagingRESTClient.cs" />
+    <Compile Remove="Views\_Comments\CommentsCustomView1.xaml.cs" />
+    <Compile Remove="Views\_Comments\CustomCommentView.xaml.cs" />
+    <Compile Remove="Views\_Comments\HybridWebView.xaml.cs" />
+    <Compile Remove="Views\ContactsScreens\TeamContactsV2Page.xaml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Views\_Comments\CommentsCustomView1.xaml" />
+    <EmbeddedResource Remove="Views\_Comments\CustomCommentView.xaml" />
+    <EmbeddedResource Remove="Views\_Comments\HybridWebView.xaml" />
+    <EmbeddedResource Remove="Views\ContactsScreens\TeamContactsV2Page.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="API_Libraries\ProjectInsight.Models.Base.dll.mdb" />
+    <None Remove="API_Libraries\ProjectInsight.Models.Base.pdb" />
+    <None Remove="API_Libraries\ProjectInsight.Models.Base.xml" />
+    <None Remove="API_Libraries\ProjectInsight.Models.pdb" />
+    <None Remove="API_Libraries\ProjectInsight.Models.xml" />
+    <None Remove="API_Libraries\ProjectInsight.WebApi.Client.pdb" />
+    <None Remove="API_Libraries\ProjectInsight.WebApi.Client.XML" />
+    <None Remove="API_Libraries\Syncfusion.Core.XForms.xml" />
+    <None Remove="API_Libraries\Syncfusion.SfChart.XForms.xml" />
+    <None Remove="Icons\Gallery_S.png" />
+    <None Remove="Icons\Gallery_W.png" />
+    <None Remove="Icons\icon.png" />
+    <None Remove="Icons\image2.png" />
+    <None Remove="Icons\image3.png" />
+    <None Remove="Icons\image4.png" />
+    <None Remove="Icons\Plain.png" />
+    <None Remove="Icons\Take_Photo_S.png" />
+    <None Remove="Icons\Take_Photo_W.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Icons\Gallery_S.png" />
+    <EmbeddedResource Include="Icons\Gallery_W.png" />
+    <EmbeddedResource Include="Icons\icon.png" />
+    <EmbeddedResource Include="Icons\image2.png" />
+    <EmbeddedResource Include="Icons\image3.png" />
+    <EmbeddedResource Include="Icons\image4.png" />
+    <EmbeddedResource Include="Icons\Plain.png" />
+    <EmbeddedResource Include="Icons\Take_Photo_S.png" />
+    <EmbeddedResource Include="Icons\Take_Photo_W.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Acr.UserDialogs" Version="7.0.1" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.7.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+    <PackageReference Include="Octane.Xam.VideoPlayer" Version="2.1.0" />
+    <PackageReference Include="Plugin.Permissions" Version="3.0.0.12" />
+    <PackageReference Include="Refractored.MvvmHelpers" Version="1.3.0" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.5.231" />
+    <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="17.1.0.32-beta" />
+    <PackageReference Include="Syncfusion.Xamarin.Core" Version="17.1.0.32-beta" />
+    <PackageReference Include="Syncfusion.Xamarin.DataSource" Version="17.2.0.47" />
+    <PackageReference Include="Syncfusion.Xamarin.SfChart" Version="17.1.0.32-beta" />
+    <PackageReference Include="Syncfusion.Xamarin.SfComboBox" Version="17.1.0.32-beta" />
+    <PackageReference Include="Syncfusion.Xamarin.SfImageEditor" Version="17.1.0.32-beta" />
+    <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="17.1.0.32-beta" />
+    <PackageReference Include="Syncfusion.Xamarin.SfNumericTextBox" Version="17.1.0.32-beta" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.5.0" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.2.4" />
+    <PackageReference Include="TEditor" Version="1.0.3" />
+    <PackageReference Include="Xam.Plugin.Connectivity" Version="3.2.0" />
+    <PackageReference Include="Xam.Plugin.DeviceInfo" Version="4.0.0.13" />
+    <PackageReference Include="Xam.Plugin.Media" Version="4.0.1.5" />
+    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.Forms" Version="4.2.0.709249" />
+    <PackageReference Include="Xamarin.Plugin.FilePicker" Version="2.0.121" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="ProjectInsight.Models">
+      <HintPath>API_Libraries\ProjectInsight.Models.dll</HintPath>
+    </Reference>
+    <Reference Include="ProjectInsight.Models.Base">
+      <HintPath>API_Libraries\ProjectInsight.Models.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="ProjectInsight.WebApi.Client">
+      <HintPath>API_Libraries\ProjectInsight.WebApi.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting">
+      <HintPath>API_Libraries\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="App.xaml.cs">
+      <DependentUpon>*.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\ApprovalRequests\ApprovalRequestDetailsPage.xaml.cs">
+      <DependentUpon>ApprovalRequestDetailsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Messages\Conversation.xaml.cs">
+      <DependentUpon>Conversation.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Messages\NewMessage.xaml.cs">
+      <DependentUpon>NewMessage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Messages\Messages.xaml.cs">
+      <DependentUpon>Messages.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\_ApprovalRequests\NewApprovalPage_SearchItem.xaml.cs">
+      <DependentUpon>NewApprovalPage_SearchItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\_ApprovalRequests\NewApprovalPage_SelectType.xaml.cs">
+      <DependentUpon>NewApprovalPage_SelectType.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\_ApprovalRequests\NewApprovalPage_UploadFile.xaml.cs">
+      <DependentUpon>NewApprovalPage_UploadFile.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\_ApprovalRequests\NewApprovalPage_WhatToApprove.xaml.cs">
+      <DependentUpon>NewApprovalPage_WhatToApprove.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\_ApprovalRequests\NewApprovalPage_SelectProject.xaml.cs">
+      <DependentUpon>NewApprovalPage_SelectProject.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\_ApprovalRequests\NewApprovalPage_Congratulations.xaml.cs">
+      <DependentUpon>NewApprovalPage_Congratulations.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\_ApprovalRequests\NewApprovalPage_Approvers.xaml.cs">
+      <DependentUpon>NewApprovalPage_Approvers.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\_ApprovalRequests\NewApprovalPage_Details.xaml.cs">
+      <DependentUpon>NewApprovalPage_Details.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\_ApprovalRequests\RejectApprovalRequestPage.xaml.cs">
+      <DependentUpon>RejectApprovalRequestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\_Comments\CommentsCustomView_Old.xaml.cs">
+      <DependentUpon>CommentsCustomView_Old.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\_Companies\Companies.xaml.cs">
+      <DependentUpon>Companies.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\_Companies\CompanyFilter.xaml.cs">
+      <DependentUpon>CompanyFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\_Companies\CompanyDetailsPage.xaml.cs">
+      <DependentUpon>CompanyDetailsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\_Documents\FileDetailsPage.xaml.cs">
+      <DependentUpon>FileDetailsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\_Documents\DocumentsPage.xaml.cs">
+      <DependentUpon>DocumentsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\_Documents\NewFolderPage.xaml.cs">
+      <DependentUpon>NewFolderPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\_Documents\NewDocumentPage.xaml.cs">
+      <DependentUpon>NewDocumentPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\_Expenses\NewExpense_WizardPages\ProjectSelect.xaml.cs">
+      <DependentUpon>ProjectSelect.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\_Expenses\NewExpense_WizardPages\ExpensesBulkEntry.xaml.cs">
+      <DependentUpon>ExpensesBulkEntry.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\_Expenses\ExpensesPage.xaml.cs">
+      <DependentUpon>ExpensesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\_Expenses\ExpenseReportDetails.xaml.cs">
+      <DependentUpon>ExpenseReportDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\_Expenses\NewExpense_WizardPages\Distance.xaml.cs">
+      <DependentUpon>Distance.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\_Expenses\NewExpense_WizardPages\Company_Project_Task2.xaml.cs">
+      <DependentUpon>Company_Project_Task2.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\_Expenses\NewExpense_WizardPages\SfImageEditorPage.xaml.cs">
+      <DependentUpon>SfImageEditorPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\_Expenses\NewExpense_WizardPages\Total.xaml.cs">
+      <DependentUpon>Total.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\_Expenses\NewExpense_WizardPages\CostPerMile.xaml.cs">
+      <DependentUpon>CostPerMile.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\_Expenses\NewExpense_WizardPages\Congratulations.xaml.cs">
+      <DependentUpon>Congratulations.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\_Expenses\NewExpense_WizardPages\ExpenseCode.xaml.cs">
+      <DependentUpon>ExpenseCode.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\_Expenses\NewExpense_WizardPages\Description.xaml.cs">
+      <DependentUpon>Description.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\_Expenses\NewExpense_WizardPages\Date.xaml.cs">
+      <DependentUpon>Date.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\_Expenses\NewExpense_WizardPages\Amount.xaml.cs">
+      <DependentUpon>Amount.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\_Expenses\NewExpense_WizardPages\TakePhoto.xaml.cs">
+      <DependentUpon>TakePhoto.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\_Expenses\NewExpense_WizardPages\ChooseExpense.xaml.cs">
+      <DependentUpon>ChooseExpense.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\_Expenses\RejectExpenseReportPage.xaml.cs">
+      <DependentUpon>RejectExpenseReportPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\_Expenses\SubmitExpenseReportPage.xaml.cs">
+      <DependentUpon>SubmitExpenseReportPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\_Expenses\ExpenseReportApprovalBand.xaml.cs">
+      <DependentUpon>ExpenseReportApprovalBand.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\General\NoConnectionBand.xaml.cs">
+      <DependentUpon>NoConnectionBand.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\_Issues\NewIssuePage.xaml.cs">
+      <DependentUpon>NewIssuePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\_Issues\IssueStatusPage.xaml.cs">
+      <DependentUpon>IssueStatusPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\_Links\LinksCustomView.xaml.cs">
+      <DependentUpon>LinksCustomView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Login\_SignInWorkSpace.xaml.cs">
+      <DependentUpon>_SignInWorkSpace.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Login\_ActivateCode.xaml.cs">
+      <DependentUpon>_ActivateCode.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Login\_ChooseWorkspace.xaml.cs">
+      <DependentUpon>_ChooseWorkspace.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Login\_SignInWorkSpaceURL.xaml.cs">
+      <DependentUpon>_SignInWorkSpaceURL.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Login\_TestCombo.xaml.cs">
+      <DependentUpon>_TestCombo.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\_RelatedItems\UploadItem.xaml.cs">
+      <DependentUpon>UploadItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\_Resolutions\AddResolutionPage.xaml.cs">
+      <DependentUpon>AddResolutionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\_TimeEntries\ApproveTimesheetPage.xaml.cs">
+      <DependentUpon>ApproveTimesheetPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\_TimeEntries\ApproveTimesheetsPage.xaml.cs">
+      <DependentUpon>ApproveTimesheetsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\_TimeEntries\NewTimeEntry_WizardPages\Company_Project_Task.xaml.cs">
+      <DependentUpon>Company_Project_Task.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\_TimeEntries\NewTimeEntry_WizardPages\Congratulations.xaml.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+    <Compile Update="Views\_TimeEntries\NewTimeEntry_WizardPages\Date.xaml.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+    <Compile Update="Views\_TimeEntries\NewTimeEntry_WizardPages\Description.xaml.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+    <Compile Update="Views\_TimeEntries\NewTimeEntry_WizardPages\ExpenseCode.xaml.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+    <Compile Update="Views\_TimeEntries\NewTimeEntry_WizardPages\ActualHours.xaml.cs">
+      <DependentUpon>ActualHours.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\_TimeEntries\SubmitTimeSheetPage.xaml.cs">
+      <DependentUpon>SubmitTimeSheetPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\_TimeEntries\MyTimePage.xaml.cs">
+      <DependentUpon>MyTimePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\_MyWork\AddItemPage.xaml.cs">
+      <DependentUpon>AddItemPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\_Projects\NewProjectPage.xaml.cs">
+      <DependentUpon>NewProjectPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Notifications\NotificationsPage.xaml.cs">
+      <DependentUpon>NotificationsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\_Projects\ProjectDetailsPage.xaml.cs">
+      <DependentUpon>ProjectDetailsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Security\SecurityCustomView.xaml.cs">
+      <DependentUpon>SecurityCustomView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\_Issues\IssuesChartCustomView.xaml.cs">
+      <DependentUpon>IssuesChartCustomView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\_Tasks\TasksChartCustomView.xaml.cs">
+      <DependentUpon>TasksChartCustomView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\_Tasks\ProjectTasksPage.xaml.cs">
+      <DependentUpon>ProjectTasksPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\_Tasks\NewTaskPage.xaml.cs">
+      <DependentUpon>NewTaskPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\_Tasks\TaskStatusPage.xaml.cs">
+      <DependentUpon>TaskStatusPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\_TimeEntries\CreateTimeEntryPage.xaml.cs">
+      <DependentUpon>CreateTimeEntryPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Issues\ResolutionCustomView.xaml.cs">
+      <DependentUpon>ResolutionCustomView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Issues\DetailsCustomView.xaml.cs">
+      <DependentUpon>DetailsCustomView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\_TimeEntries\RejectTimeSheetPage.xaml.cs">
+      <DependentUpon>RejectTimeSheetPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\_TimeEntries\TimesheetApprovalBand.xaml.cs">
+      <DependentUpon>TimesheetApprovalBand.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\_ToDos\NewToDoPage.xaml.cs">
+      <DependentUpon>NewToDoPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\_ToDos\ToDoStatusPage.xaml.cs">
+      <DependentUpon>ToDoStatusPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\_ToDos\ToDoDetailsPage.xaml.cs">
+      <DependentUpon>ToDoDetailsPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Views\ContactsScreens\CreateNewGroupPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ContactsScreens\EditGroupsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ContactsScreens\NewGroupPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Login\EmailMagicLinkEmailOverlayPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Login\EmailMagicLinkSuccessPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Login\LogInMagicLinkPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Login\MagicLinkEmailInputPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Login\SignInPasswordPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Login\SignInUsingPhoneOrEmailPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Profile\EditUserProfilePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ResourceDictionaries\InsertPhoneLabel.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\_ApprovalRequests\AproveDenyPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ContactsScreens\TeamContactsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\_Expenses\NewExpense_WizardPages\ImageEditor.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\General\FullScreenVideoPlayerPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\General\HtmlContentDescription.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Login\ChoosePasswordPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Login\CompleteYourProfilePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Login\CompleteYourProfileRolePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Login\CompleteYourProfileSportPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Login\CompleteYourProfileTeamPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Login\CreateAccountAgePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Login\CreateAccountByEmailConfirmCode.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Login\CreateAccountByEmailPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Login\CreateAccountByPhoneNumberConfirmCode.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Login\CreateAccountByPhoneNumberPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Login\CreateAccountPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Login\CreateTeamPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Login\InviteHeadCoachPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Login\InviteParentPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Login\InviteSomeoneElsePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Login\YouAreAllSetPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Profile\UserProfile.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\_TimeEntries\CreateTimeEntryPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\_RelatedItems\RelatedItemDetailsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\ApprovalRequests\ApprovalRequestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\ApprovalRequests\ApprovalRequestPageDetailsCustomView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\ApprovalRequests\AproveDenyPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\ApprovalRequests\NewApprovalPage_Approvers.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\ApprovalRequests\NewApprovalPage_Congratulations.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\ApprovalRequests\NewApprovalPage_Details.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\ApprovalRequests\NewApprovalPage_SearchItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\ApprovalRequests\NewApprovalPage_SelectProject.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\ApprovalRequests\NewApprovalPage_SelectType.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\ApprovalRequests\NewApprovalPage_UploadFile.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\ApprovalRequests\NewApprovalPage_WhatToApprove.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\ApprovalRequests\RejectApprovalRequestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Comments\AddCommentPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Comments\AllComments.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Comments\CommentsCustomView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Comments\CommentsCustomView_Old.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Companies\Companies.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Companies\CompanyDetailsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Companies\CompanyFilter.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Documents\DocumentsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Documents\FileDetailsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Documents\NewDocumentPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Documents\NewFolderPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Expenses\ExpenseReportApprovalBand.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Expenses\ExpenseReportDetails.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Expenses\ExpensesPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Expenses\NewExpense_WizardPages\Amount.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Expenses\NewExpense_WizardPages\ChooseExpense.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Expenses\NewExpense_WizardPages\Company_Project_Task.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Expenses\NewExpense_WizardPages\Company_Project_Task2.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Expenses\NewExpense_WizardPages\Congratulations.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Expenses\NewExpense_WizardPages\CostPerMile.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Expenses\NewExpense_WizardPages\Date.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Expenses\NewExpense_WizardPages\Description.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Expenses\NewExpense_WizardPages\Distance.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Expenses\NewExpense_WizardPages\ExpenseCode.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Expenses\NewExpense_WizardPages\ExpensesBulkEntry.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Expenses\NewExpense_WizardPages\ImageEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Expenses\NewExpense_WizardPages\ProjectSelect.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Expenses\NewExpense_WizardPages\SfImageEditorPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Expenses\NewExpense_WizardPages\TakePhoto.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Expenses\NewExpense_WizardPages\Total.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Expenses\RejectExpenseReportPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Expenses\SubmitExpenseReportPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\General\BottomNavigationBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\General\FullScreenVideoPlayerPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\General\HtmlContentDescription.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\General\NoConnectionBand.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\General\StartupMasterPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\General\StartupMasterPageContent.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\General\UnderConstructionPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Issues\IssueDetailsCustomView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Issues\IssueDetailsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Issues\IssuesChartCustomView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Issues\IssueStatusPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Issues\NewIssuePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Links\LinksCustomView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Login\ActivateCode.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Login\ChooseWorkspace.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Login\ForgotNameOrPassword.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Login\ForgotPassword.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Login\SignIn.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Login\SignInWorkSpace.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Login\SignInWorkSpaceURL.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Login\StartUp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\MyTime\MyTimePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\MyWork\AddItemPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\MyWork\MyWorkPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\MyWork\NewItemPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Notifications\NotificationsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Profile\UserProfile.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Projects\MyProjectsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Projects\NewProjectPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Projects\ProjectDetailsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\RelatedItems\RelatedItemDetailsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\RelatedItems\RelatedItemsCustomView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\RelatedItems\UploadItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Resolutions\AddResolutionPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Resolutions\ResolutionsCustomView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Security\SecurityCustomView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Tasks\NewTaskPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Tasks\ProjectTasksPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Tasks\ProjectTasksPage1.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Tasks\TaskDetailsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Tasks\TasksChartCustomView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Tasks\TaskStatusPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\TimeEntries\ApproveTimesheetPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\TimeEntries\ApproveTimesheetsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\TimeEntries\CreateTimeEntryPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\TimeEntries\MyTimePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\TimeEntries\MyTimePageNew.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\TimeEntries\NewTimeEntry_WizardPages\ActualHours.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\TimeEntries\NewTimeEntry_WizardPages\Company_Project_Task.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\TimeEntries\NewTimeEntry_WizardPages\Congratulations.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\TimeEntries\NewTimeEntry_WizardPages\Date.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\TimeEntries\NewTimeEntry_WizardPages\Description.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\TimeEntries\NewTimeEntry_WizardPages\ExpenseCode.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\TimeEntries\RejectTimeSheetPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\TimeEntries\SubmitTimeSheetPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\TimeEntries\TimesheetApprovalBand.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\ToDos\NewToDoPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\ToDos\ToDoDetailsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\ToDos\ToDoStatusPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\View1.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="MessagesComponents\" />
+  </ItemGroup>
+</Project>

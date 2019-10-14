@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjectInsightMobile.Views.NewApprovalPage_SearchItem"
+             xmlns:ffimageloadingSvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+             xmlns:navigation="clr-namespace:ProjectInsightMobile.Views"
+             BackgroundColor="{StaticResource LightBackgroundColor}"
+             xmlns:customComponent="clr-namespace:ProjectInsightMobile.CustomControls"
+             Title="Add Approval">
+    <ContentPage.Content>
+
+
+        <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  >
+            <StackLayout Orientation="Vertical"  
+                         Padding="0" Margin="0" Spacing="0" 
+                         VerticalOptions="FillAndExpand"
+                         AbsoluteLayout.LayoutFlags="All" 
+                         AbsoluteLayout.LayoutBounds="0,0,1,1">
+                <StackLayout Spacing="0" Padding="0"  VerticalOptions="FillAndExpand" >
+                    <Grid  IsVisible="{Binding VisibleContent}"
+                        x:Name="gvTE"
+                        Padding="20" HorizontalOptions="FillAndExpand" >
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="60" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="2*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions >
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+
+
+
+
+                        <StackLayout   Grid.Row="0">
+                            <Label FontSize="22" HorizontalTextAlignment="Center">Find the item you want to approve</Label>
+                        </StackLayout>
+                        <StackLayout   Grid.Row="1">
+
+                            <inputLayout:SfTextInputLayout   ContainerType="Outlined"
+                                                                     ContainerBackgroundColor="#E6EEF9"
+                                                                     FocusedColor="{StaticResource Primary}"
+                                                                     UnfocusedColor="{StaticResource DarkGrayTextColor}"
+                                                                     BackgroundColor="{StaticResource LightBackgroundColor}"
+                                                                     Hint="Name" 
+                                                                     HasError="{Binding NameError}"
+                                                                     
+                                                                     >
+                                <customComponent:CustomEntry Text="{Binding Name}" TextChanged="Entry_TextChanged"/>
+
+                            </inputLayout:SfTextInputLayout>
+
+
+                        </StackLayout>
+
+                        <StackLayout Grid.Row="2" Padding="0,0,0,0" IsVisible="True" >
+
+                            <ListView x:Name="listView" RowHeight="50"  ItemsSource="{Binding SearchResult,Mode=TwoWay}" SeparatorVisibility="None" BackgroundColor="{StaticResource LightBackgroundColor}"> 
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell >
+                                            <Grid Padding="0,5,0,5">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="50"/>
+                                                    <ColumnDefinition Width="2*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.GestureRecognizers >
+                                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"></TapGestureRecognizer>
+                                                </Grid.GestureRecognizers>
+
+                                                <ffimageloadingSvg:SvgCachedImage    Grid.Column="0" 
+                                VerticalOptions="CenterAndExpand"  
+                                HorizontalOptions="StartAndExpand"
+			                    WidthRequest="35" 
+                                HeightRequest="35"
+			                    DownsampleToViewSize="true"
+                                RetryCount="3"
+                                RetryDelay="200"  
+                                ErrorPlaceholder = "error.png"
+                                LoadingPlaceholder = "load.gif"
+			                    Source = "{Binding ItemIconUrl}"
+                            />
+                                                <StackLayout Grid.Column="1" Padding="0,5,0,0" Spacing="2" Orientation="Vertical" VerticalOptions="CenterAndExpand" >
+                                                    <Label Text="{Binding Name}" FontAttributes="Bold" LineBreakMode="NoWrap" TextColor="Black" FontSize="16" VerticalOptions="CenterAndExpand"/>
+                                                </StackLayout>
+                                            </Grid>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </StackLayout>
+                    </Grid>
+                </StackLayout>
+                <navigation:BottomNavigationBar />
+            </StackLayout>
+            <ActivityIndicator 
+                    AbsoluteLayout.LayoutFlags="PositionProportional" IsVisible="{Binding VisibleLoad}"
+                    AbsoluteLayout.LayoutBounds=".5, .1"
+                    IsRunning="{Binding VisibleLoad}" 
+                    Color="{StaticResource Primary}"
+                    />
+        </AbsoluteLayout>
+
+    </ContentPage.Content>
+</ContentPage>

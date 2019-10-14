@@ -1,0 +1,123 @@
+- XAML tags are objects
+- object have atributes
+- XAML atributes usually are properties of classes in c#
+- Can specify propery like atributes or with property element syntax (like tags)
+- Property element syntax is used for complex atributes (property classes)
+- Attached properties because they are defined by one class but attached to other objects.
+- namespaces are included like atributes on the tag ContentPage
+
+* ContentPage tag is to show one view
+- it contains namespaces as an atributes =>
+	       xmlns:local="clr-namespace:XamlSamples"
+tags defined within the XAML file with no prefix refer to classes in Xamarin.Forms
+The "local" namespace declaration allows you to access other classes from the .NET Standard library project
+- :local is used to access class loocal to the shared application 
+- You can also define XML namespace declarations for .NET namespaces in any assembly that the .NET Standard library references.
+		x:Class="XamlSamples.MainPage"
+defines a prefix of x. This is used for several elements and attributes that are 
+essential to XAML itself and which are supported by other implementations of XAML.
+x:Class is the only new class defined in the XAML file. 
+Everything else that appears in the XAML file is instead simply instantiated from existing classes and initialized.
+		Title="Hello XAML Page">
+Is an atribute to set the title of the page 
+* ContentPage.Content is a property of ContentPage that is set to a one View. It shows the View content
+
+- In the app file we can add navigation 
+- Some of the properties are predifined in backend so there is no need to specify them in XAML
+ex.
+[Xamarin.Forms.ContentProperty("Content")]  	[Xamarin.Forms.ContentProperty("Children")]
+public class ContentPage : TemplatedPage	public abstract class Layout<T> : Layout ...
+From this, any XAML content that appears between the start and end ContentPage tags 
+is assumed to be assigned to the Content property
+
+* Markup extensions 
+- in order to not use static values in atributes we can use markup extention
+and let them process at runtime
+The syntax can appear like normal tags or with curly braces {}
+- it mainly uses three ways
+	- Shared Resources
+	- x:Static 
+	- ConstraintExpression 
+	
+not so used
+- {x:Null} for setting null to property
+- {x:Type someClass} If a property is of type Type, you can assign it to a Type object
+- x:Array define arrays in XAML 
+- binding
+
+
+* Shared Resources (StaticResource)
+- StaticResource returns an object from a resource dictionary
+- it uses the property ResourceDictionary <string, object> 
+- We are using tag <ObjectName.Resources> and inside explicitly include <ResourceDictionary>
+- Good practice is to put them on top of page
+- The objec that are put into Resources must be instantiable and publicparameterless constructor
+- Whenever the XAML parser encounters a StaticResource markup extension, 
+it searches up the visual tree and uses the first ResourceDictionary it encounters containing that key.
+- The purpose of the ResourceDictionary is to share objects
+- Usuall Style Class is used for ResourceDictionary
+
+* x:Static 
+- can accesses one of the following:
+	- public static field
+	- public static property
+	- public constant field
+	- an enumeration member.
+
+- x:Static markup extension can also reference static fields or properties from your own code. To access
+this properties we need yo include the namespace of that class
+-example of use: Color="{x:Static local:ClassName.PropertyName}"
+
+*ConstraintExpression 
+It is mostly used in RelativeLayout
+- property settings are separated by commas, and no quotation marks appear within the curly braces.
+RelativeLayout.XConstraint="{ConstraintExpression 
+				Type=RelativeToView,
+                        	ElementName=oneThird,
+                                Property=X}"
+- it have couple of properties
+Type – whether the constraint is relative to the parent or to another view.
+Property – which property to use as the basis for the constraint.
+Factor – the factor to apply to the property value.
+Constant – the value to use as an offset of the value.
+ElementName – the name of the view that the constraint is relative to.
+
+* Data Bindings
+- Each view (tag) can have only one BindingContext
+- Data bindings connect properties of two objects (tags)
+- multiply ways to set the BindingCotext of the targer object.
+	-From the code behind
+	-using StaticResources or x:Static
+	-as the content of BindingContext property-element tags
+
+* Binding Context
+<Label Text="ROTATION"
+             BindingContext="{x:Reference Name=slider}"
+             Rotation="{Binding Path=Value}"
+	     />
+- Mode property defines the binding mode wich can be:
+-Default
+-OneWay — values are transferred from the source to the target
+-OneWayToSource — values are transferred from the target to the source
+-TwoWay — values are transferred both ways between source and target
+-OneTime — data goes from source to target, but only when the BindingContext changes
+
+*Binding Collections
+- Binding collections is achieved trough Cell class. The data from ListView is 
+coppied into Cell class which inherits the BindableContext
+- ViewCell is a class that inherits form Cell and we can use it to set custom properties here
+
+* Binding Value Converters
+- We used this to convert double numbers 
+- We are doing this in backend in c# class. The class needs to inherit from IValueConverter
+- Than we need to instantiate the class
+<local:ClassName x:Key="objectName" />
+
+
+There are mulyiple Layouts in xamarin
+- StackLayout
+- AbsoluteLayout
+- RelativeLayout
+- Grid
+- FlexLayout
+

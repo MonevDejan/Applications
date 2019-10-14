@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjectInsightMobile.Views.SignInWorkSpaceURL"
+             xmlns:local="clr-namespace:ProjectInsightMobile.CustomControls" 
+             >
+    <ContentPage.Content>
+        <Grid RowSpacing="0" ColumnSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+          <AbsoluteLayout  Grid.Row="0"  BackgroundColor="{StaticResource Blue1}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Image Source="header_text.png" AbsoluteLayout.LayoutBounds=".5,0,.9,1" Margin="0,0,0,40" AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional,HeightProportional" />
+          </AbsoluteLayout>
+            <ScrollView Grid.Row="1">
+                <StackLayout  BackgroundColor="{StaticResource PrimaryDark}" Orientation="Vertical" Padding="16,40,16,20" Spacing="10">
+                        <StackLayout Orientation="Vertical" BackgroundColor="{StaticResource WhiteTextColor}" Margin="5,0,5,0"  >
+                        <Entry FontSize="24" Margin="15,0,15,0" HeightRequest="50" BackgroundColor="{StaticResource WhiteTextColor}"  x:Name="txtWorkspace" Placeholder="Workspace URL" Keyboard="Url"></Entry>
+                        </StackLayout>
+                    <Button  Margin="5,20,5,0"   Text="Continue" Clicked="OnContinue"  StyleClass="PrimaryButton"  />
+                </StackLayout>
+            </ScrollView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjectInsightMobile.Views.BottomNavigationBar">
+  <ContentView.Content>
+        <StackLayout HorizontalOptions="FillAndExpand" Orientation="Vertical" BackgroundColor="{StaticResource LightBackgroundColor}"  VerticalOptions="FillAndExpand" >
+            <BoxView HeightRequest="0.5" Color="{StaticResource LightGrayTextColor}" HorizontalOptions="FillAndExpand"></BoxView>
+            <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal" BackgroundColor="{StaticResource LightBackgroundColor}"  VerticalOptions="End" >
+            <Grid Padding="20,7,20,10" HorizontalOptions="FillAndExpand" ColumnSpacing="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions >
+                    <ColumnDefinition Width="20*" />
+                    <ColumnDefinition Width="20*" />
+                    <ColumnDefinition Width="20*"/>
+                    <ColumnDefinition Width="20*" />
+                    <ColumnDefinition Width="20*" />
+                </Grid.ColumnDefinitions>
+
+
+
+                <AbsoluteLayout Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  x:Name="loMyWork" Margin="0,5" >
+                    <AbsoluteLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnTapGestureRecognizerTapped" NumberOfTapsRequired="1" />
+                    </AbsoluteLayout.GestureRecognizers>
+                    <Image 
+                        AbsoluteLayout.LayoutFlags="All" 
+                        AbsoluteLayout.LayoutBounds="0,0,1,1"
+                           HorizontalOptions="FillAndExpand"
+                        HeightRequest="35" x:Name="btnMyWork"  >
+                    </Image>
+
+
+                        <Frame HasShadow="False"  IsVisible="{Binding IsWorkListItemsCountVisible}"
+                            AbsoluteLayout.LayoutBounds="1,0,-1,-1"
+                            AbsoluteLayout.LayoutFlags="PositionProportional"
+                            BackgroundColor="{StaticResource RedTextColor}"
+                            HeightRequest = "20"
+                            WidthRequest = "20" 
+                        CornerRadius="10"
+                            Padding="0"
+                            >
+                        <Label  
+                                BackgroundColor="Transparent"
+                                HorizontalTextAlignment="Center" 
+                                HorizontalOptions="CenterAndExpand" 
+                                VerticalTextAlignment="Center"  
+                                 
+                                TextColor="{StaticResource WhiteTextColor}"
+                                FontSize="10" 
+                                Text="{Binding NumberWorkListItems}"
+                            />
+                        </Frame> 
+                    <StackLayout HorizontalOptions="EndAndExpand" VerticalOptions="StartAndExpand" BackgroundColor="Red" HeightRequest="20" >
+                        
+                    </StackLayout>
+                </AbsoluteLayout>
+
+                <AbsoluteLayout Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" x:Name="loMyProjects" Margin="0,5">
+                    <AbsoluteLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnTapGestureRecognizerTapped" NumberOfTapsRequired="1" />
+                    </AbsoluteLayout.GestureRecognizers>
+
+                    <Image 
+                        AbsoluteLayout.LayoutFlags="All" 
+                        AbsoluteLayout.LayoutBounds="0,0,1,1"
+                        HeightRequest="35" x:Name="btnMyProjects"  >
+                        
+
+                    </Image>
+
+
+                        <Frame HasShadow="False" IsVisible="{Binding IsNumberProjectCountVisible}"
+                            AbsoluteLayout.LayoutBounds="1,0,-1,-1"
+                            AbsoluteLayout.LayoutFlags="PositionProportional"
+                            BackgroundColor="{StaticResource RedTextColor}"
+                            HeightRequest = "20"
+                            WidthRequest = "20" 
+                        CornerRadius="10"
+                            Padding="0"
+                            >
+                       
+                        <Label  
+                                BackgroundColor="Transparent"
+                                HorizontalTextAlignment="Center" 
+                                HorizontalOptions="CenterAndExpand" 
+                                VerticalTextAlignment="Center"  
+                                 
+                                TextColor="{StaticResource WhiteTextColor}"
+                                FontSize="10" 
+                                Text="{Binding NumberProjectItems}"
+                            />
+                    </Frame>
+                    <StackLayout HorizontalOptions="EndAndExpand" VerticalOptions="StartAndExpand" BackgroundColor="Red" HeightRequest="20" >
+                       
+                    </StackLayout>
+                </AbsoluteLayout>
+
+                <AbsoluteLayout Grid.Column="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  x:Name="loNotification" Margin="0,5">
+                    <AbsoluteLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnTapGestureRecognizerTapped" NumberOfTapsRequired="1" />
+                    </AbsoluteLayout.GestureRecognizers>
+                    <Image 
+                        AbsoluteLayout.LayoutFlags="All" 
+                        AbsoluteLayout.LayoutBounds="0,0,1,1"
+                        HeightRequest="35" x:Name="btnNotification"  >
+                       
+
+                    </Image>
+
+
+                        <Frame HasShadow="False"  IsVisible="{Binding IsNotificationCountVisible}"
+                            AbsoluteLayout.LayoutBounds="1,0,-1,-1"
+                            AbsoluteLayout.LayoutFlags="PositionProportional"
+                            BackgroundColor="{StaticResource RedTextColor}"
+                            HeightRequest = "20"
+                            WidthRequest = "20" 
+                            CornerRadius="10"
+                            Padding="0"
+                            >
+                        <Label  
+                                BackgroundColor="Transparent"
+                                HorizontalTextAlignment="Center" 
+                                HorizontalOptions="CenterAndExpand" 
+                                VerticalTextAlignment="Center"  
+                                 
+                                TextColor="{StaticResource WhiteTextColor}"
+                                FontSize="10" 
+                                Text="{Binding NumberNottificationItems}"
+                            />
+                    </Frame>
+                    <StackLayout HorizontalOptions="EndAndExpand" VerticalOptions="StartAndExpand" BackgroundColor="Red" HeightRequest="20" >
+
+                    </StackLayout>
+                </AbsoluteLayout>
+
+                <AbsoluteLayout Grid.Column="3" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" x:Name="loTime" Margin="0,5">
+                    <AbsoluteLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnTapGestureRecognizerTapped" NumberOfTapsRequired="1" />
+                    </AbsoluteLayout.GestureRecognizers>
+                    <Image 
+                        AbsoluteLayout.LayoutFlags="All" 
+                        AbsoluteLayout.LayoutBounds="0,0,1,1"
+                        HeightRequest="35" x:Name="btnTime"  >
+                       
+
+                    </Image>
+
+
+                    <StackLayout HorizontalOptions="EndAndExpand" VerticalOptions="StartAndExpand" BackgroundColor="Red" HeightRequest="20" >
+
+                    </StackLayout>
+                </AbsoluteLayout>
+
+                <AbsoluteLayout Grid.Column="4" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  x:Name="loExpenseEntry" Margin="0,5">
+                    <AbsoluteLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnTapGestureRecognizerTapped" NumberOfTapsRequired="1" />
+                    </AbsoluteLayout.GestureRecognizers>
+                    <Image 
+                        AbsoluteLayout.LayoutFlags="All" 
+                        AbsoluteLayout.LayoutBounds="0,0,1,1"
+                        HeightRequest="35" x:Name="btnExpenseEntry"  >
+                       
+
+                    </Image>
+
+                </AbsoluteLayout>
+
+            </Grid>
+        </StackLayout>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

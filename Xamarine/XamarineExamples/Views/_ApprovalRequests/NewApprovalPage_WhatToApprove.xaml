@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjectInsightMobile.Views.NewApprovalPage_WhatToApprove"
+             xmlns:navigation="clr-namespace:ProjectInsightMobile.Views"
+             Title="Add Approval">
+    <ContentPage.Content>
+
+
+        <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  >
+            <StackLayout Orientation="Vertical"  
+                         Padding="0" Margin="0" Spacing="0" 
+                         VerticalOptions="FillAndExpand"
+                         AbsoluteLayout.LayoutFlags="All" 
+                         AbsoluteLayout.LayoutBounds="0,0,1,1">
+                <StackLayout Spacing="0" Padding="0"  VerticalOptions="FillAndExpand" >
+                    <StackLayout VerticalOptions="FillAndExpand" IsVisible="{Binding VisibleContent}" Orientation="Vertical" Spacing="20" Padding="20">
+                        <Label FontSize="22" HorizontalTextAlignment="Center">What would you like to approve?</Label>
+
+                        <Button Clicked="StandaloneApproval_Tapped" Text="Standalone Approval" StyleClass="PrimaryButton" x:Name="StandaloneApproval"></Button>
+                        <Button Clicked="NewItem_Tapped" Text="New Item" StyleClass="SecondaryButton"  x:Name="NewItem" ></Button>
+                        <Button Clicked="ExistingItem_Tapped" Text="Existing Item" StyleClass="SecondaryButton" x:Name="ExistingItem"></Button>
+
+                    
+                    </StackLayout>
+                </StackLayout>
+                <navigation:BottomNavigationBar />
+            </StackLayout>
+            <ActivityIndicator 
+                    AbsoluteLayout.LayoutFlags="PositionProportional" IsVisible="{Binding VisibleLoad}"
+                    AbsoluteLayout.LayoutBounds=".5, .1"
+                    IsRunning="True" 
+                    Color="{StaticResource Primary}"
+                    />
+        </AbsoluteLayout>
+       
+    </ContentPage.Content>
+</ContentPage>

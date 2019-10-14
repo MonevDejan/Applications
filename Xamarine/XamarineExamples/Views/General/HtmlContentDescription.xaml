@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjectInsightMobile.Views.General.HtmlContentDescription"
+             xmlns:customComponent="clr-namespace:ProjectInsightMobile.CustomControls"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
+             xmlns:ffimageloadingSvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             Title="{Binding Title}">
+    <ContentPage.Content>
+        <ScrollView VerticalOptions="FillAndExpand" >
+            <StackLayout Orientation="Vertical" Padding="10" Spacing="20" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                <customComponent:HtmlLabel 
+                    FontSize="15"   
+                    TextColor="{StaticResource BlackTextColor}"
+                    VerticalOptions="StartAndExpand" 
+                    HorizontalOptions="StartAndExpand"
+                    Text="{Binding Description}" />
+
+
+                <ffimageloading:CachedImage   
+                        x:Name="imgHtml"
+                        VerticalOptions="StartAndExpand"
+                        HorizontalOptions="CenterAndExpand" 
+			            DownsampleToViewSize="true"
+                        RetryCount="3"
+                        RetryDelay="200"  
+                        ErrorPlaceholder = "error.png"
+                        LoadingPlaceholder = "load.gif" 
+                                                
+                    /> 
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

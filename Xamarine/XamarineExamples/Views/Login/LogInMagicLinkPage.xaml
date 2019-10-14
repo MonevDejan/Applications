@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SafeSportChat.Views.Login.LogInMagicLinkPage" xmlns:local="clr-namespace:SafeSportChat"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <local:isValidBtnBackgroundColor x:Key="isValidBtnBackgroundColor" />
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="CenterAndExpand"  BackgroundColor="#3C6780"  VerticalOptions="FillAndExpand" Margin="0" Padding="0">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <StackLayout Grid.Row="0" Margin="40,120,40,25"  HorizontalOptions="Center" Spacing="10" >
+                <Label  Text="Skip the typing?" Style="{StaticResource PageTitleLabelWhite}" HorizontalOptions="Fill" LineBreakMode="WordWrap"/>
+                    <Label Text="We can email you a magic sign-in link &#x0a; instead of using your password" TextColor="#ffffff" FontSize="15" LineHeight="1.18" HorizontalOptions="Fill" HorizontalTextAlignment="Center"/>
+                </StackLayout>
+            <StackLayout Grid.Row="1" Padding="40,0,40,0">
+                    <Button   Text="Email me a magic link" Style="{StaticResource Key=btnOrange}" Clicked="EmailMagicLinkButton_Clicked" />
+                <StackLayout Margin="0,10,0,0" VerticalOptions="CenterAndExpand">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.4*"/>
+                            <ColumnDefinition Width="0.2*"/>
+                            <ColumnDefinition Width="0.4*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Row="0" Grid.Column="0" HorizontalOptions="FillAndExpand" Source="white_line.png"/>
+                        <Label Grid.Row="0" Grid.Column="1" Text="OR" FontFamily="{StaticResource Key=NormalFontRoboto}" FontSize="13" LineHeight="15" HorizontalOptions="Center" TextColor="#ffffff"/>
+                        <Image Grid.Row="0" Grid.Column="2" HorizontalOptions="FillAndExpand" Source="white_line.png"/>
+                    </Grid>
+                </StackLayout>
+                    <Button   Text="Use password to sign in" Style="{StaticResource Key=btnLightBlue}" Margin="0,10,0,20" Clicked="PasswordButton_Clicked" />
+                
+            </StackLayout>
+        </Grid>
+    </StackLayout>
+    </ContentPage.Content>
+
+</ContentPage>

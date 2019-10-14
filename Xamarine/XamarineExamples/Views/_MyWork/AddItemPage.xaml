@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjectInsightMobile.Views.AddItemPage"
+             xmlns:customComponent="clr-namespace:ProjectInsightMobile.CustomControls"
+              xmlns:navigation="clr-namespace:ProjectInsightMobile.Views"
+             Title="Add Item">
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical">
+
+            <ScrollView VerticalOptions="FillAndExpand">
+                <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource LightBackgroundColor}" >
+                    <StackLayout Padding="0,0,0,0" x:Name="slButtons" Orientation="Vertical" HorizontalOptions="FillAndExpand" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+                        <StackLayout Padding="10,10,0,10" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="AddTask_Tapped"></TapGestureRecognizer>
+                            </StackLayout.GestureRecognizers>
+                            <Image Source="item_task.png" HeightRequest="60" Margin="5,0,0,0"></Image>
+                            <Label Text="Task" Margin="15,0,0,0" FontSize="22" FontAttributes="Bold"  HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"></Label>
+                            <StackLayout HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" WidthRequest="60"  Padding="0,0,10,0" >
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="AddTask_Tapped"/>
+                                </StackLayout.GestureRecognizers>
+                                <Frame HasShadow="False"
+                                Padding="0,7,0,7"
+                                CornerRadius="5"
+                                BackgroundColor="{StaticResource Primary}"
+                                >
+                                    <Label 
+                                       FontSize="22" HeightRequest="30"
+                                        HorizontalTextAlignment="Center" 
+                                        HorizontalOptions="CenterAndExpand" 
+                                        VerticalTextAlignment="Center"  
+                                        TextColor="{StaticResource WhiteTextColor}"
+                                        Text="Add"
+                                    />
+                                </Frame>
+
+                            </StackLayout>
+                        </StackLayout>
+                        <BoxView HeightRequest="1" Color="{StaticResource BorderLineLiteGray}" HorizontalOptions="FillAndExpand"></BoxView>
+
+                        <StackLayout Padding="13,10,0,10" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="AddIssue_Tapped"></TapGestureRecognizer>
+                            </StackLayout.GestureRecognizers>
+                            <Image Source="item_issue.png" HeightRequest="60" Margin="13,0,0,0"></Image>
+                            <Label Text="Issue" Margin="15,0,0,0" FontSize="22" FontAttributes="Bold"  HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"></Label>
+                            <StackLayout HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" WidthRequest="60"  Padding="0,0,10,0" >
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="AddIssue_Tapped"/>
+                                </StackLayout.GestureRecognizers>
+                                <Frame HasShadow="False"
+                                Padding="0,7,0,7"
+                                CornerRadius="5"
+                                BackgroundColor="{StaticResource Primary}"
+                                >
+                                    <Label 
+                                       FontSize="22" HeightRequest="30"
+                                        HorizontalTextAlignment="Center" 
+                                        HorizontalOptions="CenterAndExpand" 
+                                        VerticalTextAlignment="Center"  
+                                        TextColor="{StaticResource WhiteTextColor}"
+                                        Text="Add"
+                                    />
+                                </Frame>
+
+                            </StackLayout>
+                        </StackLayout>
+                        <BoxView HeightRequest="1" Color="{StaticResource BorderLineLiteGray}" HorizontalOptions="FillAndExpand"></BoxView>
+
+
+                        <StackLayout x:Name="slTodos" IsVisible="False">
+
+                            <StackLayout Padding="13,10,0,10" HorizontalOptions="FillAndExpand" Orientation="Horizontal" >
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="AddToDo_Tapped"></TapGestureRecognizer>
+                                </StackLayout.GestureRecognizers>
+                                <Image Source="item_todo.png"  HeightRequest="60" Margin="10,0,0,0"></Image>
+                                <Label Text="To-Do" Margin="10,0,0,0" FontSize="22" FontAttributes="Bold"   HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"></Label>
+                                <StackLayout HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" WidthRequest="60" Padding="0,0,10,0" >
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="AddToDo_Tapped"/>
+                                    </StackLayout.GestureRecognizers>
+                                    <Frame HasShadow="False"
+                                Padding="0,7,0,7"
+                                CornerRadius="5"
+                                BackgroundColor="{StaticResource Primary}"
+                                >
+                                        <Label 
+                                       FontSize="22" HeightRequest="30"
+                                        HorizontalTextAlignment="Center" 
+                                        HorizontalOptions="CenterAndExpand" 
+                                        VerticalTextAlignment="Center"  
+                                        TextColor="{StaticResource WhiteTextColor}"
+                                        Text="Add"
+                                    />
+                                    </Frame>
+
+                                </StackLayout>
+                            </StackLayout>
+                            <BoxView HeightRequest="1" Color="{StaticResource BorderLineLiteGray}" HorizontalOptions="FillAndExpand"></BoxView>
+                        </StackLayout>
+                        <StackLayout x:Name="slProject" IsVisible="False">
+                            <StackLayout Padding="13,10,0,10" HorizontalOptions="FillAndExpand" Orientation="Horizontal" >
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="AddProject_Tapped"></TapGestureRecognizer>
+                                </StackLayout.GestureRecognizers>
+                                <Image Source="item_project.png"  HeightRequest="60"></Image>
+                                <Label Text="Project" Margin="20,0,0,0" FontSize="22" FontAttributes="Bold"   HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"></Label>
+                                <StackLayout HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" WidthRequest="60" Padding="0,0,10,0" >
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="AddProject_Tapped"/>
+                                    </StackLayout.GestureRecognizers>
+                                    <Frame HasShadow="False"
+                                    Padding="0,7,0,7"
+                                    CornerRadius="5"
+                                    BackgroundColor="{StaticResource Primary}"
+                                    >
+                                        <Label 
+                                           FontSize="22" HeightRequest="30"
+                                            HorizontalTextAlignment="Center" 
+                                            HorizontalOptions="CenterAndExpand" 
+                                            VerticalTextAlignment="Center"  
+                                            TextColor="{StaticResource WhiteTextColor}"
+                                            Text="Add"
+                                        />
+                                    </Frame>
+
+                                </StackLayout>
+                            </StackLayout>
+                            <BoxView HeightRequest="1" Color="{StaticResource BorderLineLiteGray}" HorizontalOptions="FillAndExpand"></BoxView>
+                        </StackLayout>
+
+                        <StackLayout x:Name="slApproval" IsVisible="False">
+                            <StackLayout Padding="10,10,0,10" HorizontalOptions="FillAndExpand" Orientation="Horizontal" >
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="AddApproval_Tapped"></TapGestureRecognizer>
+                            </StackLayout.GestureRecognizers>
+                            <Image Source="item_approval_request.png"  HeightRequest="60" Margin="5,0,0,0"></Image>
+                            <Label Text="Approval" Margin="10,0,0,0" FontSize="22" FontAttributes="Bold"   HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"></Label>
+                            <StackLayout HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" WidthRequest="60" Padding="0,0,10,0" >
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="AddApproval_Tapped"/>
+                                </StackLayout.GestureRecognizers>
+                                <Frame HasShadow="False"
+                                Padding="0,7,0,7"
+                                CornerRadius="5"
+                                BackgroundColor="{StaticResource Primary}"
+                                >
+                                    <Label 
+                                       FontSize="22" HeightRequest="30"
+                                        HorizontalTextAlignment="Center" 
+                                        HorizontalOptions="CenterAndExpand" 
+                                        VerticalTextAlignment="Center"  
+                                        TextColor="{StaticResource WhiteTextColor}"
+                                        Text="Add"
+                                    />
+                                </Frame>
+
+                            </StackLayout>
+                        </StackLayout>
+                            <BoxView HeightRequest="1" Color="{StaticResource BorderLineLiteGray}" HorizontalOptions="FillAndExpand"></BoxView>
+                        </StackLayout>
+                       
+
+                    </StackLayout>
+                </AbsoluteLayout>
+            </ScrollView>
+            <navigation:BottomNavigationBar></navigation:BottomNavigationBar>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

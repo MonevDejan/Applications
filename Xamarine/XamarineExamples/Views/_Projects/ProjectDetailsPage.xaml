@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjectInsightMobile.Views.ProjectDetailsPage"
+             xmlns:customControls="clr-namespace:ProjectInsightMobile.Views"
+             xmlns:customComponent="clr-namespace:ProjectInsightMobile.CustomControls"
+             Title="{Binding Title}">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Clicked="AddItem_Clicked" Icon="plus_add.png"  />
+    </ContentPage.ToolbarItems>
+    <StackLayout Orientation="Vertical" BackgroundColor="White">
+
+        <BoxView HeightRequest="3" Color="{StaticResource BorderLineTop}" />
+        <ScrollView VerticalOptions="FillAndExpand" >
+
+            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+                    <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand"  IsVisible="{Binding VisibleContent}">
+
+                        <StackLayout Orientation="Vertical" Padding="10,0,10,20">
+                            <Label 
+                                        HorizontalOptions="CenterAndExpand"
+                                        x:Name="txtStartEndDate"
+                                        FontSize="18" HorizontalTextAlignment="Center" 
+                                        Text="{Binding StartEndDate}"
+                                        LineBreakMode="WordWrap" XAlign="Center"
+                                        Margin="0,20,0,5"
+                                        />
+                            <StackLayout HorizontalOptions="CenterAndExpand" Margin="0,5"  Padding="5" >
+
+                                <Frame HasShadow="False"
+                                    Padding="10,5,10,5"
+                                    CornerRadius="5"
+                                    BackgroundColor="{Binding StatusColor}"
+                                    >
+                                    <Label 
+                                            FontSize="18" 
+                                            HorizontalTextAlignment="Center" 
+                                            HorizontalOptions="CenterAndExpand" 
+                                            VerticalTextAlignment="Center"  
+                                            TextColor="{Binding StatusFontColor}"
+                                            Text="{Binding Status}"
+                                        />
+                                </Frame>
+
+                            </StackLayout>
+
+                            <Label HorizontalOptions="CenterAndExpand" Margin="0,5"
+                               x:Name="txtWorkHoursRemaining"
+                               VerticalOptions="FillAndExpand"
+                               FontSize="18" 
+                               HorizontalTextAlignment="Center" 
+                               Text="{Binding Duration}" />
+
+                            <!--<StackLayout  HorizontalOptions="CenterAndExpand" Orientation="Horizontal" IsVisible="False">
+                        <Label 
+                                        HorizontalOptions="CenterAndExpand"
+                                        x:Name="txtProjectHealth"
+                                        VerticalOptions="FillAndExpand"
+                                        FontSize="18" HorizontalTextAlignment="Center" 
+                                        Text="Project Health: "
+                                        />
+                            <Image Source="{Binding ProjectHealthIcon}"></Image>
+                        </StackLayout>-->
+
+                            <Label HorizontalOptions="CenterAndExpand" Margin="10,5"
+                               VerticalOptions="FillAndExpand"
+                               x:Name="txtDescription"
+                               FontSize="16" 
+                               HorizontalTextAlignment="Center" 
+                               Text="{Binding Description}" />
+
+                            <StackLayout  HorizontalOptions="FillAndExpand" Margin="10,10,10,0" Padding="0,5,0,0" x:Name="slProjectItems" IsVisible="False">
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnProjectItems_Clicked"/>
+                                </StackLayout.GestureRecognizers>
+                                <Frame HasShadow="False" Padding="5" CornerRadius="5" BackgroundColor="#07aa07">
+                                    <Label
+                                               FontSize="24" HeightRequest="35"
+                                                HorizontalTextAlignment="Center" 
+                                                HorizontalOptions="CenterAndExpand" 
+                                                VerticalTextAlignment="Center"  
+                                                TextColor="{StaticResource WhiteTextColor}"
+                                                Text="Work"
+                                    x:Name="lblProjectItems"
+                                            />
+                                </Frame>
+                            </StackLayout>
+
+
+                        </StackLayout>
+
+
+                        <StackLayout
+                            VerticalOptions="FillAndExpand"
+                            HorizontalOptions="FillAndExpand"
+                            Orientation="Vertical"
+                            Padding="0" 
+                        >
+
+                            <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="0,2,0,5" Spacing="0">
+                                <customControls:TasksChartCustomView  HorizontalOptions="FillAndExpand"  ItemId="{Binding Id}"  ItemType="Task" ParentName="{Binding Title}" ItemsCount="{Binding TasksCount}" HasEditPermissions="{Binding UserHasEditTaskPermissions}" />
+                                <customControls:IssuesChartCustomView  ItemId="{Binding Id}" HorizontalOptions="FillAndExpand" ItemType="Issue" ParentName="{Binding Title}" ItemsCount="{Binding IssuesCount}" />
+
+                                <!--<BoxView HeightRequest="1" Color="{StaticResource LightGrayTextColor}" HorizontalOptions="FillAndExpand"></BoxView>-->
+                            <StackLayout Orientation="Horizontal" HeightRequest="60" HorizontalOptions="FillAndExpand" Spacing="0" BackgroundColor="{StaticResource LightBackgroundColor}">
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnTappedDocuments"/>
+                                    </StackLayout.GestureRecognizers>
+                                    <Frame HasShadow="False" BackgroundColor="{StaticResource LightBackgroundColor}"
+                       Padding="0,1,0,0"
+                     HeightRequest="60"
+                       HorizontalOptions="FillAndExpand" 
+                       VerticalOptions="FillAndExpand"
+                       CornerRadius="0"
+                     >
+                                        <AbsoluteLayout  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+
+                                            <Label   AbsoluteLayout.LayoutBounds=".5,.5" AbsoluteLayout.LayoutFlags="PositionProportional"
+                                    FontSize="25" 
+                                    HorizontalTextAlignment="Center" 
+                                    HorizontalOptions="CenterAndExpand" 
+                                    VerticalTextAlignment="Center"  
+                                   
+                                    
+                                    Text="Documents"
+                                    />
+                                            <Image AbsoluteLayout.LayoutBounds="1,.5" AbsoluteLayout.LayoutFlags="PositionProportional"
+                            x:Name="showHideIcon1"
+                            Source="Arrow_right.png"  
+                            Margin="0,10,20,10"
+                            VerticalOptions="Center" 
+                            HorizontalOptions="End"
+                            HeightRequest="25" />
+                                        </AbsoluteLayout>
+                                    </Frame>
+
+                                </StackLayout>
+                                <!--<BoxView HeightRequest="1" Color="{StaticResource LightGrayTextColor}" HorizontalOptions="FillAndExpand"></BoxView>-->
+
+
+                                <Grid 
+                             
+                            Padding="20,0" 
+                            HorizontalOptions="FillAndExpand" ColumnSpacing="10"
+                            >
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="50" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions >
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+
+                                    </Grid.ColumnDefinitions>
+                                    <Frame HasShadow="False" Grid.Row="0" Grid.Column="0" VerticalOptions="End" HeightRequest="35"
+                                Padding="0"
+                                CornerRadius="5"
+                                BackgroundColor="{StaticResource Primary}"
+                                >
+                                        <Frame.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="OnTimeEntry_Tapped"/>
+                                        </Frame.GestureRecognizers>
+                                        <Label 
+                                         FontSize="20" HeightRequest="30"
+                                        HorizontalTextAlignment="Center" 
+                                        HorizontalOptions="CenterAndExpand" 
+                                        VerticalTextAlignment="Center"  
+                                        TextColor="{StaticResource WhiteTextColor}" 
+                                        Text="Add Time"
+                                    />
+                                    </Frame>
+                                    <Frame HasShadow="False" Grid.Row="0" Grid.Column="1"  VerticalOptions="End" HeightRequest="35"
+                                    Padding="0"
+                                    CornerRadius="5"
+                                    BackgroundColor="{StaticResource Primary}"
+                                    >
+                                        <Frame.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="OnExpenses_Tapped"/>
+                                        </Frame.GestureRecognizers>
+                                        <Label 
+                                            FontSize="20" HeightRequest="30"
+                                            HorizontalTextAlignment="Center" 
+                                            HorizontalOptions="CenterAndExpand" 
+                                            VerticalTextAlignment="Center"  
+                                            TextColor="{StaticResource WhiteTextColor}" 
+                                            Text="Add Expense"
+                                        />
+                                    </Frame>
+                                </Grid>
+
+
+                                <customControls:CommentsCustomView ItemId="{Binding Id}" ItemName="{Binding Title}" Margin="20,10,20,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+
+
+
+                            </StackLayout>
+
+                        </StackLayout>
+
+                    </StackLayout>
+                <ActivityIndicator HeightRequest="100"
+                    IsVisible="{Binding VisibleLoad}" 
+                    IsRunning="{Binding VisibleLoad}" 
+                    Color="{StaticResource Primary}"
+                    />
+               
+            </StackLayout>
+        </ScrollView>
+
+        <customControls:BottomNavigationBar></customControls:BottomNavigationBar>
+    </StackLayout>
+
+</ContentPage>

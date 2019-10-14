@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:customComponent="clr-namespace:ProjectInsightMobile.CustomControls"
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+             xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             x:Class="ProjectInsightMobile.Views.CommentsCustomView">
+    <ContentView.Content>
+        <StackLayout Orientation="Vertical" Margin="0" Spacing="0" Padding="0,0,0,0" VerticalOptions="FillAndExpand">
+            <StackLayout  x:Name="lstComments" IsVisible="True">
+                <Button  Clicked="OnAddComment" Text="Add Comment" StyleClass="SecondaryButton" Margin="0,5"></Button>
+                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  Margin="0" Spacing="0" Padding="0" x:Name="slComments" >
+                </StackLayout>
+                <Button  Clicked="OnShowAllComments" Text="See All" StyleClass="SecondaryButton" Margin="0,5,0,0"  x:Name="btnSeeAll" IsVisible="False" ></Button>
+            </StackLayout>
+            <StackLayout x:Name="AddComment" IsVisible="False" Orientation="Vertical"
+                    AbsoluteLayout.LayoutFlags="All" 
+                    AbsoluteLayout.LayoutBounds="0,0,1,1"
+                    VerticalOptions="FillAndExpand" HorizontalOptions="Fill"
+                    >
+                <!--<customComponent:CustomEntry HasBorder="True" Placeholder="Insert comment here.." FontSize="20" HeightRequest="150" BackgroundColor="{StaticResource WhiteTextColor}"  TextColor="{StaticResource LightTextColor}" x:Name="txtCommentBody"></customComponent:CustomEntry>-->
+                <!--<Label 
+                                                FontSize="18" 
+                                                HorizontalTextAlignment="Start" 
+                                                HorizontalOptions="StartAndExpand" 
+                                                VerticalTextAlignment="Center"  
+                                                
+                                                
+                                                Text="Your comment:"
+                                            />-->
+                
+                <!--<customComponent:CustomEditor HasBorder="True"  FontSize="20" HeightRequest="150"  BackgroundColor="{StaticResource WhiteTextColor}"  TextColor="{StaticResource BlackTextColor}" x:Name="txtCommentBody"></customComponent:CustomEditor>-->
+
+                <StackLayout HeightRequest="30" Margin="0" Spacing="0" Padding="0" >
+                <syncfusion:SfListView x:Name="listView" ItemSize="150" HeightRequest="30"
+                                       Orientation="Horizontal" Padding="0" Margin="0" SelectionBackgroundColor="{StaticResource WhiteTextColor}"
+                   IsScrollBarVisible="False" ColumnSpacing="0" RowSpacing="0" ItemSpacing="0">
+                  
+                    <syncfusion:SfListView.ItemTemplate>
+                        <DataTemplate>
+                            <!--<Grid>
+                                <Label LineBreakMode="NoWrap"
+                                               FontSize="12" HeightRequest="20"
+                                                
+                                                TextColor="Black"
+                                                Text="{Binding Name}"
+                                            />
+                            </Grid>-->
+                            
+                            <Frame HasShadow="False" Margin="0,0,5,0" 
+                                            Padding="2" HorizontalOptions="FillAndExpand"
+                                            CornerRadius="5" 
+                                            BackgroundColor="{StaticResource Primary}">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="FrmSuggestion_Tapped" x:Name="frmSuggestion" />
+                                    </Frame.GestureRecognizers>
+                                <Label LineBreakMode="NoWrap"
+                                               FontSize="12" 
+                                                HorizontalTextAlignment="Center" 
+                                                HorizontalOptions="CenterAndExpand" 
+                                                VerticalTextAlignment="Center"  
+                                                TextColor="{StaticResource WhiteTextColor}"
+                                                Text="{Binding Name}"
+                                            />
+                            </Frame>
+
+
+                        </DataTemplate>
+                    </syncfusion:SfListView.ItemTemplate>
+                </syncfusion:SfListView>
+                </StackLayout>
+                <inputLayout:SfTextInputLayout   ContainerType="Outlined"
+                            ContainerBackgroundColor="#E6EEF9"
+                            FocusedColor="{StaticResource Primary}"
+                            UnfocusedColor="{StaticResource DarkGrayTextColor}"
+                            BackgroundColor="{StaticResource WhiteTextColor}"
+                            ReserveSpaceForAssistiveLabels="False" x:Name="sfComment" ErrorColor="{StaticResource RedTextColor}"
+                            Hint="Your comment  " >
+
+                    <customComponent:CustomEditor x:Name="txtCommentBody"   HeightRequest="150" TextChanged="TxtCommentBody_TextChanged" IsSpellCheckEnabled="False"  FontSize="20"   >
+                    </customComponent:CustomEditor>
+                </inputLayout:SfTextInputLayout>
+                
+                <StackLayout
+                        Orientation="Vertical"
+                        Spacing="5"
+                    Margin="0,5,0,0"
+                        >
+                    <!--<Button Text="Save"  Clicked="onCreateNewComment" FontAttributes="Bold" BackgroundColor="{StaticResource Primary}" TextColor="{StaticResource WhiteTextColor}" Style="{StaticResource buttonStyle}"/>-->
+
+
+
+                    <Button Clicked="onCreateNewComment" Text="Save" StyleClass="PrimaryButton" ></Button>
+                    <Button Clicked="onCancel" Text="Cancel" StyleClass="SecondaryButton"  ></Button>
+                    
+                  
+
+                </StackLayout>
+            </StackLayout>
+          
+        </StackLayout>
+        
+
+
+       
+    </ContentView.Content>
+</ContentView>

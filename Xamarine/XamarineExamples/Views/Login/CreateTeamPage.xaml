@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SafeSportChat.Views.Login.CreateTeamPage"
+              xmlns:local="clr-namespace:SafeSportChat"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <local:isValidBtnBackgroundColor x:Key="isValidBtnBackgroundColor" />
+        <local:isValidBtnBackgroundColorBlue x:Key="isValidBtnBackgroundColorBlue" />
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <ScrollView Orientation="Vertical">
+            <StackLayout HorizontalOptions="CenterAndExpand"  BackgroundColor="#DCDEDE"  VerticalOptions="FillAndExpand" Margin="0" Padding="0">
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+
+                    </Grid.RowDefinitions>
+                    <StackLayout Grid.Row="0" HorizontalOptions="Center">
+                        <Label Margin="55,40,55,20" HorizontalTextAlignment="Center" Text="Team Profile"
+                   FontSize="28"  TextColor="#363531" FontFamily="{StaticResource Key=NormalFontRoboto}" LineBreakMode="WordWrap"  HorizontalOptions="Fill"/>
+                    </StackLayout>
+                    <StackLayout Grid.Row="1" Padding="40,0,40,0" Spacing="20">
+                        <Frame BackgroundColor="#FFFFFF" CornerRadius="10" Margin="0" Padding="10,0,10,0" VerticalOptions="Center" HeightRequest="50" HasShadow="False">
+                            <local:CustomEntry FontSize="17" x:Name="txtFullTeamName" TextChanged="entry_TextChanged" Margin="15,0,15,0" VerticalOptions="CenterAndExpand"  BackgroundColor="#ffffff" PlaceholderColor="#3C6780" Opacity="0.5"   Placeholder="Full Team Name" FontFamily="{StaticResource Key=NormalFontRoboto}"/>
+                        </Frame>
+                        <Frame BackgroundColor="#FFFFFF" CornerRadius="10" Margin="0" Padding="10,0,10,0" VerticalOptions="Center" HeightRequest="50" HasShadow="False">
+                            <local:CustomEntry FontSize="17" x:Name="txtTeamAbbreviation" TextChanged="entry_TextChanged" Margin="15,0,15,0"  VerticalOptions="CenterAndExpand" BackgroundColor="#ffffff" PlaceholderColor="#3C6780" Opacity="0.5"   Placeholder="Team Abbreviation" FontFamily="{StaticResource Key=NormalFontRoboto}"/>
+                        </Frame>
+                        <Frame BackgroundColor="#FFFFFF" CornerRadius="10" Margin="0" Padding="10,0,10,0" VerticalOptions="Center" HeightRequest="50" HasShadow="False">
+                            <local:CustomEntry FontSize="17" x:Name="txtCity" TextChanged="entry_TextChanged" Margin="15,0,15,0" VerticalOptions="CenterAndExpand"  BackgroundColor="#ffffff" PlaceholderColor="#3C6780" Opacity="0.5"   Placeholder="City" FontFamily="{StaticResource Key=NormalFontRoboto}"/>
+                        </Frame>
+                        <Frame BackgroundColor="#FFFFFF" CornerRadius="10" Margin="0" Padding="10,0,10,0" VerticalOptions="Center" HeightRequest="50" HasShadow="False">
+                            <local:CustomEntry FontSize="17" x:Name="txtState" TextChanged="entry_TextChanged" Margin="15,0,15,0" VerticalOptions="CenterAndExpand"  BackgroundColor="#ffffff" PlaceholderColor="#3C6780" Opacity="0.5"   Placeholder="State" FontFamily="{StaticResource Key=NormalFontRoboto}"/>
+                        </Frame>
+                    </StackLayout>
+                    <StackLayout Grid.Row="2" Padding="40,0,40,0">
+                        <Button   Text="I am the Head Coach" IsEnabled="{Binding isValid}" TextColor="#ffffff" FontSize="17"  FontFamily="{StaticResource Key=NormalFontRoboto}" BackgroundColor="{Binding isValid, Converter={StaticResource isValidBtnBackgroundColorBlue}}"  CornerRadius="10" HeightRequest="50" Margin="0,20,0,20"/>
+                        <StackLayout Margin="0">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="20"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.4*"/>
+                                    <ColumnDefinition Width="0.2*"/>
+                                    <ColumnDefinition Width="0.4*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Row="0" Grid.Column="0" HorizontalOptions="FillAndExpand" Source="blue_line.png"/>
+                                <Label Grid.Row="0" Grid.Column="1" Text="OR" FontSize="13" FontFamily="{StaticResource Key=NormalFontRoboto}" LineHeight="15" HorizontalOptions="Center" TextColor="#3C6780"/>
+                                <Image Grid.Row="0" Grid.Column="2" HorizontalOptions="FillAndExpand" Source="blue_line.png"/>
+                            </Grid>
+                        </StackLayout>
+                        <Button   Text="Invite Head Coach" IsEnabled="{Binding isValid}" TextColor="#363531" FontSize="17"  FontFamily="{StaticResource Key=NormalFontRoboto}" BackgroundColor="{Binding isValid, Converter={StaticResource isValidBtnBackgroundColor}}"  CornerRadius="10" HeightRequest="50" Margin="0,20,0,20" Clicked="InviteHeadCoachButton_Clicked"/>
+
+                    </StackLayout>
+
+                </Grid>
+
+            </StackLayout>
+        </ScrollView>
+        
+    </ContentPage.Content>
+</ContentPage>

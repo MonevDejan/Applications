@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:navigation="clr-namespace:ProjectInsightMobile.Views"
+             x:Class="ProjectInsightMobile.Views.ExpensesBulkEntry"
+             Title="Product Bulk Entry"
+             BackgroundColor="{StaticResource LightBackgroundColor}"
+             xmlns:customControls="clr-namespace:ProjectInsightMobile.Views"
+                          xmlns:syncfusion="clr-namespace:Syncfusion.SfNumericTextBox.XForms;assembly=Syncfusion.SfNumericTextBox.XForms"
+               xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+            >
+    <ContentPage.Content>
+        <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  >
+            
+            <!--<StackLayout  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  IsVisible="{Binding IsBusy}" >-->
+
+
+            <StackLayout Orientation="Vertical"
+                         Padding="0" Margin="0" Spacing="0" 
+                         VerticalOptions="FillAndExpand"
+                           AbsoluteLayout.LayoutFlags="All" 
+                    AbsoluteLayout.LayoutBounds="0,0,1,1">
+                <StackLayout Spacing="0" Padding="0"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"  >
+                    
+                        <StackLayout  Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0" Margin="0" Spacing="0"  IsVisible="{Binding VisibleContent}">
+                        <Grid VerticalOptions="FillAndExpand" >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="60"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <StackLayout Grid.Row="0" VerticalOptions="FillAndExpand" Orientation="Vertical"  Padding="0" Spacing="0" Margin="0,10,0,0" HorizontalOptions="Center">
+                                <Frame HasShadow="False" 
+                                        Padding="0" Margin="0"
+                                        CornerRadius="5" HeightRequest="50"
+                                        BackgroundColor="{StaticResource WhiteTextColor}"
+                                       BorderColor="{StaticResource Primary}"
+                                        >
+                                    <DatePicker Margin="20,0" 
+                                                DateSelected="DatePicker_DateSelected"  
+                                                FontSize="20" 
+                                                Date="{Binding Path=CurrentEntry.EntryDate}" 
+                                                TextColor="{StaticResource BlackTextColor}"
+                                                VerticalOptions="CenterAndExpand" />
+
+                                </Frame>
+                            </StackLayout>
+                            
+                            <ListView Grid.Row="1" 
+                    x:Name="lvExpenses" 
+                    ItemsSource="{Binding Path=CurrentEntry.ExpenseCodes, Mode=TwoWay}"
+                    VerticalOptions="FillAndExpand"
+                    HasUnevenRows="true"
+                    HorizontalOptions="FillAndExpand" SelectionMode="None"
+                    HeightRequest="{Binding ListViewHeight}"
+                   RowHeight="60"
+                 >
+                                <ListView.Header>
+                                    <Grid HorizontalOptions="FillAndExpand" Padding="0" Margin="0">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="15"  />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions >
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="80" />
+                                        </Grid.ColumnDefinitions>
+                                        <Label Grid.Column="1"  FontSize="10" Margin="20,0,0,0" VerticalTextAlignment="Center"   Text="Qty" TextColor="{StaticResource Primary}" ></Label>
+                                    </Grid>
+                                </ListView.Header>
+                                <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ViewCell>
+                                                <Grid x:Name="grdItems" HorizontalOptions="FillAndExpand" Padding="0" Margin="0">
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="60"  />
+                                                    </Grid.RowDefinitions>
+                                                    <Grid.ColumnDefinitions >
+                                                        <ColumnDefinition Width="*"/>
+                                                        <ColumnDefinition Width="80" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Label Grid.Column="0"  FontSize="18" Margin="20,0,0,0" VerticalTextAlignment="Center"   Text="{Binding Name}" ></Label>
+
+
+                                                    <Frame HasShadow="False" Grid.Column="1"
+                                        Padding="0" Margin="0,0,20,0"  
+                                        CornerRadius="5" HeightRequest="45"
+                                        BackgroundColor="{StaticResource WhiteTextColor}"
+                                                           BorderColor="{StaticResource Primary}" VerticalOptions="Center"  >
+                                                        <Entry Keyboard="Numeric" Text="{Binding Quantity, Mode=TwoWay}" FontSize="20" HorizontalTextAlignment="End" />
+                                                    </Frame>
+
+                                                </Grid>
+                                            </ViewCell>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            <StackLayout VerticalOptions="FillAndExpand" Orientation="Vertical" Grid.Row="2"  Padding="0,0,0,5" Spacing="5" Margin="20,0" HorizontalOptions="FillAndExpand">
+
+                                <Button Clicked="Save_Tapped" Text="Save" StyleClass="PrimaryButton"></Button>
+                                <Button Clicked="OnCancel_Tapped" Text="Cancel" StyleClass="SecondaryButton" ></Button>
+                            </StackLayout>
+                        </Grid>
+                        </StackLayout>
+                 
+                </StackLayout>
+
+              
+                <navigation:BottomNavigationBar />
+
+              
+            </StackLayout>
+            
+      
+            <!--</StackLayout>-->
+            <ActivityIndicator 
+                    AbsoluteLayout.LayoutFlags="PositionProportional" IsVisible="{Binding VisibleLoad}"
+                    AbsoluteLayout.LayoutBounds=".5, .1"
+                    IsRunning="True" 
+                    Color="{StaticResource Primary}"
+                    />
+
+        </AbsoluteLayout>
+
+    </ContentPage.Content>
+</ContentPage>

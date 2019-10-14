@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjectInsightMobile.Views.IssueStatusPage"
+             xmlns:customControls="clr-namespace:ProjectInsightMobile.Views"
+             xmlns:customComponent="clr-namespace:ProjectInsightMobile.CustomControls"
+             xmlns:comboBox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+            >
+
+    <StackLayout Orientation="Vertical" BackgroundColor="{StaticResource LightBackgroundColor}">
+
+        <BoxView HeightRequest="3" Color="{StaticResource BorderLineTop}" />
+        <ScrollView VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource LightBackgroundColor}" >
+            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+
+                <Grid x:Name="gvTE" IsVisible="{Binding VisibleContent}"
+                      HorizontalOptions="FillAndExpand" Padding="20,40,20,20"
+                      ColumnSpacing="15" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+
+
+                    </Grid.RowDefinitions>
+                    
+                    <StackLayout   Grid.Row="0"
+                            Grid.Column="0"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="CenterAndExpand" 
+                                BackgroundColor="{StaticResource WhiteTextColor}"
+                                >
+
+
+                      <Frame BorderColor="{StaticResource DarkGrayTextColor}" CornerRadius="5"
+                            Padding="10,0,0,0" Margin="0"
+                            HasShadow="False" BackgroundColor="{StaticResource LightBackgroundColor}" HeightRequest="50"  >
+
+                        <comboBox:SfComboBox x:Name="cmbStatuses"
+                                SuggestionMode="Contains"
+                                AllowFiltering="False"
+                                IsEditableMode="False"
+                                DisplayMemberPath="Name"
+                                SelectedItem="{Binding SelectedStatusType}"
+                                DataSource="{Binding IssueStatusTypes}"
+                                
+                                DropDownItemHeight="40"
+                                BorderColor="{StaticResource LightBackgroundColor}"
+                                TextSize="20"
+                                Watermark="Work Status">
+                        </comboBox:SfComboBox>
+                      </Frame>
+                </StackLayout>
+
+                    <StackLayout Grid.Row="1"
+                            Grid.Column="0"
+                            Orientation="Vertical">
+                        <!--<customComponent:CustomEditor HasBorder="True"  Text="{Binding Comment}" FontSize="20" HeightRequest="150" BackgroundColor="{StaticResource WhiteTextColor}"  TextColor="{StaticResource BlackTextColor}" x:Name="txtCommentBody"></customComponent:CustomEditor>-->
+
+                      <inputLayout:SfTextInputLayout   ContainerType="Outlined" x:Name="sfComment"
+                           ContainerBackgroundColor="#E6EEF9"
+                           FocusedColor="{StaticResource Primary}"
+                           UnfocusedColor="{StaticResource DarkGrayTextColor}"
+                           ReserveSpaceForAssistiveLabels="False" HasError="False"
+                           Hint="Comment" ErrorColor="{StaticResource RedTextColor}" >
+
+                        <customComponent:CustomEditor Text="{Binding Comment}"  x:Name="txtCommentBody" HeightRequest="150"  FontSize="20"   />
+                      </inputLayout:SfTextInputLayout>
+
+                    </StackLayout>
+
+                    <StackLayout   Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"  Padding="0,10,0,0">
+                        <Frame BorderColor="{StaticResource DarkGrayTextColor}" CornerRadius="5" Padding="10,0,0,0" Margin="0" 
+                             HasShadow="False" BackgroundColor="{StaticResource LightBackgroundColor}" HeightRequest="50"  >
+                            <comboBox:SfComboBox x:Name="cmbUser"
+                                        SuggestionMode="Contains"
+                                        AllowFiltering="False"
+                                        IsEditableMode="True"
+                                        ShowClearButton="True"
+                                        DisplayMemberPath="Name"
+                                        SelectedItem="{Binding SelectedUser}" 
+                                        DataSource="{Binding Users}"
+                                        
+                                        DropDownItemHeight="40"
+                                        BorderColor="{StaticResource LightBackgroundColor}"
+                                        TextSize="20"
+                                        Watermark="Select User"
+                                        SelectionChanged="CmbUser_SelectionChanged"
+                                        >
+                            </comboBox:SfComboBox>
+                        </Frame>
+                    </StackLayout>
+
+
+                    <Button Grid.Row="3" Clicked="OnUpdateStatus" Text="Save" StyleClass="PrimaryButton" Margin="0,10"  ></Button>
+                    <Button Grid.Row="4" Clicked="OnCancel_Tapped" Text="Cancel" StyleClass="SecondaryButton" ></Button>
+
+                </Grid>
+
+                <ActivityIndicator HeightRequest="100"
+                    IsVisible="{Binding VisibleLoad}" 
+                    IsRunning="{Binding VisibleLoad}" 
+                    Color="{StaticResource Primary}"
+                    />
+            </StackLayout>
+        </ScrollView>
+
+        <customControls:BottomNavigationBar></customControls:BottomNavigationBar>
+    </StackLayout>
+
+</ContentPage>

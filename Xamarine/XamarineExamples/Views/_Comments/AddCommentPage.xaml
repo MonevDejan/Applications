@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjectInsightMobile.Views.AddCommentPage"
+             Title="Add Comment">
+    <ContentPage.Content>
+        <ScrollView>
+
+            <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+
+                <StackLayout 
+                    Orientation="Vertical"
+                    Padding="15" 
+                    Spacing="20" 
+                    AbsoluteLayout.LayoutFlags="All" 
+                    AbsoluteLayout.LayoutBounds="0,0,1,1"
+                    VerticalOptions="FillAndExpand" HorizontalOptions="Fill"
+                    >
+
+                    <Label 
+                        x:Name="txtProjectName"
+                        Text="{Binding VisibleLoad}"
+                        FontSize="20"
+                        FontAttributes="Bold"  
+                        HorizontalOptions="Center" />
+                    <Entry Placeholder="Insert comment here.." FontSize="20" HeightRequest="150" BackgroundColor="{StaticResource WhiteTextColor}"   x:Name="txtCommentBody"></Entry>
+
+                    <StackLayout
+                        Orientation="Vertical"
+                        Spacing="20"
+                        >
+                        <Button Text="Save" FontSize="20" Clicked="onCreateNewComment" FontAttributes="Bold" BackgroundColor="{StaticResource LightBackgroundColor}" TextColor="{StaticResource BlackTextColor}" />
+                        <Button Text="Cancel" FontSize="20" Clicked="onCancel"  FontAttributes="Bold" BackgroundColor="{StaticResource LightBackgroundColor}" TextColor="{StaticResource BlackTextColor}" />
+
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout    
+                        x:Name="loadingContent"
+                        VerticalOptions="FillAndExpand" 
+                        IsVisible="False"
+                        Padding="32"  
+                        AbsoluteLayout.LayoutFlags="All"
+                        AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                        BackgroundColor="#90000000"
+                        >
+                        <ActivityIndicator x:Name="progressBar" IsRunning="False" Color="#3CB9A8"/>
+                        <Label Text="" HorizontalOptions="Center" TextColor = "White" />
+                </StackLayout>
+            </AbsoluteLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

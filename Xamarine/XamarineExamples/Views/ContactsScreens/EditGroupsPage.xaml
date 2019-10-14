@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SafeSportChat.Views.ContactsScreens.EditGroupsPage"
+             NavigationPage.HasNavigationBar="False"
+             >
+
+    <ContentPage.Content>
+        <Grid VerticalOptions="StartAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="1"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" BackgroundColor="White" VerticalOptions="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.1*"/>
+                    <ColumnDefinition Width="0.8*"/>
+                    <ColumnDefinition Width="0.1*"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" ImageSource="backarrow.png" BackgroundColor="Transparent" Clicked="BackButton_Clicked"/>
+                <Label Grid.Column="1" Text="Groups" TextColor="#000000" FontSize="17"   HorizontalOptions="CenterAndExpand"  VerticalOptions="CenterAndExpand"/>
+                <Button Grid.Column="2" Text="Done"  TextColor="#FFB30F" HorizontalOptions="Start" BackgroundColor="Transparent" FontSize="17" Padding="0" Margin="-15,0,0,0"/>
+            </Grid>
+            <BoxView Grid.Row="1" HorizontalOptions="FillAndExpand" HeightRequest="1" Opacity="0.25" Color="Black"/>
+            <StackLayout Grid.Row="2" Padding="15,0,15,0" Orientation="Vertical">
+                <ListView  ItemsSource="{Binding GroupNames}"
+                           SeparatorVisibility="Default"
+                           SeparatorColor="#DCDEDE">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell Height="35">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="0.1*"/>
+                                        <ColumnDefinition Width="0.9*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Button Grid.Column="0" ImageSource="delete_button.png" BackgroundColor="Transparent"/>
+                                    <Label Grid.Column="1"  FontSize="17" TextColor="#000000"  Text="{Binding Name}" VerticalOptions="Center" FontFamily="{StaticResource Key=NormalFontRoboto}"/>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+
+        </Grid>
+
+
+    </ContentPage.Content>
+</ContentPage>

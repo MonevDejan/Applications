@@ -1,0 +1,262 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjectInsightMobile.App"
+             xmlns:customLabel="clr-namespace:ProjectInsightMobile.CustomControls">
+	<Application.Resources>
+        <ResourceDictionary>
+            <OnPlatform x:TypeArguments="x:String" x:Key="BoldFont">
+                <On Platform="Android" Value="OpenSans-SemiBold.ttf#Open Sans" />
+                <On Platform="iOS" Value="OpenSans-SemiBold" />
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="NormalFont">
+                <On Platform="Android" Value="OpenSans-Regular.ttf#Open Sans" />
+                <On Platform="iOS" Value="OpenSans-Regular" />
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="NormalFontRoboto">
+                <On Platform="Android" Value="Roboto-Medium.ttf#Roboto" />
+                <On Platform="iOS" Value="OpenSans-Regular" />
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="BoldFontRoboto">
+                <On Platform="Android" Value="Roboto-Bold.ttf#Roboto" />
+                <On Platform="iOS" Value="OpenSans-Regular" />
+            </OnPlatform>
+            <Color x:Key="Primary">#007AFF</Color>
+            <Color x:Key="PrimaryDark">#00548E</Color>
+            <Color x:Key="Accent">#fdac5c</Color>
+            <Color x:Key="AccentDark">#F38B00</Color>
+            <Color x:Key="LightBackgroundColor">#F2F2F2</Color>
+            <Color x:Key="LightBlue">#6a97d6</Color>
+            
+            <Color x:Key="BlackTextColor">#000000</Color>
+            <Color x:Key="DarkGrayTextColor">#727272</Color>
+            <Color x:Key="DarkDarkGray">#545454</Color>
+            <Color x:Key="LightGrayTextColor">#828282</Color>
+            <Color x:Key="LightTextColor">#B2B3B5</Color> 
+            <Color x:Key="LightBlackTextColor">#484849</Color>
+            
+            <Color x:Key="BorderLineTop">#F47D6E</Color>
+            <Color x:Key="BorderLineGray">#C8C7CC</Color>
+            <Color x:Key="BorderLineLiteGray">#e3e3e5</Color>
+            <Color x:Key="PendingColor">#F7BB49</Color>
+            <Color x:Key="ApprovedColor">#45B752</Color>
+            <Color x:Key="RejectedColor">#EB1426</Color>
+            <Color x:Key="RedTextColor">#FF3B30</Color>
+            <Color x:Key="GreenTextColor">#07aa07</Color>
+            <Color x:Key="YellowTextColor">#FFCC00</Color>
+            <Color x:Key="WhiteTextColor">#ffffff</Color>
+           
+
+            <Color x:Key="Blue1">#1674ba</Color>
+            <Color x:Key="Blue2">#07487d</Color>
+            <Color x:Key="Blue3">#001e38</Color>
+            
+            <x:String x:Key="formatcurrencyusa">{0:$#,##0.00;($#,##0.00);$0.00}</x:String>
+            <x:String x:Key="shortdate">{0:M/d/yy}</x:String>
+            
+            <!--<Style ApplyToDerivedTypes="true" TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="{StaticResource Blue1}" />
+                <Setter Property="BarTextColor" Value="{StaticResource WhiteTextColor}" />
+            </Style>-->
+            
+            
+          <Style  ApplyToDerivedTypes="true" TargetType="Label" >
+               <Setter Property="FontFamily" Value="{StaticResource NormalFont}" />
+                <Setter Property="TextColor" Value="{StaticResource BlackTextColor}" />
+            </Style>
+            <Style  ApplyToDerivedTypes="true" TargetType="Entry" >
+                <Setter Property="FontFamily" Value="{StaticResource NormalFontRoboto}" />
+                <Setter Property="TextColor" Value="{StaticResource BlackTextColor}" />
+            </Style>
+            <Style  ApplyToDerivedTypes="true" TargetType="DatePicker" >
+                <Setter Property="FontFamily" Value="{StaticResource NormalFont}" />
+                <Setter Property="TextColor" Value="{StaticResource BlackTextColor}" />
+            </Style>
+
+            <Style  ApplyToDerivedTypes="true" TargetType="Picker" >
+                <Setter Property="FontFamily" Value="{StaticResource NormalFont}" />
+                <Setter Property="TextColor" Value="{StaticResource BlackTextColor}" />
+            </Style>
+            <Style  ApplyToDerivedTypes="true" TargetType="customLabel:CustomLabel" >
+                <Setter Property="FontFamily" Value="{StaticResource NormalFont}" />
+                <Setter Property="TextColor" Value="{StaticResource BlackTextColor}" />
+            </Style>
+            <Style  TargetType="StackLayout" >
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="Spacing" Value="0" />
+                <Setter Property="Margin" Value="0" />
+            </Style>
+            
+            <Style x:Key="buttonStyle" TargetType="Button">
+                <Setter Property="HeightRequest" Value="60" />
+                <Setter Property="FontSize" Value="24" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="BackgroundColor" Value="#092742" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="FontFamily" Value="{StaticResource NormalFont}" />
+             </Style>
+
+            <Style TargetType="Button" Class="PrimaryButton">
+                <Setter Property="FontSize" Value="24" />
+                <Setter Property="CornerRadius" Value="5"  />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                <Setter Property="TextColor" Value="{StaticResource WhiteTextColor}" />
+                <Setter Property="BackgroundColor" Value="{StaticResource Primary}"/>
+                <Setter Property="Padding" Value="10,0"/>
+                <Setter Property="FontFamily" Value="{StaticResource NormalFont}"/>
+
+            </Style>
+            <Style TargetType="Button" Class="SecondaryButton">
+                <Setter Property="FontSize" Value="24" />
+                <Setter Property="CornerRadius" Value="5"  />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                <Setter Property="TextColor" Value="{StaticResource Primary}" />
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+                <Setter Property="Padding" Value="10,0"/>
+                <Setter Property="FontFamily" Value="{StaticResource NormalFont}"/>
+                <Setter Property="BorderColor" Value="{StaticResource Primary}"/>
+                <Setter Property="BorderWidth" Value="1"/>
+            </Style>
+
+            <Style TargetType="Button" x:Key="btnLightGray">
+                <Setter Property="FontSize" Value="17" />
+                <Setter Property="CornerRadius" Value="8"  />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                <Setter Property="TextColor" Value="#363531" />
+                <Setter Property="BackgroundColor" Value="#F2F2F2"/>
+                <Setter Property="HeightRequest" Value="50"/>
+                <Setter Property="FontFamily" Value="{StaticResource NormalFontRoboto}"/>
+                <Setter Property="BorderColor" Value="#F2F2F2"/>
+                <Setter Property="BorderWidth" Value="1"/>
+            </Style>
+            <Style TargetType="Button" x:Key="btnOrange">
+                <Setter Property="FontSize" Value="17" />
+                <Setter Property="CornerRadius" Value="8"  />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                <Setter Property="TextColor" Value="#363531" />
+                <Setter Property="BackgroundColor" Value="#FFB30F"/>
+                <Setter Property="HeightRequest" Value="50"/>
+                <Setter Property="FontFamily" Value="{StaticResource NormalFontRoboto}"/>
+                <Setter Property="BorderColor" Value="#FFB30F"/>
+                <Setter Property="BorderWidth" Value="1"/>
+            </Style>
+            <Style TargetType="Button" x:Key="btnLightBlue">
+                <Setter Property="FontSize" Value="17" />
+                <Setter Property="CornerRadius" Value="8"  />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                <Setter Property="TextColor" Value="#363531" />
+                <Setter Property="BackgroundColor" Value="#BAD4E3"/>
+                <Setter Property="HeightRequest" Value="50"/>
+                <Setter Property="FontFamily" Value="{StaticResource NormalFontRoboto}"/>
+                <Setter Property="BorderColor" Value="#BAD4E3"/>
+                <Setter Property="BorderWidth" Value="1"/>
+            </Style>
+
+            <Style TargetType="Button" x:Key="btnTransparentWhite">
+                <Setter Property="FontSize" Value="15" />
+                <Setter Property="Margin" Value="0"/>
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="TextColor" Value="#FFFFFF" />
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+                <Setter Property="HeightRequest" Value="20"/>
+                <Setter Property="FontFamily" Value="{StaticResource NormalFontRoboto}"/>
+            </Style>
+            <Style TargetType="Button" x:Key="btnGray">
+                <Setter Property="FontSize" Value="17" />
+                <Setter Property="CornerRadius" Value="8"  />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                <Setter Property="TextColor" Value="#363531" />
+                <Setter Property="BackgroundColor" Value="#D2D4D7"/>
+                <Setter Property="HeightRequest" Value="50"/>
+                <Setter Property="FontFamily" Value="{StaticResource NormalFontRoboto}"/>
+                <Setter Property="BorderColor" Value="#D2D4D7"/>
+                <Setter Property="BorderWidth" Value="1"/>
+            </Style>
+            <Style TargetType="Label" x:Key="PageTitleLabelWhite">
+                <Setter Property="FontSize" Value="28" />
+                <Setter Property="LineHeight" Value="1.33"/>
+                <Setter Property="LineBreakMode" Value="WordWrap"/>
+                <Setter Property="TextColor" Value="#FFFFFF" />
+                <Setter Property="FontFamily" Value="{StaticResource NormalFontRoboto}"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+            </Style>
+            <Style TargetType="Label" x:Key="PageTitleLabelDark">
+                <Setter Property="FontSize" Value="28" />
+                <Setter Property="LineHeight" Value="1.33"/>
+                <Setter Property="LineBreakMode" Value="WordWrap"/>
+                <Setter Property="TextColor" Value="#363531" />
+                <Setter Property="FontFamily" Value="{StaticResource NormalFontRoboto}"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+            </Style>
+            <!--<Style TargetType="StackLayout" x:Key="StackLayoutDark">
+                <Setter Property="Margin" Value="40,120,40,25" />
+                <Setter Property="BackgroundColor" Value="#3C6780"/>
+                <Setter Property="LineBreakMode" Value="WordWrap"/>
+                <Setter Property="TextColor" Value="#363531" />
+                <Setter Property="FontFamily" Value="{StaticResource NormalFontRoboto}"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+            </Style>-->
+            <Color x:Key="NavigationPrimary">#3C6780</Color>
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="{StaticResource NavigationPrimary}" />
+                <Setter Property="BarTextColor" Value="{StaticResource WhiteTextColor}" />
+
+            </Style>
+
+
+            <ControlTemplate x:Key="FooterTabs">
+                <Grid VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource Key=NavigationPrimary}" HeightRequest="65">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0"
+                            Text="Athletes" 
+                            BackgroundColor="{StaticResource NavigationPrimary}"
+                            HorizontalOptions="CenterAndExpand"
+                            ContentLayout="Top,0"
+                            Image="athletes_icon.png"
+                            TextColor="White" 
+                            FontSize="13" 
+                            VerticalOptions="FillAndExpand"   
+                            CommandParameter="1"/>
+                    <Button Grid.Column="1"
+                            Text="Parents" 
+                            BackgroundColor="{StaticResource NavigationPrimary}"
+                            HorizontalOptions="FillAndExpand"
+                            ContentLayout="Top,0"
+                            Image="parents_icon.png"
+                            TextColor="White" 
+                            FontSize="13" 
+                            VerticalOptions="FillAndExpand"                            
+                            CommandParameter="2"/>
+                    <Button Grid.Column="2"
+                            Text="Coaches" 
+                            BackgroundColor="{StaticResource NavigationPrimary}"
+                            HorizontalOptions="CenterAndExpand"
+                            ContentLayout="Top,0"
+                            Image="coaches_icon.png"
+                            TextColor="White" 
+                            FontSize="13"                            
+                            CommandParameter="3"/>
+                    <Button Grid.Column="3"
+                            Text="Groups"  
+                            BackgroundColor="{StaticResource NavigationPrimary}"
+                            HorizontalOptions="CenterAndExpand"
+                            ContentLayout="Top,5"
+                            Image="groups_icon.png"
+                            TextColor="White" 
+                            FontSize="13"
+                            />
+
+                </Grid>
+
+            </ControlTemplate>
+            
+            
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:navigation="clr-namespace:ProjectInsightMobile.Views"
+             x:Class="ProjectInsightMobile.Views.ExpenseReportDetails"
+             xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+            BackgroundColor="{StaticResource LightBackgroundColor}">
+
+    <!--<ContentPage.ToolbarItems>
+        <ToolbarItem Clicked="btnDeleteTimesheet_Clicked"  Text="Unsubmit" x:Name="btnDeleteTimesheet" />
+    </ContentPage.ToolbarItems>-->
+    <ContentPage.Content>
+        <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  >
+
+            <StackLayout Orientation="Vertical" Padding="0" Margin="0" Spacing="0" VerticalOptions="FillAndExpand"
+                          AbsoluteLayout.LayoutFlags="All" 
+                    AbsoluteLayout.LayoutBounds="0,0,1,1">
+                <StackLayout Spacing="0" Padding="0" VerticalOptions="FillAndExpand">
+                    <ScrollView Orientation="Vertical" Margin="0" Padding="0" >
+                        <StackLayout Orientation="Vertical" Padding="0" Margin="0" Spacing="0" VerticalOptions="FillAndExpand"  IsVisible="{Binding VisibleContent}">
+                            <StackLayout 
+                        
+                            Spacing="0"
+                            Orientation="Vertical"
+                            HorizontalOptions="CenterAndExpand" 
+                            VerticalOptions="StartAndExpand" Padding="0">
+
+                                <Label 
+                                Text="{Binding ActualCost, StringFormat={StaticResource formatcurrencyusa}}"  
+                                LineBreakMode="NoWrap" 
+                                HorizontalOptions="CenterAndExpand"
+                                TextColor="{StaticResource DarkGrayTextColor}" 
+                                FontSize="70" Margin="0" />
+                                <Label 
+                                Text="{Binding Path=PeriodFormated}"  
+                                LineBreakMode="NoWrap" 
+                                HorizontalOptions="CenterAndExpand"
+                                TextColor="{StaticResource DarkGrayTextColor}" 
+                                FontSize="20" Margin="0" />
+                                <Label 
+                                Text="{Binding Path=Name}"  
+                                LineBreakMode="NoWrap" 
+                                HorizontalOptions="CenterAndExpand"
+                                TextColor="{StaticResource DarkGrayTextColor}" 
+                                FontSize="20" Margin="0" />
+                                <!--<Label IsVisible="{Binding ShowStatus}"
+                                Text="{Binding Path=ApprovalStatusDescription}"  
+                                LineBreakMode="NoWrap" 
+                                HorizontalOptions="CenterAndExpand"
+                                TextColor="{StaticResource DarkGrayTextColor}" 
+                                FontSize="20" Margin="0" />-->
+
+                                <StackLayout IsVisible="{Binding ShowStatus}" x:Name="slStatus" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Orientation="Horizontal" Padding="0" Margin="0,10,0,0" Spacing="0">
+                                    <Image x:Name="statusIcon" HeightRequest="30" HorizontalOptions="Center"></Image>
+                                    <StackLayout x:Name="slAvatar" HeightRequest="50" WidthRequest="50" VerticalOptions="StartAndExpand" HorizontalOptions="StartAndExpand" Margin="15,0,0,0"></StackLayout>
+                                </StackLayout>
+
+
+                            </StackLayout>
+                            <StackLayout Spacing="15" Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" Padding="20,20,20,30" IsVisible="{Binding IsCurrent}" >
+                                <Button  Clicked="OnCreateTimeEntry" Text="Add Expense Entry" StyleClass="PrimaryButton" ></Button>
+                                <Button  Clicked="OnSubmitExpenseReport" Text="Submit Expense Report" StyleClass="SecondaryButton"  IsVisible="{Binding IsVisibleSubmitButton}"></Button>
+                            </StackLayout>
+
+                            <StackLayout Orientation="Vertical" IsVisible="{Binding RequiresApprovalFromCurrentUser}" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" Padding="20,20,20,0" >
+                                <Button  Clicked="OnApprove" Text="Approve" StyleClass="PrimaryButton" Margin="0,0,0,10" ></Button>
+                                <Button  Clicked="OnReject" Text="Reject" StyleClass="SecondaryButton" Margin="0,0,0,10" ></Button>
+                            </StackLayout>
+                            
+                            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Margin="0,20,0,0" Padding="0,0,0,0" BackgroundColor="{StaticResource WhiteTextColor}" VerticalOptions="FillAndExpand" Spacing="0" x:Name="slParent">
+                                <syncfusion:SfListView x:Name="listView" AllowSwiping="True"  SwipeEnded="ListView_SwipeEnded" SwipeStarted="ListView_SwipeStarted"
+                                                       BackgroundColor="{StaticResource LightBackgroundColor}"
+                   ItemsSource="{Binding ExpenseEntries}"   IsScrollBarVisible="False" ColumnSpacing="0" RowSpacing="0" ItemSpacing="0"
+                   ItemSize="80" >
+                                    <syncfusion:SfListView.RightSwipeTemplate>
+                                        <DataTemplate x:Name="RightSwipeTemplate">
+                                            <Grid Padding="0" Margin="0">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="1" />
+                                                    <RowDefinition Height="*" />
+                                                </Grid.RowDefinitions>
+
+                                                <BoxView  Grid.Row="0" Color="{StaticResource DarkGrayTextColor}" HeightRequest="1" Margin="0" VerticalOptions="Center" HorizontalOptions="FillAndExpand"></BoxView>
+                                                <Grid Grid.Row="1"  BackgroundColor="{StaticResource LightBackgroundColor}" Margin="0" Padding="0" HorizontalOptions="Fill" VerticalOptions="Fill" Grid.Column="0">
+                                                    <Grid.GestureRecognizers>
+                                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                                                    </Grid.GestureRecognizers>
+                                                    <Grid VerticalOptions="Center" HorizontalOptions="Center">
+                                                        <Image Grid.Column="0"
+                                                               
+                                                            Grid.Row="0"
+                                                            HeightRequest="35"
+                                                            WidthRequest="35" 
+                                                            Source="rejected.png" />
+                                                    </Grid>
+                                                </Grid>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </syncfusion:SfListView.RightSwipeTemplate>
+                                    <syncfusion:SfListView.ItemTemplate>
+                                        <DataTemplate>
+
+
+                                            <Grid x:Name="grid"  Padding="0" Margin="0">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="1" />
+                                                    <RowDefinition Height="*" />
+                                                </Grid.RowDefinitions>
+                                                <BoxView  Grid.Row="0" Color="{StaticResource DarkGrayTextColor}" HeightRequest="1" Margin="0" VerticalOptions="Center" HorizontalOptions="FillAndExpand"></BoxView>
+                                                <Grid  Grid.Row="1" Padding="0" Margin="0">
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="0.4*" />
+                                                        <RowDefinition Height="0.3*" />
+                                                        <RowDefinition Height="0.3*" />
+                                                    </Grid.RowDefinitions>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*" />
+                                                        <ColumnDefinition Width="Auto" />
+                                                    </Grid.ColumnDefinitions>
+
+                                                   <Label Margin="20,0,0,0" Grid.Row="0" Grid.Column="0"  Text="{Binding FirstLine}" TextColor="Black" FontSize="18" LineBreakMode="NoWrap" />
+                                                    <Label Margin="0,0,20,0" Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" HorizontalTextAlignment="End" VerticalTextAlignment="Center" Text="{Binding ActualCost, StringFormat={StaticResource formatcurrencyusa}}" TextColor="Black" FontSize="22"  LineBreakMode="NoWrap"/>
+                                                    <Label Margin="20,0,0,0" Grid.Row="1" VerticalTextAlignment="Start" Grid.Column="0" Text="{Binding SecondLine}" FontAttributes="Bold" TextColor="Black" FontSize="14"  LineBreakMode="NoWrap"/>
+                                                    <Label Margin="20,0,0,0" Grid.Row="2" VerticalTextAlignment="Start" Grid.Column="0" Text="{Binding ThirdLine}" FontAttributes="Bold" TextColor="Black" FontSize="12"  LineBreakMode="NoWrap"/>
+
+                                                </Grid>
+                                            </Grid>
+                                          
+                                         
+                                        </DataTemplate>
+                                    </syncfusion:SfListView.ItemTemplate>
+                                </syncfusion:SfListView>
+                                <BoxView  Color="{StaticResource DarkGrayTextColor}" HeightRequest="1" Margin="0" VerticalOptions="Center" HorizontalOptions="FillAndExpand"></BoxView>
+                            </StackLayout>
+                        </StackLayout>
+                    </ScrollView>
+
+                </StackLayout>
+               
+
+                <navigation:BottomNavigationBar></navigation:BottomNavigationBar>
+            </StackLayout>
+
+
+            <ActivityIndicator 
+                    AbsoluteLayout.LayoutFlags="PositionProportional" IsVisible="{Binding VisibleLoad}"
+                    AbsoluteLayout.LayoutBounds=".5, .1"
+                    IsRunning="True" 
+                    Color="{StaticResource Primary}"
+                    />
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

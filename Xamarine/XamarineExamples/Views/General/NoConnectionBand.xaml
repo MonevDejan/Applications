@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjectInsightMobile.Views.NoConnectionBand"
+              > 
+    <ContentView.Content>
+       <StackLayout x:Name="el1" IsVisible="False"  Margin="0" Spacing="0" Padding="0" BackgroundColor="{StaticResource RedTextColor}"  HorizontalOptions="FillAndExpand" >
+            <StackLayout  x:Name="el2" IsVisible="False"   Padding ="0,5"
+                                     Orientation="Horizontal"
+                                     VerticalOptions="FillAndExpand"
+                                     HorizontalOptions="CenterAndExpand"
+                                     >
+                <Image  x:Name="el3"  IsVisible="False" Source="exclam_mark.png" Margin="5,0" HeightRequest="30" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"></Image>
+                <Label  IsVisible="False" TextColor="{StaticResource WhiteTextColor}" FontSize="18" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" VerticalTextAlignment="Center"   x:Name="lblDescription"></Label>
+            </StackLayout>
+        </StackLayout>
+
+    </ContentView.Content>
+</ContentView>

@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:navigation="clr-namespace:ProjectInsightMobile.Views"
+             x:Class="ProjectInsightMobile.Views.CompanyFilter"
+             Title="Company Filter"
+             xmlns:comboBox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+             BackgroundColor="{StaticResource LightBackgroundColor}"
+            >
+    <ContentPage.Content>
+        <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  >
+            <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" Padding="0" Margin="0" Spacing="0"
+                         AbsoluteLayout.LayoutFlags="All" 
+                    AbsoluteLayout.LayoutBounds="0,0,1,1">
+                <StackLayout Spacing="0" Padding="0"  VerticalOptions="FillAndExpand" >
+                    <StackLayout Orientation="Vertical" Padding="0" Margin="0" Spacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" IsVisible="{Binding VisibleContent}">
+                       
+                        <StackLayout Spacing="0" HorizontalOptions="FillAndExpand" Padding="20,20,20,0">
+                          <Frame BorderColor="{StaticResource DarkGrayTextColor}" CornerRadius="5"
+                                 Padding="10,0,0,0" Margin="0"  HeightRequest="50"
+                                 HasShadow="False" BackgroundColor="{StaticResource LightBackgroundColor}"  >
+                            <comboBox:SfComboBox x:Name="cmbCompanies"  
+                                    SuggestionMode="Contains"
+                                    AllowFiltering="False"
+                                    IsEditableMode="True"
+                                    DisplayMemberPath="Name"
+                                    SelectedItem="{Binding SelectedCompany}" 
+                                    DataSource="{Binding Companies}"
+                                    ImageMemberPath="UrlIcon"
+                                    Watermark="Select Company"
+                                    SelectionChanged="CmbCompanies_SelectionChanged"
+                                        
+                                        DropDownItemHeight="40"
+                                        BorderColor="{StaticResource LightBackgroundColor}"
+                                        TextSize="20"
+                                    >
+
+                                    </comboBox:SfComboBox>
+                            </Frame>
+
+                        </StackLayout>
+                      
+                      
+                        <StackLayout Spacing="15" Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" Padding="20,20,20,30" >
+
+
+                          <Button Clicked="OnSubmit" Text="Filter" StyleClass="PrimaryButton" Margin="4,20,4,4"></Button>
+                          <Button Clicked="OnCancel" Text="Clear Filter" StyleClass="SecondaryButton" Margin="4,10,4,4" ></Button>
+                         
+                     
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+                <navigation:BottomNavigationBar/>
+            </StackLayout>
+            <ActivityIndicator 
+                    AbsoluteLayout.LayoutFlags="PositionProportional" IsVisible="{Binding VisibleLoad}"
+                    AbsoluteLayout.LayoutBounds=".5, .1"
+                    IsRunning="{Binding VisibleLoad}" 
+                    Color="{StaticResource Primary}"
+                    />
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

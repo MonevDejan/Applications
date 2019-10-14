@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms" 
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    x:Class="SafeSportChat.Views.ResourceDictionaries.InsertPhoneLabel"
+                    xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
+                    xmlns:mo="clr-namespace:SafeSportChat.Models"
+                    xmlns:bh="clr-namespace:SafeSportChat.Behaviors"
+                    xmlns:ce="clr-namespace:SafeSportChat">
+    <!--#region InsertPhoneLabel-->
+    <ControlTemplate x:Key="PhoneLabel">
+        <Grid ColumnSpacing="0">
+            <Grid.BindingContext>
+                <mo:CountryList/>
+            </Grid.BindingContext>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.3*"/>
+                <ColumnDefinition Width="0.7*"/>
+            </Grid.ColumnDefinitions>
+
+            <!--#region DropDownContryNumber-->
+            <combobox:SfComboBox HeightRequest="40" 
+                            Grid.Column="0" 
+                            x:Name="comboBox" 
+                            DisplayMemberPath="CountryStringsConcatinated"
+                            DataSource="{Binding Countries}"
+                            FontFamily="{StaticResource Key=NormalFontRoboto}"  
+                            Text="US+1"
+                            TextColor="#3C6780"
+                            TextSize="15" 
+                            ShowBorder="False"
+                            ItemPadding="0,12"
+                            >
+                <combobox:SfComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Orientation="Horizontal">
+                            
+                            <Label Text="{Binding CountryStringsConcatinated}"
+                                TextColor="#3C6780"
+                                FontSize="17"
+                                Margin="10,0"
+                                />
+                            
+                        </StackLayout>
+                    </DataTemplate>
+                </combobox:SfComboBox.ItemTemplate>
+            </combobox:SfComboBox>
+            <!--#endregion DropDownContryNumber-->
+
+            <!--#region EnterNumber-->
+            <ce:CustomEntry x:Name="txtPhone"
+                        Grid.Column="1" 
+                        Placeholder="Phone Number"  
+                        FontSize="17" 
+                        PlaceholderColor="#3C6780" 
+                        Opacity="0.5" 
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="Fill" 
+                        HorizontalTextAlignment="Start" 
+                        Keyboard="Telephone">
+                <Entry.Behaviors>
+                    <bh:MaskPhoneBehavior Mask="(XXX) XXX-XXXX" />
+                </Entry.Behaviors>
+            </ce:CustomEntry>
+            <!--#endregion EnterNumber-->
+        </Grid>
+    </ControlTemplate>
+    <!--#endregion InsertPhoneLabel-->
+</ResourceDictionary>

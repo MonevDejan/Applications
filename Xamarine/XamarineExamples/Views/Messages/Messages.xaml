@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SafeSportChat.Views.Messages"
+             
+             xmlns:sync="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             xmlns:local="clr-namespace:SafeSportChat;assembly=SafeSportChat"
+            >
+
+
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <local:MyDataTemplateSelector x:Key="MessageTemplateSelector"></local:MyDataTemplateSelector>
+    </ResourceDictionary>
+  </ContentPage.Resources>
+  
+  
+    <NavigationPage.TitleView>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.1*"/>
+                <ColumnDefinition Width="0.9*"/>
+            </Grid.ColumnDefinitions>
+
+
+            <Button Grid.Column="0" Image="back-arrow.png" Clicked="Back_Onclicked" TextColor="#FFB30F" HorizontalOptions="Start" BackgroundColor="Transparent" FontSize="30" Padding="0" Margin="-15,0,0,0"/>
+            <Label Grid.Column="1" Text="{Binding Title}" TextColor="#FFFFFF" FontSize="22" LineHeight="26"  HorizontalOptions="Center" Margin="-30,0,0,0" VerticalOptions="Center"/>
+          
+        </Grid>
+       
+    </NavigationPage.TitleView>
+    
+    
+    
+    <ContentPage.Content>
+
+
+
+
+      <Grid RowSpacing="0">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="*"/>
+          <RowDefinition Height="70"/>
+        </Grid.RowDefinitions>
+      
+
+
+          <sync:SfListView x:Name="ListView" Grid.Row="0"
+            ItemTemplate="{StaticResource MessageTemplateSelector}"
+            ItemsSource="{Binding Messages}"
+            ItemSize="105" SelectionMode="None" BackgroundColor="White"/>
+
+
+            <StackLayout Grid.Row="1"  Orientation="Horizontal" BackgroundColor="#EEF0F2">
+                <Image Source="pipeyellow.png" Margin="15,0,0,0"></Image>
+                <Entry x:Name="txtMessageText" Margin="10, 10,0,0" WidthRequest="200" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Start" Placeholder="Send a Safe Text" PlaceholderColor="#BAD4E3" ></Entry>
+                
+                <Button Image="likeblack.png" Clicked="Like_OnClicked" BackgroundColor="Transparent"  HorizontalOptions="End"/>
+                <Button Image="attachment.png" Clicked="Attachment_OnClicked" BackgroundColor="Transparent"  HorizontalOptions="End" />
+            </StackLayout>
+          
+      </Grid>
+      
+      
+
+
+    </ContentPage.Content>
+</ContentPage>

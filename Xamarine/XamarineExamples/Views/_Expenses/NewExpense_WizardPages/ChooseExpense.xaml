@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjectInsightMobile.Views.ChooseExpense"
+             xmlns:navigation="clr-namespace:ProjectInsightMobile.Views"
+             Title="Add">
+    <ContentPage.Content>
+
+
+        <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  >
+            <StackLayout Orientation="Vertical"  
+                         VerticalOptions="FillAndExpand"
+                         AbsoluteLayout.LayoutFlags="All" 
+                         AbsoluteLayout.LayoutBounds="0,0,1,1">
+                <StackLayout VerticalOptions="FillAndExpand" >
+                    <StackLayout VerticalOptions="FillAndExpand" IsVisible="{Binding VisibleContent}" Orientation="Vertical" Padding="20,0">
+                        <Label FontSize="22" HorizontalTextAlignment="Center" Margin="0,40" >Choose Expense:</Label>
+                        <StackLayout Spacing="20">
+                            <Button  Clicked="Receipt_Tapped" Text="Receipt" StyleClass="PrimaryButton" ></Button>
+                            <Button  Clicked="Miles_Tapped" Text="Mileage" StyleClass="SecondaryButton" ></Button>
+                            <Button  Clicked="Inventory_Tapped" Text="Other" StyleClass="SecondaryButton" ></Button>
+                            <Button  Clicked="Supplies_Tapped" Text="Supplies" StyleClass="SecondaryButton" x:Name="btnSupplies" ></Button>
+                            <Button  Clicked="Test_Tapped" Text="Take Photo POC" StyleClass="SecondaryButton" IsVisible="False" ></Button>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+                <navigation:BottomNavigationBar />
+            </StackLayout>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

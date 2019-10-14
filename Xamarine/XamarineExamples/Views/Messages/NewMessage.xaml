@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SafeSportChat.Views.NewMessage"
+            >
+
+
+
+
+    <NavigationPage.TitleView>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.8*"/>
+                <ColumnDefinition Width="0.2*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Column="0" Text="{Binding Title}" TextColor="#FFFFFF" FontSize="22" LineHeight="26"  HorizontalOptions="Center" Margin="-30,0,0,0" VerticalOptions="Center"/>
+            <Button Grid.Column="1" Text="Cancel" Clicked="Cancel_OnClicked" TextColor="#FFB30F" 
+                    HorizontalOptions="End" BackgroundColor="Transparent" FontSize="12" Padding="0" />
+        </Grid>
+
+    </NavigationPage.TitleView>
+    
+
+
+    <ContentPage.Content>
+        
+        <Grid RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="70"/>
+            </Grid.RowDefinitions>
+            
+            <StackLayout Grid.Row="0"  Padding="15,10,15,30" Orientation="Horizontal">
+                    <Label Margin="10,10,0,0" Text="To:"></Label>
+                    <Image Margin="2,2,0,0" Source="pipeyellow.png"></Image>
+                    <Entry HorizontalOptions="StartAndExpand" ></Entry>
+                    <Button Grid.Column="2" Image="plusblue.png" Clicked="AddParticipants_OnClicked" TextColor="#FFB30F" HorizontalOptions="End" BackgroundColor="Transparent" FontSize="30" Padding="0" />
+            </StackLayout>
+
+            <StackLayout Grid.Row="1"  Padding="15,10,15,30">
+                <Image Source="logobig.png"></Image>
+            </StackLayout>
+
+            <StackLayout Grid.Row="2"  Orientation="Horizontal" BackgroundColor="#EEF0F2">
+                <Image Source="pipeyellow.png" Margin="15,0,0,0"></Image>
+                <Entry x:Name="txtMessageText" Margin="10, 10,0,0" WidthRequest="200" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Start" Placeholder="Send a Safe Text" PlaceholderColor="#BAD4E3" ></Entry>
+
+                <Button Image="likeblack.png" Clicked="Like_OnClicked" BackgroundColor="Transparent"  HorizontalOptions="End"/>
+                <Button Image="attachment.png" Clicked="Attachment_OnClicked" BackgroundColor="Transparent"  HorizontalOptions="End" />
+            </StackLayout>
+            
+        </Grid>
+        
+        
+    </ContentPage.Content>
+</ContentPage>

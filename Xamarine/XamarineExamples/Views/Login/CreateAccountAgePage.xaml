@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SafeSportChat.Views.Login.CreateAccountAgePage"
+             xmlns:local="clr-namespace:SafeSportChat"
+             NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Resources>
+        <local:isValidBtnBackgroundColor x:Key="isValidBtnBackgroundColor" />
+    </ContentPage.Resources>
+    
+    <ContentPage.Content>
+        <StackLayout  BackgroundColor="#BAD4E3"  VerticalOptions="FillAndExpand" Margin="0" Padding="0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <StackLayout  Margin="40,120,40,10" Grid.Row="0" HorizontalOptions="Center">
+                    <Label Margin="0,0,0,0" HorizontalTextAlignment="Center" Text="When were you born?" HorizontalOptions="Fill"
+                   FontSize="28" LineHeight="1.33" TextColor="#363531" FontFamily="{StaticResource Key=NormalFontRoboto}" LineBreakMode="WordWrap" />
+                </StackLayout>
+                <StackLayout Grid.Row="1" Padding="40,0,40,0">
+                    <Frame BackgroundColor="#FFFFFF" CornerRadius="10" Margin="0" Padding="22,0,10,0" VerticalOptions="Center" HeightRequest="50" HasShadow="False">
+                        <DatePicker x:Name="dtp" DateSelected="Dtp_DateSelected" FontFamily="{StaticResource Key=NormalFontRoboto}"  FontSize="17" TextColor="#3C6780" Opacity="0.5" VerticalOptions="Center" HorizontalOptions="Center"/>
+                    </Frame>
+                    <Button  IsEnabled="{Binding isValid}" BackgroundColor="{Binding isValid, Converter={StaticResource isValidBtnBackgroundColor}}" 
+                             Text="Next" TextColor="#363531" FontSize="20" FontFamily="{StaticResource Key=NormalFontRoboto}" CornerRadius="10" HeightRequest="50" Margin="0,20,0,20" Clicked="NextButton_Clicked" />
+                </StackLayout>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

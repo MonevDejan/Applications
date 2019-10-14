@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjectInsightMobile.Views.ApprovalRequestPage"
+             xmlns:customControls="clr-namespace:ProjectInsightMobile.Views" 
+             >
+
+    <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  >
+        <StackLayout Orientation="Vertical" Padding="0" Spacing="0"  
+                     AbsoluteLayout.LayoutFlags="All" 
+                    AbsoluteLayout.LayoutBounds="0,0,1,1">
+
+            <StackLayout Spacing="0" Padding="0"  VerticalOptions="FillAndExpand" >
+                <BoxView HeightRequest="3" Color="{StaticResource BorderLineTop}" />
+
+                <ScrollView VerticalOptions="FillAndExpand" >
+
+                    <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand"  Padding="0" Margin="0" Spacing="0"  IsVisible="{Binding VisibleContent}">
+                        <StackLayout Margin="0,0" Padding="20,5" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource LightBackgroundColor}" >
+                            <Label 
+                                HorizontalOptions="FillAndExpand" 
+                               HorizontalTextAlignment="Start"
+                                FontSize="20"
+                                TextColor="{StaticResource BlackTextColor}"
+                                Text="{Binding Title}"  
+                                LineBreakMode="WordWrap"
+                                 />
+
+                        </StackLayout>
+                        <StackLayout IsVisible="{Binding isStatusVisible}" Spacing="15" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Padding="0,25,0,0" >
+                         
+                                <Label 
+                                            FontSize="22" 
+                                            HorizontalTextAlignment="Center" 
+                                            HorizontalOptions="CenterAndExpand" 
+                                            VerticalTextAlignment="Center"  
+                                            TextColor="{Binding StatusColor}" 
+                                            Text="{Binding Status}"
+                                            FontFamily="{StaticResource BoldFont}"
+                                        />
+                            <Image x:Name="imgStatus" Source="{Binding StatusIcon}" HeightRequest="30"></Image>
+                         
+                        </StackLayout>
+                        <StackLayout HorizontalOptions="CenterAndExpand" Padding="10,15,10,0" IsVisible="{Binding isRequestedByVisible}">
+                            <Label 
+                                            FontSize="20" 
+                                            HorizontalTextAlignment="Center" 
+                                            HorizontalOptions="CenterAndExpand" 
+                                            VerticalTextAlignment="Center"  
+                                            Text="{Binding RequestedBy}"
+                                        />
+                        </StackLayout>
+                        <StackLayout HorizontalOptions="CenterAndExpand" Padding="10,15,10,0" IsVisible="{Binding isRequestedDateVisible}">
+                            <Label 
+                                            FontSize="20" 
+                                            HorizontalTextAlignment="Center" 
+                                            HorizontalOptions="CenterAndExpand" 
+                                            VerticalTextAlignment="Center"  
+                                            Text="{Binding RequestedDate}"
+                                        />
+                        </StackLayout>
+
+                        <StackLayout HorizontalOptions="CenterAndExpand" Padding="10,15,10,0" IsVisible="{Binding isDescriptionVisible}">
+                            <Label 
+                                            FontSize="16" 
+                                            HorizontalTextAlignment="Center" 
+                                            HorizontalOptions="CenterAndExpand" 
+                                            VerticalTextAlignment="Center"  
+                                            Text="{Binding Description}"
+                                        />
+                        </StackLayout>
+
+                        <StackLayout HorizontalOptions="CenterAndExpand" Padding="10,15,10,0"  IsVisible="{Binding isDeadlineDateVisible}">
+                            <Label 
+                                            FontSize="20" 
+                                            HorizontalTextAlignment="Center" 
+                                            HorizontalOptions="CenterAndExpand" 
+                                            VerticalTextAlignment="Center"  
+                                            Text="{Binding DeadlineDate}"
+                                        />
+                        </StackLayout>
+
+                        <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal" Padding="0,15,0,0" Spacing="10"   x:Name="slApprovers"> 
+                        
+                        </StackLayout>
+
+                        <StackLayout Orientation="Vertical" IsVisible="{Binding Path=RequiresApprovalFromCurrentUser}" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" Padding="20,20,20,0" >
+
+                          <Button Clicked="OnApprove" Text="Approve" StyleClass="PrimaryButton" Margin="0,0,0,10"></Button>
+                          <Button Clicked="OnReject" Text="Reject" StyleClass="SecondaryButton"  ></Button>
+                          
+                      
+                        </StackLayout>
+
+                        <StackLayout Orientation="Vertical" x:Name="slItems" HorizontalOptions="FillAndExpand" Spacing="0" Padding="0,15,0,0">
+                            <!--<BoxView HeightRequest="1" Color="{StaticResource LightGrayTextColor}" HorizontalOptions="FillAndExpand"></BoxView>-->
+                            <StackLayout Margin="0" Padding="0" Orientation="Horizontal"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Spacing="0" BackgroundColor="{StaticResource LightBackgroundColor}" >
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnTappedItems"/>
+                                </StackLayout.GestureRecognizers>
+                                <!--<BoxView HeightRequest="1" Color="{StaticResource DarkGrayTextColor}" HorizontalOptions="FillAndExpand"></BoxView>-->
+
+                                <Frame HasShadow="False" BackgroundColor="{StaticResource LightBackgroundColor}"
+                       Padding="0,1,0,0"
+                       HorizontalOptions="FillAndExpand" 
+                       VerticalOptions="FillAndExpand"
+                       CornerRadius="0"
+                       HeightRequest="60"
+                      >
+
+                                    <AbsoluteLayout  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+
+                                        <Label  AbsoluteLayout.LayoutBounds=".5,.5" AbsoluteLayout.LayoutFlags="PositionProportional"
+                        FontSize="25" 
+                        HorizontalTextAlignment="Center" 
+                        HorizontalOptions="CenterAndExpand" 
+                        VerticalTextAlignment="Center"  
+                        Text="Items"
+                    />
+                                        <Image AbsoluteLayout.LayoutBounds="1,.5" AbsoluteLayout.LayoutFlags="PositionProportional"
+                            x:Name="showHideIcon"
+                            Source="{Binding ShowHideIcon}"  
+                            Margin="0,10,20,10"
+                            VerticalOptions="Center" 
+                            HorizontalOptions="End"
+                            HeightRequest="25" />
+                                    </AbsoluteLayout>
+                                </Frame>
+                            </StackLayout>
+                            <!--<BoxView HeightRequest="1" Color="{StaticResource LightGrayTextColor}" HorizontalOptions="FillAndExpand" Margin="0"></BoxView>-->
+                            <StackLayout Padding="0" IsVisible="{Binding IsExpandedList}" >
+
+                                <StackLayout IsVisible="{Binding IsExpandedList}" x:Name="slItemList" VerticalOptions="FillAndExpand"  HorizontalOptions="FillAndExpand"  Padding="0" Spacing="0" Margin="0" >
+                                    
+                                </StackLayout>
+                            </StackLayout>
+                        </StackLayout>
+
+                        <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Spacing="0" Padding="0,15,0,0">
+                            
+                            <customControls:CommentsCustomView ItemId="{Binding Id}" Margin="20,15,20,0"  ItemName="{Binding Name}" />
+                        </StackLayout>
+                    </StackLayout>
+
+                </ScrollView>
+            </StackLayout>
+
+            <customControls:BottomNavigationBar/>
+        </StackLayout>
+        <ActivityIndicator 
+                    AbsoluteLayout.LayoutFlags="PositionProportional" IsVisible="{Binding VisibleLoad}"
+                    AbsoluteLayout.LayoutBounds=".5, .1"
+                    IsRunning="True" 
+                    Color="{StaticResource Primary}"
+                    />
+    </AbsoluteLayout>
+</ContentPage>

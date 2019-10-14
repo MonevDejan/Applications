@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="{Binding Title}"
+             x:Class="ProjectInsightMobile.Views.DocumentsPage"
+             xmlns:pages="clr-namespace:ProjectInsightMobile.Views"
+             xmlns:navigation="clr-namespace:ProjectInsightMobile.Views"
+             xmlns:customComponent="clr-namespace:ProjectInsightMobile.CustomControls"
+              xmlns:ffimageloadingSvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             x:Name="BrowseItemsPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Clicked="AddItem_Clicked" Icon="plus_add.png"  />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+       
+        <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+            <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" 
+                         BackgroundColor="{StaticResource WhiteTextColor}" Spacing="0" Padding="0">
+                <StackLayout VerticalOptions="FillAndExpand" Padding="23,0,0,0" IsVisible="{Binding VisibleContent}" >
+
+                    <ListView 
+                    x:Name="ItemsListViewDroid" 
+                    ItemsSource="{Binding Items}"
+                    VerticalOptions="FillAndExpand"
+                    HasUnevenRows="true"
+                    RefreshCommand="{Binding LoadItemsCommand}"
+                    IsPullToRefreshEnabled="true"
+                    IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                    CachingStrategy="RecycleElement"
+                    HorizontalOptions="FillAndExpand"
+                    BackgroundColor="{StaticResource WhiteTextColor}" 
+                 >
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+
+                                    <customComponent:SwipeGestureGrid
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand" 
+                                SwipeLeft="GridTemplate_SwipeLeft"
+                                SwipeRight="GridTemplate_SwipeRight"
+                                Tapped="GridTemplate_Tapped"
+                                
+                                >
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions >
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="0" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <ffimageloadingSvg:SvgCachedImage   
+                                         HorizontalOptions="Start"
+                                                    VerticalOptions="CenterAndExpand"  
+			                                        WidthRequest="35" 
+                                                    HeightRequest="35"
+			                                        DownsampleToViewSize="true"
+                                                    RetryCount="3"
+                                                    RetryDelay="200"  
+                                                    ErrorPlaceholder = "error.png"
+                                                    LoadingPlaceholder = "load.gif"
+			                                        Source = "{Binding Icon}"
+                                                />
+                                        <StackLayout Padding="60,10,35,0" Spacing="0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+
+
+                                            <Label 
+                                            Text="{Binding Name}" 
+                                            LineBreakMode="NoWrap" 
+                                            
+                                            FontAttributes="Bold"
+                                             
+                                            FontSize="16" />
+                                        </StackLayout>
+                                        <StackLayout Padding="0" Grid.Column="1" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource Accent}"   Orientation="Vertical"  >
+                                            <StackLayout VerticalOptions="CenterAndExpand">
+
+                                                <Label Text="X" 
+                                                LineBreakMode="NoWrap" 
+                                                TextColor="{StaticResource WhiteTextColor}"
+                                                VerticalTextAlignment="Center"
+                                                HorizontalTextAlignment="Center"
+                                                FontAttributes="Bold" 
+                                                FontSize="26" />
+                                                <Label Text="Hide" 
+                                                LineBreakMode="NoWrap"
+                                                VerticalTextAlignment="Center"
+                                                HorizontalTextAlignment="Center"
+                                                TextColor="{StaticResource WhiteTextColor}"
+                                                Style="{DynamicResource ListItemDetailTextStyle}"
+                                                FontSize="13" />
+                                            </StackLayout>
+                                        </StackLayout>
+                                        <!--<customComponent:ImageButton Grid.Column="1"  Source="option_1.png" HeightRequest="50" VerticalOptions="CenterAndExpand"  />-->
+                                    </customComponent:SwipeGestureGrid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <ListView 
+                    x:Name="ItemsListViewiOS" 
+                    ItemsSource="{Binding Items}"
+                    VerticalOptions="FillAndExpand"
+                    HasUnevenRows="true"
+                    RefreshCommand="{Binding LoadItemsCommand}"
+                    IsPullToRefreshEnabled="true"
+                    IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                    CachingStrategy="RecycleElement"
+                    HorizontalOptions="FillAndExpand"
+                    BackgroundColor="{StaticResource WhiteTextColor}" 
+                 >
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <ViewCell.ContextActions>
+                                        <MenuItem Clicked="OnHide" Text="Hide" IsDestructive="True" x:Name="menuItem"/>
+                                    </ViewCell.ContextActions>
+                                    <Grid x:Name="grdItems">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions >
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="0" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.GestureRecognizers >
+                                            <TapGestureRecognizer Tapped="GridTemplate_Tapped"></TapGestureRecognizer>
+                                        </Grid.GestureRecognizers>
+
+                                        <ffimageloadingSvg:SvgCachedImage   
+                                        HorizontalOptions="Start"
+                                                    VerticalOptions="CenterAndExpand"  
+			                                        WidthRequest="35" 
+                                                    HeightRequest="35"
+			                                        DownsampleToViewSize="true"
+                                                    RetryCount="3"
+                                                    RetryDelay="200"  
+                                                    ErrorPlaceholder = "error.png"
+                                                    LoadingPlaceholder = "load.gif"
+			                                        Source = "{Binding Icon}"
+                                                />
+
+                                        <StackLayout Padding="60,10,35,0" Spacing="0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                                            <Label 
+                                            Text="{Binding Name}" 
+                                            LineBreakMode="NoWrap" 
+                                            
+                                            FontAttributes="Bold"
+                                             
+                                            FontSize="16" />
+
+
+                                        </StackLayout>
+                                        <StackLayout Padding="0" Grid.Column="1" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource Accent}"   Orientation="Vertical"  >
+                                            <StackLayout VerticalOptions="CenterAndExpand">
+
+                                                <Label Text="X" 
+                                                LineBreakMode="NoWrap" 
+                                                TextColor="{StaticResource WhiteTextColor}"
+                                                VerticalTextAlignment="Center"
+                                                HorizontalTextAlignment="Center"
+                                                FontAttributes="Bold" 
+                                                FontSize="26" />
+                                                <Label Text="Hide" 
+                                                LineBreakMode="NoWrap"
+                                                VerticalTextAlignment="Center"
+                                                HorizontalTextAlignment="Center"
+                                                TextColor="{StaticResource WhiteTextColor}"
+                                                Style="{DynamicResource ListItemDetailTextStyle}"
+                                                FontSize="13" />
+                                            </StackLayout>
+                                        </StackLayout>
+                                        <!--<customComponent:ImageButton Grid.Column="1"  Source="option_1.png" HeightRequest="50" VerticalOptions="CenterAndExpand"  />-->
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+
+                </StackLayout>
+                <ActivityIndicator Margin="0,20,0,0"
+                    AbsoluteLayout.LayoutFlags="PositionProportional" IsVisible="{Binding VisibleLoad}"
+                    AbsoluteLayout.LayoutBounds=".5, .1"
+                    IsRunning="{Binding VisibleLoad}" 
+                    Color="{StaticResource Primary}"
+                    />
+                <StackLayout x:Name="layoutShowHidden" IsVisible="False" Padding="20" HorizontalOptions="FillAndExpand"  Orientation="Horizontal" BackgroundColor="{StaticResource LightBackgroundColor}"  VerticalOptions="End" >
+
+                    <Frame HasShadow="False" 
+                    HorizontalOptions="CenterAndExpand"
+                    CornerRadius="5"
+                    Padding="15,3,15,3"
+                    BackgroundColor="{StaticResource BorderLineGray}"
+                    >
+                        <Label 
+                        FontSize="18" 
+                        VerticalTextAlignment="Center"  
+                        HorizontalTextAlignment="Center" 
+                         
+                        
+                        Text="Show Hidden"
+                    />
+                    </Frame>
+                </StackLayout>
+                <navigation:BottomNavigationBar></navigation:BottomNavigationBar>
+            </StackLayout>
+            <StackLayout x:Name="lblNoItems" IsVisible="{Binding NoItems}" VerticalOptions="CenterAndExpand" HorizontalOptions="Center"     AbsoluteLayout.LayoutFlags="All"  Padding="40,0,40,60"
+                    AbsoluteLayout.LayoutBounds="0,0,1,1">
+                <Label Text="You currently have no items at this time" XAlign="Center" LineBreakMode="WordWrap"  VerticalOptions="CenterAndExpand" FontAttributes="Bold"  FontSize="24"></Label>
+            </StackLayout>
+        </AbsoluteLayout>
+     
+    </ContentPage.Content>
+</ContentPage>

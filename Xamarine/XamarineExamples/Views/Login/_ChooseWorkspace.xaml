@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:navigation="clr-namespace:ProjectInsightMobile.Views"
+             x:Class="ProjectInsightMobile.Views.ChooseWorkspace"
+             xmlns:customComponent="clr-namespace:ProjectInsightMobile.CustomControls"
+             Title="">
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView  Grid.Row="0" VerticalOptions="FillAndExpand"
+                    x:Name="ItemsListViewDroid" 
+                    ItemsSource="{Binding Items}"
+                    HasUnevenRows="true"
+                    IsPullToRefreshEnabled="False"
+                    CachingStrategy="RecycleElement"
+                    HorizontalOptions="FillAndExpand"
+                    BackgroundColor="{StaticResource Blue1}"
+                 >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <customComponent:SwipeGestureGrid
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand" 
+                                SwipeLeft="GridTemplate_SwipeLeft"
+                                SwipeRight="GridTemplate_SwipeRight"
+                                Tapped="GridTemplate_Tapped"
+                                x:Name="swipeGrid"
+                                BackgroundColor="{StaticResource Blue1}"
+                                RowSpacing="0" ColumnSpacing="0" 
+                                >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions >
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="0" />
+                                </Grid.ColumnDefinitions>
+                                <StackLayout Padding="20,0,20,0" Margin="0,7,0,7"
+                                      VerticalOptions="FillAndExpand" 
+                                      HorizontalOptions="FillAndExpand"
+                                      BackgroundColor="{StaticResource Blue1}"
+                                             Orientation="Horizontal"
+                                      >
+                                    <Image Grid.Column="0" Source="{Binding Icon}" HeightRequest="60"  VerticalOptions="Fill"  />
+
+                                    <StackLayout Padding="10,0,10,0" Spacing="0" Grid.Column="1" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
+                                        <Label Text="{Binding Name}" 
+                                                   LineBreakMode="NoWrap" 
+                                                   TextColor="{StaticResource WhiteTextColor}"
+                                                   FontAttributes="Bold"
+                                                   FontSize="20" />
+                                        <Label 
+                                                Text="{Binding WorkspaceURL}" 
+                                                IsVisible="{Binding isStartEndDateVisible}"
+                                                LineBreakMode="NoWrap"
+                                                HorizontalOptions="StartAndExpand"
+                                                VerticalOptions="FillAndExpand"
+                                                TextColor="{StaticResource WhiteTextColor}"
+                                                FontSize="14" />
+                                    </StackLayout>
+                                </StackLayout>
+                                <StackLayout Padding="0" Grid.Column="1" VerticalOptions="FillAndExpand" BackgroundColor="Red"   Orientation="Vertical"  >
+                                    <StackLayout VerticalOptions="CenterAndExpand">
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="deleteWorkspace"/>
+                                        </StackLayout.GestureRecognizers>
+                                        <Label Text="X" 
+                                                LineBreakMode="NoWrap" 
+                                                TextColor="{StaticResource WhiteTextColor}"
+                                                VerticalTextAlignment="Center"
+                                                HorizontalTextAlignment="Center"
+                                                FontAttributes="Bold" 
+                                                FontSize="26" />
+                                        <Label Text="Delete" 
+                                                LineBreakMode="NoWrap"
+                                                HorizontalTextAlignment="Center"
+                                                TextColor="{StaticResource WhiteTextColor}"
+                                                FontSize="13" />
+                                    </StackLayout>
+                                </StackLayout>
+                            </customComponent:SwipeGestureGrid>
+
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <ListView  Grid.Row="0" VerticalOptions="FillAndExpand"
+                    x:Name="ItemsListViewiOS" 
+                    ItemsSource="{Binding Items}"
+                    HasUnevenRows="true"
+                    IsPullToRefreshEnabled="False"
+                    CachingStrategy="RecycleElement"
+                    HorizontalOptions="FillAndExpand"
+                    BackgroundColor="{StaticResource Blue1}"
+                 >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell BindingContextChanged="OnBindingContextChanged">
+                           
+                            <Grid x:Name="grdItems">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions >
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="0" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.GestureRecognizers >
+                                    <TapGestureRecognizer Tapped="GridTemplate_Tapped"></TapGestureRecognizer>
+                                </Grid.GestureRecognizers>
+                                <StackLayout Padding="20,0,20,0" Margin="0,7,0,7"
+                                      VerticalOptions="FillAndExpand" 
+                                      HorizontalOptions="FillAndExpand"
+                                      BackgroundColor="{StaticResource Blue1}"
+                                             Orientation="Horizontal"
+                                      >
+                                    <Image Grid.Column="0" Source="{Binding Icon}" HeightRequest="60"  VerticalOptions="Fill"  />
+
+                                    <StackLayout Padding="10,0,10,0" Spacing="0" Grid.Column="1" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
+                                        <Label Text="{Binding Name}" 
+                                                   LineBreakMode="NoWrap" 
+                                                   TextColor="{StaticResource WhiteTextColor}"
+                                                   FontAttributes="Bold"
+                                                   FontSize="20" />
+                                        <Label 
+                                                Text="{Binding WorkspaceURL}" 
+                                                IsVisible="{Binding isStartEndDateVisible}"
+                                                LineBreakMode="NoWrap"
+                                                HorizontalOptions="StartAndExpand"
+                                                VerticalOptions="FillAndExpand"
+                                                TextColor="{StaticResource WhiteTextColor}"
+                                                FontSize="14" />
+                                    </StackLayout>
+                                </StackLayout>
+                            </Grid>
+
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

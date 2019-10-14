@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SafeSportChat.Views.Login.CompleteYourProfileSportPage"
+                xmlns:comboBox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <Grid RowSpacing="0" ColumnSpacing="0" BackgroundColor="#BAD4E3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <StackLayout  Margin="40,100,40,20" Grid.Row="0" HorizontalOptions="Center">
+                <Label Margin="0" HorizontalTextAlignment="Center" Text="Are you part of a &#x0a; sports team? " HorizontalOptions="Fill"
+                   FontSize="28" LineHeight="1.33"  TextColor="#363531" FontFamily="{StaticResource Key=NormalFontRoboto}" LineBreakMode="WordWrap" />
+            </StackLayout>
+            <StackLayout Grid.Row="1" Margin="40,0,40,20" Padding="0" HorizontalOptions="FillAndExpand" HeightRequest="50">
+                <Button   Text="No" TextColor="#363531" FontSize="20" FontFamily="{StaticResource Key=NormalFontRoboto}" BackgroundColor="#FFB30F" CornerRadius="10" HeightRequest="50" Margin="0,20,0,20" Clicked="NoButton_Clicked"  />
+            </StackLayout>
+            <StackLayout  Grid.Row="2" Margin="40,20,40,25" Spacing="20"  BackgroundColor="Transparent" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Frame BorderColor="#ffffff" CornerRadius="10" BackgroundColor="#ffffff" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" HeightRequest="50" HasShadow="False"  Padding="0" Margin="0">
+                    <StackLayout   Padding="10,0,10,0" 
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="CenterAndExpand" 
+                            BackgroundColor="Transparent"
+                            >
+
+
+                        <Frame BorderColor="#ffffff" CornerRadius="10"
+                                 Padding="0,0,0,0" x:Name="frmSport"
+                                 HasShadow="False" BackgroundColor="#ffffff" HeightRequest="50"  >
+
+                            <comboBox:SfComboBox x:Name="cmbSport" 
+                                        SuggestionMode="Contains"
+                                        AllowFiltering="False"
+                                        IsEditableMode="True"
+                                        DisplayMemberPath="Name"
+                                        SelectedItem="{Binding SelectedSport}" 
+                                        DataSource="{Binding Sports}"
+                                        ShowClearButton="True"
+                                        ShowBorder="False"
+                                        DropDownItemHeight="40"
+                                        BorderColor="{StaticResource LightBackgroundColor}"
+                                        TextSize="17"
+                                        FontFamily="{StaticResource Key=NormalFontRoboto}"
+                                        SelectionChanged="CmbSport_SelectionChanged"
+                                        Watermark="Select sport"             >
+                                <comboBox:SfComboBox.DropDownButtonSettings>
+                                    <comboBox:DropDownButtonSettings Width="15" Height="15" >
+                                        <comboBox:DropDownButtonSettings.View>
+                                            <Image WidthRequest="15" HeightRequest="15" Source="orange_arrow_down.png" />
+                                        </comboBox:DropDownButtonSettings.View>
+                                    </comboBox:DropDownButtonSettings>
+                                </comboBox:SfComboBox.DropDownButtonSettings>
+
+                            </comboBox:SfComboBox>
+
+                        </Frame>
+                    </StackLayout>
+                </Frame>
+                
+            </StackLayout>
+            <Button Grid.Row="3"  Text="Not Now" Style="{StaticResource Key=btnTransparentWhite}" TextColor="#FFB30F" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

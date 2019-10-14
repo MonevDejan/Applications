@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjectInsightMobile.Views.IssueDetailsPage"
+             xmlns:customControls="clr-namespace:ProjectInsightMobile.Views"
+             xmlns:customComponent="clr-namespace:ProjectInsightMobile.CustomControls"
+             Title="{Binding ProjectName}">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Clicked="EditItem_Clicked"  Text="Edit"  />
+    </ContentPage.ToolbarItems>
+    <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand">
+
+        <BoxView HeightRequest="3" 
+                 Color="{StaticResource BorderLineTop}" />
+
+        <ScrollView VerticalOptions="FillAndExpand">
+
+            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+                <StackLayout IsVisible="{Binding  VisibleContent}"
+                         HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                        Orientation="Vertical"
+                        >
+
+                    <StackLayout 
+                            Orientation="Vertical" 
+                            Spacing="20" 
+                            Padding="0,0,0,10"  
+                            >
+
+                        <StackLayout
+                            Orientation="Vertical"
+                            Spacing="10" 
+                            
+                            >
+                            <StackLayout Margin="0,0" Padding="20,5" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource LightBackgroundColor}" >
+                            <Label 
+                                HorizontalOptions="FillAndExpand" 
+                               HorizontalTextAlignment="Start"
+                                FontSize="20"
+                                TextColor="{StaticResource BlackTextColor}"
+                                Text="{Binding Name}"  
+                                LineBreakMode="WordWrap"
+                                 />
+
+                            </StackLayout>
+
+                            <Label 
+                            IsVisible="{Binding isStartEndDateVisible}"
+                            VerticalOptions="FillAndExpand"
+                            x:Name="txtStartEndDate"
+                            FontSize="15" 
+                            HorizontalTextAlignment="Center" 
+                            Text="{Binding StartEndDate}"
+                            />
+
+                        <Label  
+                            VerticalOptions="FillAndExpand"
+                            HorizontalTextAlignment="Center"
+                            FontSize="15"  
+                            Text="{Binding UserAssignedTo}"
+                            IsVisible="{Binding isUserAssignedToVisible}"
+                            />
+
+                        <Label  
+                            VerticalOptions="FillAndExpand"
+                            HorizontalTextAlignment="Center"
+                            FontSize="15"  
+                            
+                             IsVisible="{Binding isUserAssignedByVisible}"
+                            Text="{Binding UserAssignedBy}"
+                            />
+                        <Label  
+                            VerticalOptions="FillAndExpand"
+                            HorizontalTextAlignment="Center"
+                            FontSize="15"  
+                             IsVisible="{Binding isPriorityVisible}"
+                            Text="{Binding Priority}"
+                            />
+                        <Label  
+                            VerticalOptions="FillAndExpand"
+                            HorizontalTextAlignment="Center"
+                            FontSize="15"  
+                            IsVisible="{Binding isSeverityVisible}"
+                            Text="{Binding Severity}"
+                            />
+                            <customComponent:HtmlLabel 
+                            IsVisible="{Binding isDescriptionVisible}"
+                            customComponent:HtmlLabel.MaxLines="3"
+                            VerticalOptions="FillAndExpand"
+                            HorizontalOptions="FillAndExpand"
+                            FontSize="15"  
+                            HorizontalTextAlignment="Center" 
+                            TextColor="{StaticResource BlackTextColor}"
+                            
+                            Text="{Binding Description}">
+                                <!--<customComponent:HtmlLabel.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnShowDescriptionAllContent"/>
+                                </customComponent:HtmlLabel.GestureRecognizers>-->
+                            </customComponent:HtmlLabel>
+
+                        </StackLayout>
+
+                       
+                      
+                        <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" >
+                            <Button  Margin="20,0" Clicked="OnUpdateStatus" Text="{Binding WorkStatus}" StyleClass="PrimaryButton"></Button>
+                            <Button  Clicked="OnAddTimeEntry" Text="Add Time" StyleClass="SecondaryButton" Margin="20,20"></Button>
+                            <!--<customControls:IssueDetailsCustomView />-->
+
+                            <customControls:ResolutionsCustomView ItemId="{Binding Id}"  ItemName="{Binding Name}" VerticalOptions="FillAndExpand"  />
+                            <customControls:RelatedItemsCustomView  ItemId="{Binding Id}" ItemType="Issue" VerticalOptions="FillAndExpand"  />
+                            <customControls:CommentsCustomView ItemId="{Binding Id}" Margin="20,15,20,0"  ItemName="{Binding Name}" />
+                        </StackLayout>
+                         
+
+                    </StackLayout>  
+
+
+
+                </StackLayout>
+
+                <ActivityIndicator 
+                  IsVisible="{Binding VisibleLoad}"
+                  
+                    IsRunning="{Binding VisibleLoad}" 
+                    Color="{StaticResource Primary}"
+                    />
+            </StackLayout>
+        </ScrollView>
+
+        <customControls:BottomNavigationBar></customControls:BottomNavigationBar>
+    </StackLayout>
+
+</ContentPage>

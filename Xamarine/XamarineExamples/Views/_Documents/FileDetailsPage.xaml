@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="{Binding Title}"
+             x:Class="ProjectInsightMobile.Views.FileDetailsPage"
+             xmlns:pages="clr-namespace:ProjectInsightMobile.Views"
+             xmlns:navigation="clr-namespace:ProjectInsightMobile.Views"
+             xmlns:customComponent="clr-namespace:ProjectInsightMobile.CustomControls"
+              xmlns:ffimageloadingSvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
+              xmlns:customControls="clr-namespace:ProjectInsightMobile.Views"
+             xmlns:customLabel="clr-namespace:ProjectInsightMobile.CustomControls"
+             x:Name="BrowseItemsPage">
+     
+    <ContentPage.Content>
+       
+        <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource WhiteTextColor}" Spacing="0" Padding="0">
+            <ScrollView VerticalOptions="FillAndExpand" >
+                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0,15,0,0" >
+                    <StackLayout   HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" IsVisible="{Binding VisibleContent}" 
+                        Orientation="Vertical">
+
+                        
+
+
+                            <Grid >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="300" />
+                                    <RowDefinition Height="auto" />
+                                </Grid.RowDefinitions>
+
+                            <!--<Image Source="{Binding Icon}" VerticalOptions="FillAndExpand"></Image>-->
+                            <ffimageloadingSvg:SvgCachedImage     
+			                    DownsampleToViewSize="true" 
+                                ErrorPlaceholder = "error.png"
+                                LoadingPlaceholder = "load.gif"
+			                    Source = "{Binding Icon}"
+                                 VerticalOptions="FillAndExpand"
+                            />
+                            <!--<ffimageloading:CachedImage Grid.Row="0"   Aspect="AspectFit"
+                                                                                         
+			                                        DownsampleToViewSize="False"
+                                                    VerticalOptions="FillAndExpand"
+                                                    HorizontalOptions="FillAndExpand"
+                                                    RetryCount="3"
+                                                    RetryDelay="200"  
+                                                    ErrorPlaceholder = "error.png"
+                                                    LoadingPlaceholder = "load.gif"
+			                                        Source = "{Binding Icon}"
+                                                                
+                    
+                                                />-->
+                            
+
+                            <StackLayout Grid.Row="1" Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="20,0,20,0" >
+
+                          <Button Clicked="OnDownload_Tapped" Text="Download" StyleClass="PrimaryButton" Margin="0,20,0,4"></Button>
+
+                            <customControls:CommentsCustomView ItemId="{Binding Id}" ItemName="{Binding Title}" Margin="0,10,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                            <StackLayout Orientation="Vertical" Padding="0,20,0,10">
+                                <customLabel:CustomLabel 
+                                        IsUnderlined="True" 
+                                        HorizontalTextAlignment="Center" 
+                                        HorizontalOptions="FillAndExpand" 
+                                        VerticalTextAlignment="Center"   
+                                         
+                                        TextColor="{StaticResource BlackTextColor}" 
+                                        Text="Delete" 
+                                        IsVisible="{Binding CanDelete}"
+                                    Margin="0,0,0,20"
+                                    >
+                                    <customLabel:CustomLabel.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnDelete_Tapped"/>
+                                    </customLabel:CustomLabel.GestureRecognizers>
+                                </customLabel:CustomLabel>
+                                <Label Text="{Binding Created}" HorizontalOptions="CenterAndExpand"  ></Label>
+                                <Label Text="{Binding Updated}" HorizontalOptions="CenterAndExpand"  ></Label>
+                            </StackLayout>
+                        </StackLayout>
+  </Grid>
+
+
+                    </StackLayout>
+                    <ActivityIndicator HeightRequest="100" Margin="0,20,0,0"
+                    IsVisible="{Binding VisibleLoad}" 
+                    IsRunning="{Binding VisibleLoad}" 
+                    Color="{StaticResource Primary}"
+                    />
+                </StackLayout>
+            </ScrollView>
+        <navigation:BottomNavigationBar></navigation:BottomNavigationBar>
+        </StackLayout>
+        
+    </ContentPage.Content>
+</ContentPage>

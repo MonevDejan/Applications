@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjectInsightMobile.Views.Date"
+             xmlns:navigation="clr-namespace:ProjectInsightMobile.Views"
+             xmlns:customComponent="clr-namespace:ProjectInsightMobile.CustomControls"
+              xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+             BackgroundColor="{StaticResource LightBackgroundColor}"
+             Title="Add Receipt">
+    <ContentPage.Content>
+
+        <StackLayout Orientation="Vertical"    
+                         Padding="0" Margin="0" Spacing="0" 
+                         VerticalOptions="FillAndExpand"
+                         HorizontalOptions="FillAndExpand">
+            <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="20,20,20,0" Margin="0" Spacing="0">
+                <ScrollView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="0" Margin="0" VerticalScrollBarVisibility="Never" >
+                    <StackLayout HorizontalOptions="FillAndExpand" Padding="0" Spacing="0" Margin="0" >
+                        <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Padding="0" Margin="0" Spacing="20" >
+
+                            <StackLayout  Margin="0" BackgroundColor="{StaticResource WhiteTextColor}"  HorizontalOptions="FillAndExpand">
+                                <inputLayout:SfTextInputLayout
+                            ContainerType="Outlined"
+                            ContainerBackgroundColor="#E6EEF9"
+                            FocusedColor="{StaticResource Primary}"
+                            UnfocusedColor="{StaticResource DarkGrayTextColor}"
+                            BackgroundColor="{StaticResource LightBackgroundColor}"
+                            ReserveSpaceForAssistiveLabels="False"
+                            Hint="Date"
+                            >
+                                    <customComponent:DatePickerCentered TextColor="{StaticResource BlackTextColor}" HorizontalOptions="FillAndExpand" 
+                               
+                                FontSize="22" 
+                                Date="{Binding Date}"
+                                >
+
+                                    </customComponent:DatePickerCentered>
+                                </inputLayout:SfTextInputLayout>
+                            </StackLayout>
+
+                            <Button  Clicked="Continue_Tapped" Text="Continue" StyleClass="PrimaryButton"  x:Name="lblSkip" IsVisible="{Binding ShowContinueOnAmountPage}"></Button>
+                           
+
+
+                        </StackLayout>
+                        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0,10,0,0" Spacing="0" Margin="0"  >
+                            <Image 
+                            x:Name="showHideIcon"
+                            Source="{Binding PhotoSource}"  
+                            Margin="0,0,0,0"
+                                  HorizontalOptions="FillAndExpand"
+                         VerticalOptions="FillAndExpand"
+                          
+                           
+                             />
+
+                        </StackLayout>
+
+                    </StackLayout>
+                </ScrollView>
+            </StackLayout>
+            <navigation:BottomNavigationBar />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
