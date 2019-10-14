@@ -279,7 +279,32 @@ In startup we neet to add this service services.AddIdentity<>() and in the brack
 we need to chain to that addEntityFrameworkStores<nameOf_DbContextClass>
 we need to add authetication middleware    app.UseAuthentication();
 Create migration and update database
-*** UserManager and SignInManager
+*** IdentityUser
+There are already predifined properties (default values) that are used freqiently
+Combined with UserManager<IdentityUser> and SignInManager<IdentityUser> can perform 
+all actions that we need for one user
+*** UserManager<IdentityUser> and SignInManager<IdentityUser>
+build in classes from .net core
+these two classes help is in working with users
+UserManager is used to create, delete, update etc user information
+SignInManager is used for signin, sign out, various checks etc
+*** Authorization 
+To restrict acess to some actions we use [Authorize] atribute 
+It can be set on action or controler, or globallu in setup
+Use in pair with [AllowAnonymous]
+it can be RoleBased, claims base and Policy based
+*** Remote validation
+we use remote validation if we want to validate only specific input
+With this we are avoiding transfering a lot of data to the client
+instead of that, we can declare another action that its job is to check this specific input 
+Need to put [Remote] atribute and provide the action and controller that it calss
+Also we need to include jquery sctripts to work (or write them on our own)
+***
+
+
+
+
+
 
 
 

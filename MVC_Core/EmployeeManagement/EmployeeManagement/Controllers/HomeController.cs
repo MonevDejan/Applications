@@ -7,11 +7,13 @@ using EmployeeManagement.Models;
 using EmployeeManagement.ViewModels;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EmployeeManagement.Controllers
 {
 
     //[Route("[controller]/[action]")]
+   
     public class HomeController : Controller
     {
         private readonly IEmployeeRepository _employeeRepository;
@@ -24,12 +26,14 @@ namespace EmployeeManagement.Controllers
         }
         //[Route("~/")]
         //[Route("~/home")]
+        [AllowAnonymous]
         public IActionResult Index()
         {
             var model = _employeeRepository.GetAllEmployee();
             return View(model);
         }
 
+        [AllowAnonymous]
         //[Route("{id?}")]
         public IActionResult Details(int? id)
         {
@@ -46,6 +50,7 @@ namespace EmployeeManagement.Controllers
             };
             return View(homeDetailsViewModel);
         }
+
 
         [HttpGet]
         public IActionResult Create()
