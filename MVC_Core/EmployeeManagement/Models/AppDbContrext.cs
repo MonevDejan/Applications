@@ -24,6 +24,13 @@ namespace EmployeeManagement.Models
 
             base.OnModelCreating(modelBuilder);
 
+            // To avoid cascade deleting foreign key
+            foreach(var foreignKey in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
+            {
+                foreignKey.DeleteBehavior = DeleteBehavior.Restrict;
+            }
+
+
             
 
             
