@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using EmployeeManagement.Security;
 
 namespace EmployeeManagement
 {
@@ -35,23 +36,35 @@ namespace EmployeeManagement
                 options.Password.RequiredLength = 10;
                 options.Password.RequiredUniqueChars = 3;
             }).AddEntityFrameworkStores<AppDbContrext>();
-           
 
-            services.AddMvc(options => 
+            services.AddMvc(options =>
             {
                 var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
                 options.Filters.Add(new AuthorizeFilter(policy));
             }).AddXmlSerializerFormatters();
-            services.AddScoped<IEmployeeRepository, SQLEmployeeRepository>();
 
-           
             services.AddAuthorization(options =>
             {
-                options.AddPolicy("DeleteRolePolicy",
-                    policy => policy.RequireClaim("Delete Role")
-                                    .RequireClaim("Create Role")
-                    );
+                options.AddPolicy("AdminRolePolicy", policy => policy.RequireRole("Admin"));
+                options.AddPolicy("DeleteRolePolicy", policy => policy.RequireClaim("Delete Role"));
+                options.AddPolicy("DeleteEmployeePolicy", policy => policy.RequireClaim("Delete Employee"));
+                options.AddPolicy("EditRolePolicy", policy => policy.AddRequirements(new ManageAdminRolesAndClaimsRequirement()));
+                //options.AddPolicy("EditRolePolicy", policy => policy.RequireAssertion(context =>
+                //        context.User.IsInRole("Admin") &&
+                //        context.User.HasClaim(claim => claim.Type == "Edit Role" && claim.Value == "true") ||
+                //        context.User.IsInRole("Super Admin")
+                //));
+                //options.AddPolicy("SuperAdminPolicy", policy => policy.RequireRole("Admin", "User", "Manager"));
+
             });
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.AccessDeniedPath = new PathString("/Administration/AccessDenied");
+            });
+
+            services.AddScoped<IEmployeeRepository, SQLEmployeeRepository>();
+            services.AddSingleton<IAuthorizationHandler,CanEditOnlyOtherAdminRolesAndClaimsHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

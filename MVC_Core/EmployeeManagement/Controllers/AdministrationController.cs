@@ -18,7 +18,7 @@ namespace EmployeeManagement.Controllers
     //[Authorize(Roles = "User")]
 
     // The user needs to be admin OR User
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Policy = "AdminRolePolicy")]
     public class AdministrationController : Controller
     {
         private readonly RoleManager<IdentityRole> _roleManager;
@@ -240,7 +240,7 @@ namespace EmployeeManagement.Controllers
                 Email = user.Email,
                 UserName = user.UserName,
                 City = user.City,
-                Claims = userClaims.Select(c => c.Value).ToList(),
+                Claims = userClaims.Select(c => c.Type + " : " + c.Value).ToList(),
                 Roles = userRoles
             };
 
@@ -308,6 +308,7 @@ namespace EmployeeManagement.Controllers
 
         [HttpPost]
         [Authorize(Policy = "DeleteRolePolicy" )]
+        //[Authorize(Policy = "SuperAdminPolicy")]
         public async Task<IActionResult> DeleteRole(string id)
         {
             var role = await _roleManager.FindByIdAsync(id);
@@ -347,6 +348,7 @@ namespace EmployeeManagement.Controllers
         }
 
         [HttpGet]
+        [Authorize(Policy = "EditRolePolicy")]
         public async Task<IActionResult> ManageUserRoles(string userId)
         {
             ViewBag.userId = userId;
@@ -385,6 +387,7 @@ namespace EmployeeManagement.Controllers
         }
 
         [HttpPost]
+        [Authorize(Policy = "EditRolePolicy")]
         public async Task<IActionResult> ManageUserRoles(List<UserRolesViewModel> model, string userId)
         {
             var user = await _userManager.FindByIdAsync(userId);
@@ -445,7 +448,7 @@ namespace EmployeeManagement.Controllers
 
                 // If the user has the claim, set IsSelected property to true, so the checkbox
                 // next to the claim is checked on the UI
-                if (existingUserClaims.Any(c => c.Type == claim.Type))
+                if (existingUserClaims.Any(c => c.Type == claim.Type && c.Value == "true"))
                 {
                     userClaim.IsSelected = true;
                 }
@@ -480,7 +483,7 @@ namespace EmployeeManagement.Controllers
 
             // Add all the claims that are selected on the UI
             result = await _userManager.AddClaimsAsync(user,
-                model.Cliams.Where(c => c.IsSelected).Select(c => new Claim(c.ClaimType, c.ClaimType)));
+                model.Cliams.Select(c => new Claim(c.ClaimType, c.IsSelected ? "true" : "false")));
 
             if (!result.Succeeded)
             {
@@ -490,6 +493,13 @@ namespace EmployeeManagement.Controllers
 
             return RedirectToAction("EditUser", new { Id = model.UserId });
 
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult AccessDenied()
+        {
+            return View();
         }
     }
 }

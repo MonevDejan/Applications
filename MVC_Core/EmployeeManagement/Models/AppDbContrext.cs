@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -12,16 +13,11 @@ namespace EmployeeManagement.Models
         public DbSet<Employee> Employees { get; set; }
         public AppDbContrext(DbContextOptions<AppDbContrext> options) : base(options)
         {
-
+        
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Employee>().HasData(
-                   new Employee() { Id = 1, Name = "Marry1", Department = Dept.HR, Email = "marry1@gmail.com" },
-                   new Employee() { Id = 2, Name = "Marry2", Department = Dept.IT, Email = "marry2@gmail.com" },
-                   new Employee() { Id = 3, Name = "Marry3", Department = Dept.Payroll, Email = "marry3@gmail.com" }
-                   );
-
+            modelBuilder.Seed();
             base.OnModelCreating(modelBuilder);
 
             // To avoid cascade deleting foreign key
@@ -30,10 +26,7 @@ namespace EmployeeManagement.Models
                 foreignKey.DeleteBehavior = DeleteBehavior.Restrict;
             }
 
-
-            
-
-            
         }
+
     }
 }

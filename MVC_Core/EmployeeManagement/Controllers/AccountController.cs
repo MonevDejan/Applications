@@ -62,8 +62,6 @@ namespace EmployeeManagement.Controllers
             return View();
         }
 
-        
-
         //[HttpPost][HttpGet]
         [AcceptVerbs("Get", "Post")]
         [AllowAnonymous]
@@ -125,11 +123,6 @@ namespace EmployeeManagement.Controllers
             return View();
         }
 
-        [HttpGet]
-        [AllowAnonymous]
-        public ActionResult AccessDenied()
-        {
-            return View();
-        }
+        
     }
 }

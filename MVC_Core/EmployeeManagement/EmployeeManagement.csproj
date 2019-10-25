@@ -6,6 +6,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20191025191919_TestMockData.cs" />
+    <Compile Remove="Migrations\20191025191919_TestMockData.Designer.cs" />
+    <Compile Remove="Migrations\20191025200031_InsertedRegisteredUsers.cs" />
+    <Compile Remove="Migrations\20191025200031_InsertedRegisteredUsers.Designer.cs" />
+    <Compile Remove="Migrations\20191025201330_Roles.cs" />
+    <Compile Remove="Migrations\20191025201330_Roles.Designer.cs" />
+    <Compile Remove="Migrations\20191025204930_SeedData.cs" />
+    <Compile Remove="Migrations\20191025204930_SeedData.Designer.cs" />
+    <Compile Remove="Models\MockEmployeeRepository.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="nlog.config" />
   </ItemGroup>
 

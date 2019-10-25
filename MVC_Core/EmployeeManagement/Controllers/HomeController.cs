@@ -116,6 +116,24 @@ namespace EmployeeManagement.Controllers
             return View();
         }
 
+        [HttpGet]
+        [Authorize(Policy = "DeleteEmployeePolicy")]
+        public IActionResult Delete(int id)
+        {
+            var employe = _employeeRepository.GetEmployee(id);
+            if (employe == null)
+            {
+                ViewBag.ErrorMessage = $"Employee with Id = {id} cannot be found";
+                return View("NotFound");
+            }
+            else
+            {
+                _employeeRepository.Delete(id);
+                return RedirectToAction("index");
+            }
+           
+        }
+
         private string ProcessUploadedFile(EmployeeCreateViewModel model)
         {
             string uniqueFileName = null;
