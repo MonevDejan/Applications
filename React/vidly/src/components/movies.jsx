@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { getMovies } from "../services/fakeMovieService";
-import { Like } from "./common/like";
 import Pagination from "./common/pagination";
 import paginate from "./../utilities/paginate";
 import { ListGroup } from "./listGroup";
 import { getGenres } from "./../services/fakeGenreService";
+import MoviesTable from "./moviesTable";
+import _ from "lodash";
 
 export class Movies extends Component {
   state = {
@@ -12,12 +13,13 @@ export class Movies extends Component {
     genre: [],
     renderMoviesPerPage: 4,
     activePage: 1,
-    selectedGenre: {}
+    selectedGenre: {},
+    sortColumn: { path: "title", order: "asc" }
   };
 
   componentDidMount() {
     const movies = getMovies();
-    const genre = getGenres();
+    const genre = [{ _id: "", name: "All movies" }, ...getGenres()];
     this.setState({ movies, genre, selectedGenre: genre[0] });
   }
 
@@ -40,22 +42,49 @@ export class Movies extends Component {
   };
 
   handleGenreSelect = genre => {
-    this.setState({ selectedGenre: genre });
+    this.setState({ selectedGenre: genre, activePage: 1 });
   };
 
-  render() {
-    const { length: count } = this.state.movies;
+  handleSort = sortColumn => {
+    this.setState({ sortColumn });
+  };
+
+  getPagedData = () => {
     const {
       activePage,
       renderMoviesPerPage,
       movies: allMovies,
-      genre,
-      selectedGenre
+      selectedGenre,
+      sortColumn
     } = this.state;
 
-    const movies = paginate(allMovies, activePage, renderMoviesPerPage);
+    const filterMovies =
+      selectedGenre.name === "All movies"
+        ? allMovies
+        : allMovies.filter(movie => movie.genre.name === selectedGenre.name);
+    const sorted = _.orderBy(
+      filterMovies,
+      [sortColumn.path],
+      [sortColumn.order]
+    );
 
-    if (count === 0) return <p>There are no movies in the database</p>;
+    const movies = paginate(sorted, activePage, renderMoviesPerPage);
+
+    return { totalCount: filterMovies.length, movies };
+  };
+
+  render() {
+    const {
+      activePage,
+      renderMoviesPerPage,
+      genre,
+      selectedGenre,
+      sortColumn
+    } = this.state;
+
+    const { totalCount, movies } = this.getPagedData();
+
+    if (totalCount === 0) return <p>There are no movies in the database</p>;
 
     return (
       <div className="row">
@@ -67,46 +96,19 @@ export class Movies extends Component {
           />
         </div>
         <div className="col-9">
-          <p> There are total of {count} movies in the database </p>
-          <table className="table">
-            <thead>
-              <tr>
-                <th>Title</th>
-                <th>Genre</th>
-                <th>Stock</th>
-                <th>Rate</th>
-                <th>Like</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              {movies.map(movie => (
-                <tr key={movie._id}>
-                  <td>{movie.title}</td>
-                  <td>{movie.genre.name}</td>
-                  <td>{movie.numberInStock}</td>
-                  <td>{movie.dailyRentalRate}</td>
-                  <td>
-                    <Like
-                      isLiked={movie.liked}
-                      onLike={() => this.handleLike(movie)}
-                    />
-                  </td>
-                  <td>
-                    <button
-                      onClick={() => this.handrelDelete(movie)}
-                      className="btn btn-danger btn-sm"
-                    >
-                      Delete
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <p>There are total of {totalCount} movies in the database</p>
+
+          <MoviesTable
+            movies={movies}
+            sortColumn={sortColumn}
+            onLike={this.handleLike}
+            onDelete={this.handrelDelete}
+            onSort={this.handleSort}
+          />
+
           <Pagination
-            moviesNumber={count}
-            moviesPerPage={renderMoviesPerPage}
+            itemsNumber={totalCount}
+            itemsPerPage={renderMoviesPerPage}
             onPageSelect={this.handlePageSelect}
             activePage={activePage}
           />

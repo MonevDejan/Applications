@@ -1,9 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-export const Pagination = props => {
-  const { moviesNumber, moviesPerPage, onPageSelect, activePage } = props;
-  const numberOfPages = Math.ceil(moviesNumber / moviesPerPage);
+export const Pagination = ({
+  itemsNumber,
+  itemsPerPage,
+  onPageSelect,
+  activePage
+}) => {
+  const numberOfPages = Math.ceil(itemsNumber / itemsPerPage);
 
   // no render if it is only one page
   if (numberOfPages === 1) {
@@ -25,7 +29,11 @@ export const Pagination = props => {
           return (
             <li
               key={n}
-              className={n === activePage ? "page-item active" : "page-item"}
+              className={
+                n === activePage
+                  ? "page-item pointer active"
+                  : "page-item pointer"
+              }
             >
               <button className="page-link" onClick={() => onPageSelect(n)}>
                 {n}
@@ -39,8 +47,8 @@ export const Pagination = props => {
 };
 
 Pagination.propTypes = {
-  moviesNumber: PropTypes.number.isRequired,
-  moviesPerPage: PropTypes.number.isRequired,
+  itemsNumber: PropTypes.number.isRequired,
+  itemsPerPage: PropTypes.number.isRequired,
   activePage: PropTypes.number.isRequired,
   onPageSelect: PropTypes.func.isRequired
 };

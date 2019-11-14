@@ -1,23 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-export const Like = props => {
-  const { isLiked, onLike } = props;
-
+export const Like = ({ isLiked, onLike }) => {
   // to render full-heart or empty-heart icon dynamically
-  let classes = "fa fa-heart";
+  let classes = "pointer fa fa-heart";
   if (!isLiked) {
     classes += "-o";
   }
 
-  return (
-    <i
-      className={classes}
-      style={{ cursor: "pointer" }}
-      aria-hidden="true"
-      onClick={onLike}
-    ></i>
-  );
+  return <i className={classes} aria-hidden="true" onClick={onLike}></i>;
 };
 
 Like.propTypes = {

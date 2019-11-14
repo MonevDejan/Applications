@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./../App.css";
 
 export class ListGroup extends Component {
   render() {
@@ -15,7 +16,9 @@ export class ListGroup extends Component {
           <li
             key={g[idProperty]}
             className={
-              g === selectedItem ? "list-group-item active" : "list-group-item"
+              g === selectedItem
+                ? "list-group-item pointer active"
+                : "list-group-item pointer"
             }
             onClick={() => onItemSelect(g)}
           >
