@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { Ingredient } from './../shared/ingredient.mode';
 import { ShoppingListService } from './shopping-list.service';
 
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-shopping-list',
   templateUrl: './shopping-list.component.html',
@@ -11,8 +13,9 @@ import { ShoppingListService } from './shopping-list.service';
 export class ShoppingListComponent implements OnInit {
 
   ingredients: Ingredient[];
+  durationInSeconds = 5;
 
-  constructor(private shopingListService: ShoppingListService) { }
+  constructor(private shopingListService: ShoppingListService, private toastr: ToastrService) { }
 
   ngOnInit() {
     this.ingredients = this.shopingListService.getIngredients();
@@ -24,5 +27,16 @@ export class ShoppingListComponent implements OnInit {
       )
   }
 
+  showSuccess() {
+    this.toastr.success('Hello world!', 'Toastr fun!');
+  }
+
+  // openSnackBar() {
+  //   this._snackBar.open('Message archived')
+  // }
+
 
 }
+
+
+

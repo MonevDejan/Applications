@@ -1,4 +1,4 @@
-Angular 6
+Angular 8
 Type script field and property are different. Property has getter/setter, field is declared sort of like variable
 
 Webpaack - combines all script and styles, then compress them and put them into bundle
@@ -83,6 +83,8 @@ Services - normal class. The dont need decorator. They are injected into the con
 	It is comonly put into providers in app modules
 	We can use services from croos-componet comunication with rasing events and subscribing to them
 @Injectable() - decoraor used on top of service, if we are injecting service into service
+@Injectable({providedIn: 'root'}) - if we want to declare it right here and skip declaring in appModule providers
+	
 
 Routes and RouteModule
 We need to define routs constant in appmodules as array of multiply route object {path: string, component: componentname}
@@ -90,20 +92,91 @@ path is without \ in front
 We need to import Routes to define Routes and RouteModule to declare it to angular 
 we also need to put <router-outlet> where we want to render the component from the routs
 
+We use this in template (html file)
 routerLink directive - declare name of the roots, render componentand prevent page from Reloading
 	it can have array of values if we use property binding ex. [routeLink]= "['/nameOfabsoluteRoute', 'nameOfappendedRoot']"
 	with leading /, we declare absolute path. Without /, we use relative path of our current loaded path
 	we can specify path like folders pat. ex. ../nameOfRoot
+[queryParams] - it allows us to add query parameters into the link. We are passing object key-value pairs
+[fragment] - allows us to add anker point at our web. the value is set up on directly
 
 routerLinkActive directive - it allow us to set class on our links when we click. It is usually used for active class
 routerLinkActiveOptions - is used to specify the "exact" option about the link ex.p [routerLinkActiveOptions] = "{exact: true}"
+
+route.navigate() - method we use to navigate to different paths. It accepts multiply parameters (path, query params etc)
+	ex. route.navigate(['/server', id, 'edit'], {queryParams: {allowEdit: 1}, fragment: loading })
+ 	we can use also relative path with .navigate(['edit'], {relativeTo: this.roue}) 
+	to preserve query params we use property {queryParamsHandling: 'merge' or 'preserve'}. 
+	merge is merging the queryParams with the new querryParams. preserve is preserving the old ones and drop out the new ones
+
 To acess the option of the Router object we need to inject it into the constructor of the component.
-ActivatedRoute interface - give us a lot of meata bout the activated rout
-[queryParams] - it allows us to add query parameters into the link 
-[fragment]
+ActivatedRoute interface - give us a lot of meata bout the activated rout ActivatedRoute 
+Passing parametars in root just like MVC :?id into root declaration. 
+Accessing them is trough ActivatedRoute (.snapshot.params(object) or .params(observable))
+
+nested router path - {path: "users", component: nameComponent, children: [{path: , component}}}
+	we can nest routes by adding property children (array) after rendering component 	
+	then we need to add <router-outlet> where we want to render that components
+	redirectTo - instead of specifying a component to render, we can use the property 
+Wildcard Routes - we can riderect the routes that are not found in our specification with '**'
+	we need to put the wild card path as the last route. 
+path matching - we can redirect at exact path { path: '', redirectTo: '/somewhere-else', pathMatch: 'full' }
+
+Outsourcing the routs - it is done automaticly when creating new project and selecting add roouter
+	we can transfer it manualy in diferet file using routerModule
 
 Angular is destroying component and cleariing unnecessary data. Usually we need do use lifecycleHook ngOnDestry to remove
 any subscription (unsubscribe) that we made. The subscription is not clously tight with the component
+
+canActivate - we use this for AuthGuard and Auth service. it protects the rote and all the child routs
+	We create sevice and before loading of new rout, we can acess canAcivete and check for if user can acces the rote page
+	After creating the services, we need to add property canActivete where we are specifing the rotes
+	and pass into an array which service we will use. ex.p {path: '/', canActivate[AuthGuard] component: name}
+	after all of that we need to declare it into app modules providers
+
+canActivateChild - to protected the children (nested) routs. Same like canActivate. 
+	needs to be set in path rotes like property canActivateChild
+
+canDeactivate - we use this to prevent changing route path. In order to use canDeactivate method in component,
+	we need to create interface which has canDeactivate method. Then our component need to impliment that interface
+	and provide the logic in canDeactivate method
+
+Static data to Router - we set property data where we declare our routes path 
+	ex. {path: "/", component: name, data: {message: 'Page not found'}}
+	We acces this data from ActivatedRoute
+ 
+
+Dynamic data to Router - we need to create another servise which implements Resolve<type>
+	to revisit this again...
+
+HttpClientModule - In order to work with http request, we need to declare in imprts HttpClientModule in app modules 
+	we inject HttpClient in our component and them we can use it to make http request. It returns Observable. 
+	all methods are of generic type. That means after the name in bracket we can specify the type
+	ex. HttpClient.get<typeOfResponse>
+	It is a good practice to show loader while witing for response from server.
+	This is done with simple flag
+HttpClient.post - method to send post request. It needs parameter like url and body(what we are sending).
+	The body is usually a Json object. At the end we need to subscribe to the post method. The method completes after execution
+HttpClient.get - takes url and we need to subscribe 
+HttpClient.delete - takes url. It is executed only if it succeed.
+
+We are using this methods in pipe (outside of error funcion on subscribe) catch is like a pipe method
+catchError and throwError - catchError  imported from rxjs/operator. throwError imported from rxjs 
+	We use catchError method to log errors or analize them in our backend
+	error needs to be able to reach subscribe. So when we catch the error we need to throw it back
+	ex.  catchError(err => {...Logic return throwError(errodResult) })
+Setting Headers - HttpHeaders needs to be inported. At the end of every method, we can add argument (object) to configure
+	a lot of properties for the request. One of the properties is headers
+
+Interceptors - intercepts all ongoig requests and run some logic before the request leaves our app.	
+	usually it is used for authentication user attaching the token to the requests
+	implements HttpInceptor. intercept(req: HttpRequest<any>, next: HttpHandler){ return next.handle(req)}
+	we need to call the function next to send the request to desired place
+	We declare this service in the providers on a special way ex.p providers: [{ provide: HTTP_INTERCEPTORS, useClass: serviceName, multi: true}]
+	We are setting multy to true if we are going to use multiply interceptors and dont want for them to ovveride eachother
+	The request object is immutuble. We use clone() if we want to change some properties
+Multiple Interceptor - They are executed in the order that we declare them in appModule providers array
+
 
 
 

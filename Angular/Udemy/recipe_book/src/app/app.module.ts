@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+// import 'hammerjs';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,9 +13,22 @@ import { RecipesItemComponent } from './recipes/recipes-list/recipes-item/recipe
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
 
+
 import { DropdownDirective } from './shared/dropdown.directive';
 
 import { ShoppingListService } from './shopping-list/shopping-list.service';
+
+// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {
+  ToastrModule,
+  ToastNoAnimation,
+  ToastNoAnimationModule
+} from 'ngx-toastr';
+
+// import { MatSliderModule } from '@angular/material/slider';
+// import { MatFormFieldModule } from '@angular/material/form-field';
+// import { MatSnackBarModule } from '@angular/material/snack-bar';
+// import { MatInputModule } from '@angular/material/input';
 
 
 @NgModule({
@@ -27,12 +41,20 @@ import { ShoppingListService } from './shopping-list/shopping-list.service';
     RecipesItemComponent,
     ShoppingListComponent,
     ShoppingEditComponent,
-    DropdownDirective
+    DropdownDirective,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    // BrowserAnimationsModule,
+    ToastrModule.forRoot(),
+    ToastNoAnimationModule.forRoot(),
+    // MatSliderModule,
+    // MatSnackBarModule,
+    // MatFormFieldModule,
+    // MatInputModule
   ],
   providers: [ShoppingListService],
   bootstrap: [AppComponent]
